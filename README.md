@@ -2,6 +2,13 @@
 
 Generate a list of licenses for the Swift Package libraries that your app depends on.
 
+[![Github issues](https://img.shields.io/github/issues/cybozu/LicenseList)](https://github.com/cybozu/LicenseList/issues)
+[![Github forks](https://img.shields.io/github/forks/cybozu/LicenseList)](https://github.com/cybozu/LicenseList/network/members)
+[![Github stars](https://img.shields.io/github/stars/cybozu/LicenseList)](https://github.com/cybozu/LicenseList/stargazers)
+[![Top language](https://img.shields.io/github/languages/top/cybozu/LicenseList)](https://github.com/cybozu/LicenseList/)
+[![Release](https://img.shields.io/github/v/release/cybozu/LicenseList)]()
+[![Github license](https://img.shields.io/github/license/cybozu/LicenseList)](https://github.com/cybozu/LicenseList/)
+
 **Example**
 
 | ![top](./Screenshots/demo-top.png) | ![mit](./Screenshots/demo-mit.png) | ![apache](./Screenshots/demo-apache.png) |
