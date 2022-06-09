@@ -21,8 +21,7 @@ final class SourcePackagesParser {
         let workspaceStateURL = URL(fileURLWithPath: sourcePackagesPath)
             .appendingPathComponent("workspace-state.json")
         guard let data = try? Data(contentsOf: workspaceStateURL),
-              let workspaceState = try? JSONDecoder().decode(WorkspaceState.self, from: data)
-        else {
+              let workspaceState = try? JSONDecoder().decode(WorkspaceState.self, from: data) else {
             throw SPPError.couldNotReadFile(workspaceStateURL.lastPathComponent)
         }
 
@@ -40,7 +39,6 @@ final class SourcePackagesParser {
             return Library(name: dependency.packageRef.name,
                            licenseType: license.0,
                            licenseBody: license.1)
-
         }
         .sorted { $0.name.lowercased() < $1.name.lowercased() }
 

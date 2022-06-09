@@ -18,7 +18,7 @@ enum LicenseType: String {
     case zlib = "zLib License"
 
     init(licenseText: String) {
-        let text = licenseText.replace(pattern: #"(  +|\n)"#, expect: " ")
+        let text = licenseText.replace(of: #"(  +|\n)"#, with: " ")
 
         if text.contains("Apache License") || text.contains(APACHE_2_TEXT) {
             self = .apache_2

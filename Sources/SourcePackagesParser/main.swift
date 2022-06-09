@@ -9,7 +9,7 @@ import Foundation
 
 func exitWithUsage() -> Never {
     print("USAGE: swift run spp [base directory path] [SourcePackages directory path]")
-    return exit(1)
+    exit(1)
 }
 
 func exitWithSPPError(_ sppError: SPPError) -> Never {
