@@ -52,10 +52,26 @@ public struct LicenseListView: View {
     var navigationController: UINavigationController? {
         guard let scene = UIApplication.shared.connectedScenes.first,
               let sceneDelegate = scene as? UIWindowScene,
-              let rootVC = sceneDelegate.windows.first?.rootViewController,
-              let navigationController = rootVC as? UINavigationController
+              var controller = sceneDelegate.windows.first?.rootViewController
         else { return nil }
-        return navigationController
+        while true {
+            if let navigationController = controller as? UINavigationController,
+               let visibleViewController = navigationController.visibleViewController {
+                controller = visibleViewController
+                continue
+            }
+            if let tabBarController = controller as? UITabBarController,
+               let selectedViewController = tabBarController.selectedViewController {
+                controller = selectedViewController
+                continue
+            }
+            if let presentedViewController = controller.presentedViewController {
+                controller = presentedViewController
+                continue
+            }
+            break
+        }
+        return controller.navigationController
     }
 
     func libraryButton(_ library: Library) -> some View {
