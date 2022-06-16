@@ -9,8 +9,10 @@ import SwiftUI
 
 public struct LicenseListView: View {
     let libraries: [Library]
+    let useUINavigationController: Bool
 
-    public init(fileURL: URL) {
+    public init(fileURL: URL, useUINavigationController: Bool = false) {
+        self.useUINavigationController = useUINavigationController
         guard let data = try? Data(contentsOf: fileURL),
               let plist = try? PropertyListSerialization.propertyList(from: data, format: nil),
               let dict = plist as? [String: Any] else {
@@ -37,17 +39,49 @@ public struct LicenseListView: View {
     public var body: some View {
         List {
             ForEach(libraries, id: \.name) { library in
-                if #available(iOS 15, *) {
-                    NavigationLink(destination: LicenseView(library: library)) {
-                        Text(library.name)
-                    }
+                if useUINavigationController {
+                    libraryButton(library)
                 } else {
-                    NavigationLink(destination: LegacyLicenseView(library: library)) {
-                        Text(library.name)
-                    }
+                    libraryNavigationLink(library)
                 }
             }
         }
         .listStyleInsetGroupedIfPossible()
+    }
+
+    var navigationController: UINavigationController? {
+        guard let scene = UIApplication.shared.connectedScenes.first,
+              let sceneDelegate = scene as? UIWindowScene,
+              let rootVC = sceneDelegate.windows.first?.rootViewController,
+              let navigationController = rootVC as? UINavigationController
+        else { return nil }
+        return navigationController
+    }
+
+    func libraryButton(_ library: Library) -> some View {
+        return Button(library.name) {
+            let view: AnyView
+            if #available(iOS 15, *) {
+                view = AnyView(LicenseView(library: library))
+            } else {
+                view = AnyView(LegacyLicenseView(library: library))
+            }
+            let hostingController = UIHostingController(rootView: view)
+            hostingController.title = library.name
+            navigationController?.pushViewController(hostingController, animated: true)
+        }
+        .foregroundColor(.primary)
+    }
+
+    func libraryNavigationLink(_ library: Library) -> some View {
+        if #available(iOS 15, *) {
+            return AnyView(NavigationLink(destination: LicenseView(library: library)) {
+                Text(library.name)
+            })
+        } else {
+            return AnyView(NavigationLink(destination: LegacyLicenseView(library: library)) {
+                Text(library.name)
+            })
+        }
     }
 }

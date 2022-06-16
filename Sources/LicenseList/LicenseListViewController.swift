@@ -23,7 +23,7 @@ public class LicenseListViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        let licenseListView = LicenseListView(fileURL: fileURL)
+        let licenseListView = LicenseListView(fileURL: fileURL, useUINavigationController: true)
         let vc = UIHostingController(rootView: licenseListView)
         self.addChild(vc)
         self.view.addSubview(vc.view)
