@@ -33,7 +33,7 @@
 		18E61A7D2872A66900C5A710 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18E61A7F2872A66900C5A710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18E61A892872AB6100C5A710 /* LicenseList */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LicenseList; path = ..; sourceTree = "<group>"; };
-		18E61A912872AC5100C5A710 /* LicenseDemoForSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LicenseDemoForSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18E61A912872AC5100C5A710 /* Demo SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E61A932872AC5100C5A710 /* LicenseDemoForSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseDemoForSwiftUIApp.swift; sourceTree = "<group>"; };
 		18E61A952872AC5100C5A710 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		18E61A972872AC5300C5A710 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				18E61A6F2872A66800C5A710 /* LicenseDemoForUIKit.app */,
-				18E61A912872AC5100C5A710 /* LicenseDemoForSwiftUI.app */,
+				18E61A912872AC5100C5A710 /* Demo SwiftUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,7 +172,7 @@
 				18E61AA32872B13500C5A710 /* LicenseList */,
 			);
 			productName = LicenseDemoForSwiftUI;
-			productReference = 18E61A912872AC5100C5A710 /* LicenseDemoForSwiftUI.app */;
+			productReference = 18E61A912872AC5100C5A710 /* Demo SwiftUI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -450,6 +450,7 @@
 				DEVELOPMENT_TEAM = VHY32ZU4KA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LicenseDemoForUIKit/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Demo UIKit";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -479,6 +480,7 @@
 				DEVELOPMENT_TEAM = VHY32ZU4KA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LicenseDemoForUIKit/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Demo UIKit";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -514,14 +516,14 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cybozu.LicenseDemoForSwiftUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Demo SwiftUI";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -544,14 +546,14 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cybozu.LicenseDemoForSwiftUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Demo SwiftUI";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

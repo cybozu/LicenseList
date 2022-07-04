@@ -40,7 +40,13 @@ public struct LicenseListView: View {
         List {
             ForEach(libraries, id: \.name) { library in
                 if useUINavigationController {
-                    libraryButton(library)
+                    HStack {
+                        libraryButton(library)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.subheadline.bold())
+                            .foregroundColor(Color(.systemGray3))
+                    }
                 } else {
                     libraryNavigationLink(library)
                 }
