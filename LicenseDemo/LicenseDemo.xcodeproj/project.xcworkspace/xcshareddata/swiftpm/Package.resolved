@@ -1,0 +1,106 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "BoringSSL-GRPC",
+        "repositoryURL": "https://github.com/firebase/boringSSL-SwiftPM.git",
+        "state": {
+          "branch": null,
+          "revision": "79db6516894a932d0ddaff3b05b9da1e4f6c4069",
+          "version": "0.9.0"
+        }
+      },
+      {
+        "package": "Slash",
+        "repositoryURL": "git@github.com:cybozu-private/ios-slash-framework.git",
+        "state": {
+          "branch": "master",
+          "revision": "313bf6b8c89f11d8f6425ff64d7b3c0f731b58ec",
+          "version": null
+        }
+      },
+      {
+        "package": "KeychainAccess",
+        "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess.git",
+        "state": {
+          "branch": null,
+          "revision": "84e546727d66f1adc5439debad16270d0fdd04e7",
+          "version": "4.2.2"
+        }
+      },
+      {
+        "package": "LicenseChecker",
+        "repositoryURL": "git@github.com:cybozu-private/license-checker-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "579635f09fcc3b4798df2389ca9adab49e52e087",
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "nanopb",
+        "repositoryURL": "https://github.com/nanopb/nanopb.git",
+        "state": {
+          "branch": null,
+          "revision": "afc499f9a410fc9bbf6c9c48cdd8d8b199d49eb4",
+          "version": "0.4.6"
+        }
+      },
+      {
+        "package": "ObjectMapper",
+        "repositoryURL": "https://github.com/tristanhimmelman/ObjectMapper.git",
+        "state": {
+          "branch": null,
+          "revision": "0b96a734de3ea1c87374ae677064f86adb0716ec",
+          "version": "4.2.0"
+        }
+      },
+      {
+        "package": "PactSwiftToolbox",
+        "repositoryURL": "https://github.com/surpher/PactSwiftToolbox",
+        "state": {
+          "branch": "main",
+          "revision": "b4c52bf4f86ab03215cb9e42ffd9387dd92ad25c",
+          "version": null
+        }
+      },
+      {
+        "package": "Reachability",
+        "repositoryURL": "https://github.com/ashleymills/Reachability.swift",
+        "state": {
+          "branch": null,
+          "revision": "c01bbdf2d633cf049ae1ed1a68a2020a8bda32e2",
+          "version": "5.1.0"
+        }
+      },
+      {
+        "package": "RxSwift",
+        "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
+        "state": {
+          "branch": null,
+          "revision": "7c17a6ccca06b5c107cfa4284e634562ddaf5951",
+          "version": "6.2.0"
+        }
+      },
+      {
+        "package": "swift-collections",
+        "repositoryURL": "https://github.com/apple/swift-collections.git",
+        "state": {
+          "branch": null,
+          "revision": "48254824bb4248676bf7ce56014ff57b142b77eb",
+          "version": "1.0.2"
+        }
+      },
+      {
+        "package": "Assimp",
+        "repositoryURL": "https://github.com/ctreffs/SwiftAssimp.git",
+        "state": {
+          "branch": null,
+          "revision": "ee2fc8389e139f065882170372e18b3d84e9c07a",
+          "version": "2.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

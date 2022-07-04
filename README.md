@@ -88,6 +88,12 @@ LicenseList is available through [Swift Package Manager](https://github.com/appl
      }
      ```
 
+## Demo
+
+This repository includes demonstration app for UIKit & SwiftUI.
+
+Open [LicenseDemo/LicenseDemo.xcodeproj](/LicenseDemo/LicenseDemo.xcodeproj) and Run it.
+
 ## SourcePackagesParser (spp)
 
 SourcePackageParser is a command line tool that parses the license information of the Swift Package libraries on which the project depends based on workspace-state.json inside the DerivedData directory.
