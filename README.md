@@ -39,7 +39,7 @@ LicenseList is available through [Swift Package Manager](https://github.com/appl
    $ echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict></dict></plist>' > license-list.plist
    ```
 
-   ⚠️ Note: When you add `license-list.plist` to the project, you mast remove the check mark from "Copy items if needed".
+   ⚠️ Note: When you add `license-list.plist` to the project, you must remove the check mark from "Copy items if needed".
 
 2. Add Run Script to the Build Phase of the Target.
 
