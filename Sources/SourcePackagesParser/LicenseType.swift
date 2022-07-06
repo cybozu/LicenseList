@@ -8,7 +8,7 @@
 fileprivate let APACHE_2_TEXT = "TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION"
 fileprivate let MIT_TEXT = "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\")"
 fileprivate let BSD_3_CLAUSE_CLEAR_TEXT = "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met"
-fileprivate let ZLIB_TEXT = "This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software."
+fileprivate let ZLIB_TEXT = "This software is provided \'as-is\', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software."
 
 enum LicenseType: String {
     case unknown = "Unknown License"
@@ -18,7 +18,9 @@ enum LicenseType: String {
     case zlib = "zLib License"
 
     init(licenseText: String) {
-        let text = licenseText.replace(of: #"(  +|\n)"#, with: " ")
+        let text = licenseText
+            .replace(of: "\n", with: " ")
+            .replace(of: #"  +"#, with: " ")
 
         if text.contains("Apache License") || text.contains(APACHE_2_TEXT) {
             self = .apache_2

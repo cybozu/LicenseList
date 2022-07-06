@@ -1,0 +1,47 @@
+{
+  "object" : {
+    "dependencies" : [
+        {
+            "packageRef" : {
+                "identity" : "package-a",
+                "kind" : "remoteSourceControl",
+                "location" : "https://github.com/dummy/Package-A.git",
+                "name" : "Package-A"
+            }
+        },
+        {
+            "packageRef" : {
+                "identity" : "package-b",
+                "kind" : "remoteSourceControl",
+                "location" : "https://github.com/dummy/Package-B.git",
+                "name" : "Package-B"
+            }
+        },
+        {
+            "packageRef" : {
+                "identity" : "package-c",
+                "kind" : "remoteSourceControl",
+                "location" : "https://github.com/dummy/Package-C.git",
+                "name" : "Package-C"
+            }
+        },
+        {
+            "packageRef" : {
+                "identity" : "package-d",
+                "kind" : "remoteSourceControl",
+                "location" : "https://github.com/dummy/Package-D.git",
+                "name" : "Package-D"
+            }
+        },
+        {
+            "packageRef" : {
+                "identity" : "package-e",
+                "kind" : "remoteSourceControl",
+                "location" : "https://github.com/dummy/Package-E.git",
+                "name" : "Package-E"
+            }
+        },
+    ]
+  },
+  "version" : 5
+}

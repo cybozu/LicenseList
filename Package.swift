@@ -18,11 +18,25 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "SourcePackagesParser"),
+        .testTarget(
+            name: "SourcePackagesParserTests",
+            dependencies: [
+                .target(name: "SourcePackagesParser",
+                        condition: .when(platforms: [.macOS]))
+            ],
+            resources: [
+                .copy("Resources/CouldNotRead"),
+                .copy("Resources/NoLibraries"),
+                .copy("Resources/SourcePackages")
+            ]),
         .target(
             name: "LicenseList"),
         .testTarget(
             name: "LicenseListTests",
-            dependencies: ["LicenseList"],
+            dependencies: [
+                .target(name: "LicenseList",
+                        condition: .when(platforms: [.iOS]))
+            ],
             resources: [
                 .copy("license-list.plist")
             ])
