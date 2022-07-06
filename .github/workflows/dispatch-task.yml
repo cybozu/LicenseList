@@ -1,0 +1,41 @@
+name: Dispatch Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-unit-test:
+    name: Run Unit Test
+    runs-on: macos-12
+    timeout-minutes: 30
+    env:
+      DEVELOPER_DIR: "/Applications/Xcode_13.4.1.app/Contents/Developer"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Show Xcode Version
+        run: xcodebuild -version
+
+      - name: Run SourcePackagesParserTests
+        run: |
+          xcodebuild -scheme spp test \
+            -destination "platform=macOS,arch=x86_64" \
+            -resultBundlePath SourcePackagesParserTests | \
+            xcpretty
+
+      - name: Run LicenseListTests
+        run: |
+          xcodebuild -scheme LicenseList-Package test \
+            -destination "platform=iOS Simulator,name=iPhone 13,OS=15.5" \
+            -resultBundlePath LicenseListTests | \
+            xcpretty
+
+      - name: Archive test results
+        if: success() || failure()
+        uses: kishikawakatsumi/xcresulttool@v1.4.0
+        with:
+          path: |
+            SourcePackagesParserTests.xcresult
+            LicenseListTests.xcresult
