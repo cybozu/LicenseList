@@ -14,6 +14,13 @@ Generate a list of licenses for the Swift Package libraries that your app depend
 | ![top](./Screenshots/demo-top.png) | ![mit](./Screenshots/demo-mit.png) | ![apache](./Screenshots/demo-apache.png) |
 | :--------------------------------: | :--------------------------------: | :--------------------------------------: |
 
+## Supported License Types
+
+- Apache license 2.0
+- MIT License
+- BSD 3-clause Clear license
+- zLib License
+
 ## Requirements
 
 - Written in Swift 5
