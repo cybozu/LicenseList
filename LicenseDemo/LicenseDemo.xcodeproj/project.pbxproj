@@ -204,12 +204,10 @@
 			mainGroup = 181DFF4C2849FA1800B97329;
 			packageReferences = (
 				1886E9DF284F24F000062DC4 /* XCRemoteSwiftPackageReference "swift-collections" */,
-				184AA74928517DB7008D2E3C /* XCRemoteSwiftPackageReference "SwiftAssimp" */,
 				184AA74A28517FAF008D2E3C /* XCRemoteSwiftPackageReference "nanopb" */,
 				184AA75028518158008D2E3C /* XCRemoteSwiftPackageReference "boringSSL-SwiftPM" */,
 				184AA75328518E0A008D2E3C /* XCRemoteSwiftPackageReference "PactSwiftToolbox" */,
-				184AA75628518E47008D2E3C /* XCRemoteSwiftPackageReference "ios-slash-framework" */,
-				184AA75928518F80008D2E3C /* XCRemoteSwiftPackageReference "license-checker-ios" */,
+				1C70DB7028C8621E00F95315 /* XCRemoteSwiftPackageReference "GPUImage2" */,
 			);
 			productRefGroup = 181DFF562849FA1800B97329 /* Products */;
 			projectDirPath = "";
@@ -593,14 +591,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		184AA74928517DB7008D2E3C /* XCRemoteSwiftPackageReference "SwiftAssimp" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ctreffs/SwiftAssimp.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		184AA74A28517FAF008D2E3C /* XCRemoteSwiftPackageReference "nanopb" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nanopb/nanopb.git";
@@ -625,28 +615,20 @@
 				kind = branch;
 			};
 		};
-		184AA75628518E47008D2E3C /* XCRemoteSwiftPackageReference "ios-slash-framework" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:cybozu-private/ios-slash-framework.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		184AA75928518F80008D2E3C /* XCRemoteSwiftPackageReference "license-checker-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:cybozu-private/license-checker-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
-			};
-		};
 		1886E9DF284F24F000062DC4 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
+			};
+		};
+		1C70DB7028C8621E00F95315 /* XCRemoteSwiftPackageReference "GPUImage2" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BradLarson/GPUImage2.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
