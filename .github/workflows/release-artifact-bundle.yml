@@ -1,0 +1,52 @@
+name: Release Artifact Bundle
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  release-artifact-bundle:
+    name: Release Artifact Bundle
+    runs-on: macos-12
+    timeout-minutes: 20
+    env:
+      DEVELOPER_DIR: "/Applications/Xcode_13.4.1.app/Contents/Developer"
+      ARTIFACT_BUNDLE: "SwiftPackagesParserBinary.artifactbundle"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Show Xcode Version
+        run: xcodebuild -version
+
+      - name: Build SwiftPackagesParser
+        run: swift build -c release --product spp --arch arm64 --arch x86_64
+
+      - name: Show SwiftPackagesParser size
+        run: ls -Slh .build/apple/Products/Release/spp | awk '{print $5, $9}'
+
+      - name: Set Env
+        run: |
+          echo "VERSION_STRING=${{ github.ref_name }}" >> $GITHUB_ENV
+          echo "ARTIFACT_BUNDLE_PATH=${ARTIFACT_BUNDLE}/spp-${{ github.ref_name }}-macos/bin" >> $GITHUB_ENV
+
+      - name: Make Output Directory
+        run: mkdir -p "${ARTIFACT_BUNDLE_PATH}"
+
+      - name: Make Artifact Bundle
+        run: |
+          sed "s/__VERSION__/${VERSION_STRING}/g" info-macos.json.template
+          cp -f ".build/apple/Products/Release/spp" "${ARTIFACT_BUNDLE_PATH}"
+          cp -f LICENSE "${ARTIFACT_BUNDLE}"
+          zip -yr - "${ARTIFACT_BUNDLE}" > "./SwiftPackagesParser-macos.artifactbundle.zip"
+
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          files: "./SwiftPackagesParser-macos.artifactbundle.zip"
+          draft: false
+          prerelease: false
