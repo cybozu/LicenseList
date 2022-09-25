@@ -38,7 +38,7 @@ jobs:
 
       - name: Make Artifact Bundle
         run: |
-          sed "s/__VERSION__/${VERSION_STRING}/g" info-macos.json.template
+          sed "s/__VERSION__/${VERSION_STRING}/g" info-macos.json.template > "${ARTIFACT_BUNDLE}/info.json"
           cp -f ".build/apple/Products/Release/spp" "${ARTIFACT_BUNDLE_PATH}"
           cp -f LICENSE "${ARTIFACT_BUNDLE}"
           zip -yr - "${ARTIFACT_BUNDLE}" > "./swift-packages-parser-macos.artifactbundle.zip"
