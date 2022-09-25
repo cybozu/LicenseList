@@ -23,14 +23,14 @@ jobs:
           xcodebuild -scheme spp test \
             -destination "platform=macOS,arch=x86_64" \
             -resultBundlePath SourcePackagesParserTests | \
-            xcpretty
+            xcpretty -c && exit ${PIPESTATUS[0]}
 
       - name: Run LicenseListTests
         run: |
           xcodebuild -scheme LicenseList-Package test \
             -destination "platform=iOS Simulator,name=iPhone 13,OS=15.5" \
             -resultBundlePath LicenseListTests | \
-            xcpretty
+            xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Archive test results
         if: success() || failure()
