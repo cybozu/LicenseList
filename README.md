@@ -118,3 +118,7 @@ $ swift run spp [base directory path] [SourcePackages directory path]
 - [SourcePackages directory path]
 
   Example: `~/Library/Developer/Xcode/DerivedData/project-name-xxxxxxxx/SourcePackages`
+
+### Swift Package Plugin (Build Tool)
+
+[LicenseListPlugin](https://github.com/cybozu/LicenseListPlugin.git) is available.
