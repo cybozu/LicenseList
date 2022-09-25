@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 20
     env:
       DEVELOPER_DIR: "/Applications/Xcode_13.4.1.app/Contents/Developer"
-      ARTIFACT_BUNDLE: "SwiftPackagesParserBinary.artifactbundle"
+      ARTIFACT_BUNDLE: "swift-packages-parser.artifactbundle"
 
     steps:
       - name: Checkout
@@ -41,11 +41,11 @@ jobs:
           sed "s/__VERSION__/${VERSION_STRING}/g" info-macos.json.template
           cp -f ".build/apple/Products/Release/spp" "${ARTIFACT_BUNDLE_PATH}"
           cp -f LICENSE "${ARTIFACT_BUNDLE}"
-          zip -yr - "${ARTIFACT_BUNDLE}" > "./SwiftPackagesParser-macos.artifactbundle.zip"
+          zip -yr - "${ARTIFACT_BUNDLE}" > "./swift-packages-parser-macos.artifactbundle.zip"
 
       - name: Get checksum
         run: |
-          CHECKSUM=$(swift package compute-checksum ./SwiftPackagesParser-macos.artifactbundle.zip)
+          CHECKSUM=$(swift package compute-checksum ./swift-packages-parser-macos.artifactbundle.zip)
           echo ${CHECKSUM}
           echo "CHECKSUM=${CHECKSUM}" >> $GITHUB_ENV
 
@@ -55,6 +55,6 @@ jobs:
           name: "${{ github.ref_name }} ${{ env.TODAY }}"
           tag_name: ${{ github.ref_name }}
           body: "**checksum**: ${{ env.CHECKSUM }}"
-          files: "./SwiftPackagesParser-macos.artifactbundle.zip"
+          files: "./swift-packages-parser-macos.artifactbundle.zip"
           draft: false
           prerelease: false
