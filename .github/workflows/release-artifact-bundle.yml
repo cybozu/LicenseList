@@ -43,11 +43,18 @@ jobs:
           cp -f LICENSE "${ARTIFACT_BUNDLE}"
           zip -yr - "${ARTIFACT_BUNDLE}" > "./SwiftPackagesParser-macos.artifactbundle.zip"
 
+      - name: Get checksum
+        run: |
+          CHECKSUM=$(swift package compute-checksum ./SwiftPackagesParser-macos.artifactbundle.zip)
+          echo ${CHECKSUM}
+          echo "CHECKSUM=${CHECKSUM}" >> $GITHUB_ENV
+
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
           name: "${{ github.ref_name }} ${{ env.TODAY }}"
           tag_name: ${{ github.ref_name }}
+          body: "**checksum**: ${{ env.CHECKSUM }}"
           files: "./SwiftPackagesParser-macos.artifactbundle.zip"
           draft: false
           prerelease: false
