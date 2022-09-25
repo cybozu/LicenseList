@@ -31,6 +31,7 @@ jobs:
         run: |
           echo "VERSION_STRING=${{ github.ref_name }}" >> $GITHUB_ENV
           echo "ARTIFACT_BUNDLE_PATH=${ARTIFACT_BUNDLE}/spp-${{ github.ref_name }}-macos/bin" >> $GITHUB_ENV
+          echo "TODAY=$(env LANG=en_US.UTF-8 date "+(%b %d, %Y)")" >> $GITHUB_ENV
 
       - name: Make Output Directory
         run: mkdir -p "${ARTIFACT_BUNDLE_PATH}"
@@ -45,7 +46,7 @@ jobs:
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
-          name: Release ${{ github.ref_name }}
+          name: "${{ github.ref_name }} ${{ env.TODAY }}"
           tag_name: ${{ github.ref_name }}
           files: "./SwiftPackagesParser-macos.artifactbundle.zip"
           draft: false
