@@ -25,7 +25,7 @@ Generate a list of licenses for the Swift Package libraries that your app depend
 
 - Written in Swift 5
 - Compatible with iOS 13.0+
-- Developement with Xcode 13.0+
+- Developement with Xcode 14.0.1+
 
 ## Installation
 
@@ -72,8 +72,7 @@ LicenseList is available through [Swift Package Manager](https://github.com/appl
      import LicenseList
 
      // in ViewController
-     let fileURL = Bundle.main.url(forResource: "license-list", withExtension: "plist")!
-     let vc = LicenseListViewController(fileURL: fileURL)
+     let vc = LicenseListViewController()
      vc.title = "LICENSE"
      navigationController?.pushViewController(vc, animated: true)
      ```
@@ -84,11 +83,9 @@ LicenseList is available through [Swift Package Manager](https://github.com/appl
      import LicenseList
 
      struct ContentView: View {
-         let url = Bundle.main.url(forResource: "license-list", withExtension: "plist")!
-
          var body: some View {
              NavigationView {
-                 LicenseListView(fileURL: url)
+                 LicenseListView()
                      .navigationTitle("LICENSE")
              }
          }
@@ -103,7 +100,7 @@ Open [LicenseDemo/LicenseDemo.xcodeproj](/LicenseDemo/LicenseDemo.xcodeproj) and
 
 ## SourcePackagesParser (spp)
 
-SourcePackageParser is a command line tool that parses the license information of the Swift Package libraries on which the project depends based on workspace-state.json inside the DerivedData directory.
+SourcePackagesParser is a command line tool that parses the license information of the Swift Package libraries on which the project depends based on workspace-state.json inside the DerivedData directory.
 
 ### Usage
 
@@ -111,14 +108,10 @@ SourcePackageParser is a command line tool that parses the license information o
 $ swift run spp [base directory path] [SourcePackages directory path]
 ```
 
-- [bese directory path]
+- [output directory path]
 
-  Path of the directory where the license-list.plist file will be placed.
+  Path to the directory where the license-list.plist file will be placed.
 
 - [SourcePackages directory path]
 
   Example: `~/Library/Developer/Xcode/DerivedData/project-name-xxxxxxxx/SourcePackages`
-
-### Swift Package Plugin (Build Tool)
-
-[LicenseListPlugin](https://github.com/cybozu/LicenseListPlugin.git) is available.

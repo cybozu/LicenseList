@@ -108,3 +108,10 @@ public struct LicenseListView: View {
         }
     }
 }
+
+public extension LicenseListView {
+    init(bundle: Bundle = .main, useUINavigationController: Bool = false) {
+        let url = bundle.url(forResource: "license-list", withExtension: "plist") ?? URL(fileURLWithPath: "/")
+        self.init(fileURL: url, useUINavigationController: useUINavigationController)
+    }
+}

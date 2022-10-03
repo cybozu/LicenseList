@@ -8,11 +8,11 @@
 import Foundation
 
 final class SourcePackagesParser {
-    let projectRootPath: String
+    let outputPath: String
     let sourcePackagesPath: String
 
-    init(_ projectRootPath: String, _ sourcePackagesPath: String) {
-        self.projectRootPath = projectRootPath
+    init(_ outputPath: String, _ sourcePackagesPath: String) {
+        self.outputPath = outputPath
         self.sourcePackagesPath = sourcePackagesPath
     }
 
@@ -48,7 +48,7 @@ final class SourcePackagesParser {
         printLibraries(libraries)
 
         // Export license-list.plist
-        let saveURL = URL(fileURLWithPath: projectRootPath)
+        let saveURL = URL(fileURLWithPath: outputPath)
             .appendingPathComponent("license-list.plist")
         try exportLicenseList(libraries, to: saveURL)
     }
@@ -90,6 +90,9 @@ final class SourcePackagesParser {
                 "licenseType": library.licenseType.rawValue,
                 "licenseBody": library.licenseBody
             ]
+        }
+        if FileManager.default.fileExists(atPath: saveURL.path) {
+            try FileManager.default.removeItem(at: saveURL)
         }
         let dict: [String: Any] = ["libraries": array]
         do {

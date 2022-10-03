@@ -16,6 +16,13 @@ public class LicenseListViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
+    public convenience init?(bundle: Bundle = .main) {
+        guard let url = bundle.url(forResource: "license-list", withExtension: "plist") else {
+            return nil
+        }
+        self.init(fileURL: url)
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
