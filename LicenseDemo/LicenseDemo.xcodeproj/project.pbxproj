@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18AC730228EBEE2800E64B96 /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 18AC730128EBEE2800E64B96 /* LicenseList */; };
 		18E61A722872A66800C5A710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A712872A66800C5A710 /* AppDelegate.swift */; };
 		18E61A742872A66800C5A710 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A732872A66800C5A710 /* SceneDelegate.swift */; };
 		18E61A762872A66800C5A710 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A752872A66800C5A710 /* ViewController.swift */; };
 		18E61A792872A66800C5A710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18E61A772872A66800C5A710 /* Main.storyboard */; };
 		18E61A7B2872A66900C5A710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18E61A7A2872A66900C5A710 /* Assets.xcassets */; };
 		18E61A7E2872A66900C5A710 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18E61A7C2872A66900C5A710 /* LaunchScreen.storyboard */; };
-		18E61A8C2872AB8C00C5A710 /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 18E61A8B2872AB8C00C5A710 /* LicenseList */; };
 		18E61A942872AC5100C5A710 /* LicenseDemoForSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A932872AC5100C5A710 /* LicenseDemoForSwiftUIApp.swift */; };
 		18E61A962872AC5100C5A710 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A952872AC5100C5A710 /* ContentView.swift */; };
 		18E61A982872AC5300C5A710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18E61A972872AC5300C5A710 /* Assets.xcassets */; };
@@ -43,7 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18E61A8C2872AB8C00C5A710 /* LicenseList in Frameworks */,
+				18AC730228EBEE2800E64B96 /* LicenseList in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +144,7 @@
 			);
 			name = LicenseDemoForUIKit;
 			packageProductDependencies = (
-				18E61A8B2872AB8C00C5A710 /* LicenseList */,
+				18AC730128EBEE2800E64B96 /* LicenseList */,
 			);
 			productName = LicenseDemoForUIKit;
 			productReference = 18E61A6F2872A66800C5A710 /* LicenseDemoForUIKit.app */;
@@ -600,6 +600,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		18AC730128EBEE2800E64B96 /* LicenseList */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LicenseList;
+		};
 		18B961FE28E6797C00A313B0 /* PrepareLicenseList */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "plugin:PrepareLicenseList";
@@ -607,10 +611,6 @@
 		18B9620328E6EB9C00A313B0 /* PrepareLicenseList */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "plugin:PrepareLicenseList";
-		};
-		18E61A8B2872AB8C00C5A710 /* LicenseList */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LicenseList;
 		};
 		18E61AA32872B13500C5A710 /* LicenseList */ = {
 			isa = XCSwiftPackageProductDependency;

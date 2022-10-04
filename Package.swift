@@ -16,6 +16,10 @@ let package = Package(
             name: "LicenseList",
             targets: ["LicenseList"]
         ),
+        .executable(
+            name: "spp",
+            targets: ["spp"]
+        )
     ],
     targets: [
         .executableTarget(
@@ -25,7 +29,7 @@ let package = Package(
         .plugin(
             name: "PrepareLicenseList",
             capability: .buildTool(),
-            dependencies: ["spp"]
+            dependencies: [.target(name: "spp")]
         ),
         .testTarget(
             name: "SourcePackagesParserTests",

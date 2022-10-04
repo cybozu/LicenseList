@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  
+//
 //
 //  Created by ky0me22 on 2022/09/29.
 //
@@ -29,9 +29,9 @@ struct PrepareLicenseList: BuildToolPlugin {
         return tmpPath
     }
 
+    // This command does not work as expected in Xcode 14.0.1.
     func createBuildCommands(context: PluginContext, target: Target) async throws -> [Command] {
         let executablePath = try context.tool(named: "spp").path
-        Swift.print("🐷", context.pluginWorkDirectory.string)
         let sourcePackagesPath = try sourcePackages(context.pluginWorkDirectory)
         let outputPath = context.pluginWorkDirectory.appending(["Resources"])
 
@@ -44,7 +44,7 @@ struct PrepareLicenseList: BuildToolPlugin {
                     sourcePackagesPath.string
                 ],
                 outputFiles: [
-                    outputPath.appending(["license-list.plist"])
+                    outputPath.appending(["license-list.plist"]),
                 ]
             )
         ]
@@ -55,6 +55,7 @@ struct PrepareLicenseList: BuildToolPlugin {
 
 import XcodeProjectPlugin
 
+// This command works as expected.
 extension PrepareLicenseList: XcodeBuildToolPlugin {
     func createBuildCommands(
         context: XcodeProjectPlugin.XcodePluginContext,
@@ -73,7 +74,7 @@ extension PrepareLicenseList: XcodeBuildToolPlugin {
                     sourcePackagesPath.string
                 ],
                 outputFiles: [
-                    outputPath.appending(["license-list.plist"]),
+                    outputPath.appending(["license-list.plist"])
                 ]
             ),
         ]
