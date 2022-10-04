@@ -8,6 +8,10 @@ let package = Package(
         .iOS(.v13)
     ],
     products: [
+        .executable(
+            name: "spp",
+            targets: ["spp"]
+        ),
         .plugin(
             name: "PrepareLicenseList",
             targets: ["PrepareLicenseList"]
@@ -15,10 +19,6 @@ let package = Package(
         .library(
             name: "LicenseList",
             targets: ["LicenseList"]
-        ),
-        .executable(
-            name: "spp",
-            targets: ["spp"]
         )
     ],
     targets: [
