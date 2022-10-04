@@ -21,6 +21,7 @@ jobs:
       - name: Run SourcePackagesParserTests
         run: |
           xcodebuild -scheme spp test \
+            -only-testing:SourcePackagesParserTests \
             -destination "platform=macOS,arch=x86_64" \
             -resultBundlePath SourcePackagesParserTests | \
             xcpretty -c && exit ${PIPESTATUS[0]}
@@ -28,6 +29,7 @@ jobs:
       - name: Run LicenseListTests
         run: |
           xcodebuild -scheme LicenseList-Package test \
+            -only-testing:LicenseListTests \
             -destination "platform=iOS Simulator,name=iPhone 14,OS=16.0" \
             -resultBundlePath LicenseListTests | \
             xcpretty && exit ${PIPESTATUS[0]}
