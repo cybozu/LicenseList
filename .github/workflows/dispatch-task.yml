@@ -9,7 +9,7 @@ jobs:
     runs-on: macos-12
     timeout-minutes: 30
     env:
-      DEVELOPER_DIR: "/Applications/Xcode_13.4.1.app/Contents/Developer"
+      DEVELOPER_DIR: "/Applications/Xcode_14.0.1.app/Contents/Developer"
 
     steps:
       - name: Checkout
@@ -28,7 +28,7 @@ jobs:
       - name: Run LicenseListTests
         run: |
           xcodebuild -scheme LicenseList-Package test \
-            -destination "platform=iOS Simulator,name=iPhone 13,OS=15.5" \
+            -destination "platform=iOS Simulator,name=iPhone 14,OS=16.0" \
             -resultBundlePath LicenseListTests | \
             xcpretty && exit ${PIPESTATUS[0]}
 
