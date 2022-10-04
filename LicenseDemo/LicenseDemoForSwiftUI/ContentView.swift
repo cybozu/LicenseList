@@ -9,12 +9,10 @@ import SwiftUI
 import LicenseList
 
 struct ContentView: View {
-    let fileURL = Bundle.main.url(forResource: "license-list", withExtension: "plist")!
-
     var body: some View {
         NavigationView {
             NavigationLink("License") {
-                LicenseListView(fileURL: fileURL)
+                LicenseListView()
                     .navigationTitle("LICENSE")
                     .navigationBarTitleDisplayMode(.inline)
             }

@@ -25,75 +25,53 @@ Generate a list of licenses for the Swift Package libraries that your app depend
 
 - Written in Swift 5
 - Compatible with iOS 13.0+
-- Developement with Xcode 13.0+
+- Developement with Xcode 14.0.1+
 
 ## Installation
 
 LicenseList is available through [Swift Package Manager](https://github.com/apple/swift-package-manager/).
 
-**Xcode**
-
-1. Select `File > Add Packages...`
-2. Search `https://github.com/cybozu/LicenseList.git`
-3. Add Package (add LicenseList library to target but don't add spp executable to target).
+1. Integrate LicenseList in your project
+   - File > Add Packages...
+   - Search `https://github.com/cybozu/LicenseList.git`
+   - Choose `LicenseList` product and add it to your application target
+2. Link LicenseList in your application target
+   - Application Target > `General` > `Frameworks, Libraries, and Embedded Content` > `+`
+   - Choose `LicenseList`  
+   ![installation2](./Screenshots/installation-2.png)
+3. Add PrepareLicenseList plugin to build phases
+   - Application Target > `Build Phases` > `Run Build Tool Plug-ins` > `+`
+   - Choose `PrepareLicenseList`  
+   ![installation2](./Screenshots/installation-3.png)
 
 ## Usage
 
-1. Create `license-list.plist` at the project root directory and add it to the project as a bundle resource.
+### Example for UIKit
 
-   ```bash
-   $ cd [project root path]
-   $ echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict></dict></plist>' > license-list.plist
-   ```
+```swift
+import LicenseList
 
-   ⚠️ Note: When you add `license-list.plist` to the project, you must remove the check mark from "Copy items if needed".
+// in ViewController
+let vc = LicenseListViewController()
+vc.title = "LICENSE"
+navigationController?.pushViewController(vc, animated: true)
+```
 
-2. Add Run Script to the Build Phase of the Target.
+### Example for SwiftUI
 
-   ```bash
-   SOURCE_PACKAGES_PATH=`echo ${BUILD_DIR%Build/*}SourcePackages`
+```swift
+import LicenseList
 
-   # Build SourcePackagesParser
-   xcrun --sdk macosx swift build -c release \
-     --package-path ${SOURCE_PACKAGES_PATH}/checkouts/LicenseList \
-     --product spp
+struct ContentView: View {
+    var body: some View {
+        NavigationView {
+            LicenseListView()
+                .navigationTitle("LICENSE")
+        }
+    }
+}
+```
 
-   # Run SourcePackagesParser
-   ${SOURCE_PACKAGES_PATH}/checkouts/LicenseList/.build/release/spp ${SRCROOT} ${SOURCE_PACKAGES_PATH}
-   ```
-
-   ⚠️ Note: This "Run Script" should be added before the "Copy Bundle Resources" step.
-
-3. Coding (Example)
-
-   - with UIKit
-
-     ```swift
-     import LicenseList
-
-     // in ViewController
-     let fileURL = Bundle.main.url(forResource: "license-list", withExtension: "plist")!
-     let vc = LicenseListViewController(fileURL: fileURL)
-     vc.title = "LICENSE"
-     navigationController?.pushViewController(vc, animated: true)
-     ```
-
-   - with SwiftUI
-
-     ```swift
-     import LicenseList
-
-     struct ContentView: View {
-         let url = Bundle.main.url(forResource: "license-list", withExtension: "plist")!
-
-         var body: some View {
-             NavigationView {
-                 LicenseListView(fileURL: url)
-                     .navigationTitle("LICENSE")
-             }
-         }
-     }
-     ```
 
 ## Demo
 
@@ -103,22 +81,16 @@ Open [LicenseDemo/LicenseDemo.xcodeproj](/LicenseDemo/LicenseDemo.xcodeproj) and
 
 ## SourcePackagesParser (spp)
 
-SourcePackageParser is a command line tool that parses the license information of the Swift Package libraries on which the project depends based on workspace-state.json inside the DerivedData directory.
+SourcePackagesParser is a command line tool that parses the license information of the Swift Package libraries on which the project depends based on workspace-state.json inside the DerivedData directory.
 
 ### Usage
 
 ```
-$ swift run spp [base directory path] [SourcePackages directory path]
+$ swift run spp [output directory path] [SourcePackages directory path]
 ```
 
-- [bese directory path]
+- [output directory path]  
+  Path to the directory where the license-list.plist file will be placed.
 
-  Path of the directory where the license-list.plist file will be placed.
-
-- [SourcePackages directory path]
-
+- [SourcePackages directory path]  
   Example: `~/Library/Developer/Xcode/DerivedData/project-name-xxxxxxxx/SourcePackages`
-
-### Swift Package Plugin (Build Tool)
-
-[LicenseListPlugin](https://github.com/cybozu/LicenseListPlugin.git) is available.

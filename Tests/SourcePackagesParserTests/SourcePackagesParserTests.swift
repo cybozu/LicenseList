@@ -31,7 +31,7 @@ final class SourcePackagesParserTests: XCTestCase {
         let actual = String(data: data, encoding: .utf8)
 
         XCTAssertEqual(process.terminationStatus, 1)
-        let expect = "USAGE: swift run spp [base directory path] [SourcePackages directory path]\n"
+        let expect = "USAGE: swift run spp [output directory path] [SourcePackages directory path]\n"
         XCTAssertEqual(actual, expect)
     }
 

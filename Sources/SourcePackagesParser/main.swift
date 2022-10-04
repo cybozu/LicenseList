@@ -8,7 +8,7 @@
 import Foundation
 
 func exitWithUsage() -> Never {
-    print("USAGE: swift run spp [base directory path] [SourcePackages directory path]")
+    print("USAGE: swift run spp [output directory path] [SourcePackages directory path]")
     exit(1)
 }
 
@@ -30,10 +30,10 @@ func main() {
     guard CommandLine.arguments.count == 3 else {
         exitWithUsage()
     }
-    let projectRootPath = CommandLine.arguments[1]
+    let outputPath = CommandLine.arguments[1]
     let sourcePackagesPath = CommandLine.arguments[2]
     do {
-        try SourcePackagesParser(projectRootPath, sourcePackagesPath).run()
+        try SourcePackagesParser(outputPath, sourcePackagesPath).run()
     } catch {
         if let sppError = error as? SPPError {
             exitWithSPPError(sppError)

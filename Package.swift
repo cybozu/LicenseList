@@ -1,4 +1,4 @@
-// swift-tools-version: 5.5
+// swift-tools-version: 5.6
 
 import PackageDescription
 
@@ -10,35 +10,54 @@ let package = Package(
     products: [
         .executable(
             name: "spp",
-            targets: ["SourcePackagesParser"]),
+            targets: ["spp"]
+        ),
+        .plugin(
+            name: "PrepareLicenseList",
+            targets: ["PrepareLicenseList"]
+        ),
         .library(
             name: "LicenseList",
-            targets: ["LicenseList"])
+            targets: ["LicenseList"]
+        )
     ],
     targets: [
         .executableTarget(
-            name: "SourcePackagesParser"),
+            name: "spp",
+            path: "Sources/SourcePackagesParser"
+        ),
+        .plugin(
+            name: "PrepareLicenseList",
+            capability: .buildTool(),
+            dependencies: [.target(name: "spp")]
+        ),
         .testTarget(
             name: "SourcePackagesParserTests",
             dependencies: [
-                .target(name: "SourcePackagesParser",
-                        condition: .when(platforms: [.macOS]))
+                .target(
+                    name: "spp",
+                    condition: .when(platforms: [.macOS])
+                )
             ],
             resources: [
                 .copy("Resources/CouldNotRead"),
                 .copy("Resources/NoLibraries"),
                 .copy("Resources/SourcePackages")
-            ]),
-        .target(
-            name: "LicenseList"),
+            ]
+        ),
+
+        .target(name: "LicenseList"),
         .testTarget(
             name: "LicenseListTests",
             dependencies: [
-                .target(name: "LicenseList",
-                        condition: .when(platforms: [.iOS]))
+                .target(
+                    name: "LicenseList",
+                    condition: .when(platforms: [.iOS])
+                )
             ],
             resources: [
                 .copy("license-list.plist")
-            ])
+            ]
+        )
     ]
 )

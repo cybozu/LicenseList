@@ -7,19 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18AC730228EBEE2800E64B96 /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 18AC730128EBEE2800E64B96 /* LicenseList */; };
 		18E61A722872A66800C5A710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A712872A66800C5A710 /* AppDelegate.swift */; };
 		18E61A742872A66800C5A710 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A732872A66800C5A710 /* SceneDelegate.swift */; };
 		18E61A762872A66800C5A710 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A752872A66800C5A710 /* ViewController.swift */; };
 		18E61A792872A66800C5A710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18E61A772872A66800C5A710 /* Main.storyboard */; };
 		18E61A7B2872A66900C5A710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18E61A7A2872A66900C5A710 /* Assets.xcassets */; };
 		18E61A7E2872A66900C5A710 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18E61A7C2872A66900C5A710 /* LaunchScreen.storyboard */; };
-		18E61A8C2872AB8C00C5A710 /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 18E61A8B2872AB8C00C5A710 /* LicenseList */; };
 		18E61A942872AC5100C5A710 /* LicenseDemoForSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A932872AC5100C5A710 /* LicenseDemoForSwiftUIApp.swift */; };
 		18E61A962872AC5100C5A710 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A952872AC5100C5A710 /* ContentView.swift */; };
 		18E61A982872AC5300C5A710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18E61A972872AC5300C5A710 /* Assets.xcassets */; };
 		18E61A9B2872AC5300C5A710 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18E61A9A2872AC5300C5A710 /* Preview Assets.xcassets */; };
-		18E61AA12872B05600C5A710 /* license-list.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18E61AA02872B05600C5A710 /* license-list.plist */; };
-		18E61AA22872B05900C5A710 /* license-list.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18E61AA02872B05600C5A710 /* license-list.plist */; };
 		18E61AA42872B13500C5A710 /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 18E61AA32872B13500C5A710 /* LicenseList */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +36,6 @@
 		18E61A952872AC5100C5A710 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		18E61A972872AC5300C5A710 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18E61A9A2872AC5300C5A710 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		18E61AA02872B05600C5A710 /* license-list.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "license-list.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18E61A8C2872AB8C00C5A710 /* LicenseList in Frameworks */,
+				18AC730228EBEE2800E64B96 /* LicenseList in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +61,6 @@
 		181DFF4C2849FA1800B97329 = {
 			isa = PBXGroup;
 			children = (
-				18E61AA02872B05600C5A710 /* license-list.plist */,
 				181F97F7286C0F45003D756F /* Packages */,
 				18E61A702872A66800C5A710 /* LicenseDemoForUIKit */,
 				18E61A922872AC5100C5A710 /* LicenseDemoForSwiftUI */,
@@ -139,16 +135,16 @@
 			buildPhases = (
 				18E61A6B2872A66800C5A710 /* Sources */,
 				18E61A6C2872A66800C5A710 /* Frameworks */,
-				18E61A872872A90600C5A710 /* Parse SourcePackages */,
 				18E61A6D2872A66800C5A710 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				18B961FF28E6797C00A313B0 /* PBXTargetDependency */,
 			);
 			name = LicenseDemoForUIKit;
 			packageProductDependencies = (
-				18E61A8B2872AB8C00C5A710 /* LicenseList */,
+				18AC730128EBEE2800E64B96 /* LicenseList */,
 			);
 			productName = LicenseDemoForUIKit;
 			productReference = 18E61A6F2872A66800C5A710 /* LicenseDemoForUIKit.app */;
@@ -160,12 +156,12 @@
 			buildPhases = (
 				18E61A8D2872AC5100C5A710 /* Sources */,
 				18E61A8E2872AC5100C5A710 /* Frameworks */,
-				18E61AA52872B6AD00C5A710 /* Parse SourcePackages */,
 				18E61A8F2872AC5100C5A710 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				18B9620428E6EB9C00A313B0 /* PBXTargetDependency */,
 			);
 			name = LicenseDemoForSwiftUI;
 			packageProductDependencies = (
@@ -224,7 +220,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18E61AA12872B05600C5A710 /* license-list.plist in Resources */,
 				18E61A7E2872A66900C5A710 /* LaunchScreen.storyboard in Resources */,
 				18E61A7B2872A66900C5A710 /* Assets.xcassets in Resources */,
 				18E61A792872A66800C5A710 /* Main.storyboard in Resources */,
@@ -237,50 +232,10 @@
 			files = (
 				18E61A9B2872AC5300C5A710 /* Preview Assets.xcassets in Resources */,
 				18E61A982872AC5300C5A710 /* Assets.xcassets in Resources */,
-				18E61AA22872B05900C5A710 /* license-list.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		18E61A872872A90600C5A710 /* Parse SourcePackages */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Parse SourcePackages";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "PACKAGE_PATH=\"${SRCROOT}/../\"\nSOURCE_PACKAGES_PATH=`echo ${BUILD_DIR%Build/*}SourcePackages`\n\n# build SourcePackagesParser\nxcrun --sdk macosx swift build -c release --package-path ${PACKAGE_PATH} --product spp\n\n# run SourcePackagesParser\n${PACKAGE_PATH}.build/release/spp ${SRCROOT} ${SOURCE_PACKAGES_PATH}\n";
-		};
-		18E61AA52872B6AD00C5A710 /* Parse SourcePackages */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Parse SourcePackages";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "PACKAGE_PATH=\"${SRCROOT}/../\"\nSOURCE_PACKAGES_PATH=`echo ${BUILD_DIR%Build/*}SourcePackages`\n\n# build SourcePackagesParser\nxcrun --sdk macosx swift build -c release --package-path ${PACKAGE_PATH} --product spp\n\n# run SourcePackagesParser\n${PACKAGE_PATH}.build/release/spp ${SRCROOT} ${SOURCE_PACKAGES_PATH}\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18E61A6B2872A66800C5A710 /* Sources */ = {
@@ -303,6 +258,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18B961FF28E6797C00A313B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 18B961FE28E6797C00A313B0 /* PrepareLicenseList */;
+		};
+		18B9620428E6EB9C00A313B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 18B9620328E6EB9C00A313B0 /* PrepareLicenseList */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		18E61A772872A66800C5A710 /* Main.storyboard */ = {
@@ -634,9 +600,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		18E61A8B2872AB8C00C5A710 /* LicenseList */ = {
+		18AC730128EBEE2800E64B96 /* LicenseList */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LicenseList;
+		};
+		18B961FE28E6797C00A313B0 /* PrepareLicenseList */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:PrepareLicenseList";
+		};
+		18B9620328E6EB9C00A313B0 /* PrepareLicenseList */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:PrepareLicenseList";
 		};
 		18E61AA32872B13500C5A710 /* LicenseList */ = {
 			isa = XCSwiftPackageProductDependency;

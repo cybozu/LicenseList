@@ -14,8 +14,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func pushLicense(_ sender: Any) {
-        if let fileURL = Bundle.main.url(forResource: "license-list", withExtension: "plist") {
-            let vc = LicenseListViewController(fileURL: fileURL)
+        if let vc = LicenseListViewController() {
             vc.title = "LICENSE"
             navigationController?.pushViewController(vc, animated: true)
         }

@@ -3,8 +3,7 @@ import XCTest
 
 final class LicenseListTests: XCTestCase {
     func testParsePlist() throws {
-        let url = Bundle.module.url(forResource: "license-list", withExtension: "plist")!
-        let sut = LicenseListView(fileURL: url)
+        let sut = LicenseListView(bundle: Bundle.module)
 
         XCTAssertEqual(sut.libraries.count, 5)
 
