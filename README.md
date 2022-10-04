@@ -11,8 +11,11 @@ Generate a list of licenses for the Swift Package libraries that your app depend
 
 **Example**
 
-| ![top](./Screenshots/demo-top.png) | ![mit](./Screenshots/demo-mit.png) | ![apache](./Screenshots/demo-apache.png) |
-| :--------------------------------: | :--------------------------------: | :--------------------------------------: |
+<div>
+  <img src="./Screenshots/demo-top.png" width="240px" />
+  <img src="./Screenshots/demo-apache.png" width="240px" />
+  <img src="./Screenshots/demo-mit.png" width="240px" />
+</div>
 
 ## Supported License Types
 
@@ -34,15 +37,16 @@ LicenseList is available through [Swift Package Manager](https://github.com/appl
 1. Integrate LicenseList in your project
    - File > Add Packages...
    - Search `https://github.com/cybozu/LicenseList.git`
-   - Choose `LicenseList` product and add it to your application target
+   - Choose `LicenseList` product and add it to your application target  
+   <img src="./Screenshots/installation-1.png" width="600px" />
 2. Link LicenseList in your application target
    - Application Target > `General` > `Frameworks, Libraries, and Embedded Content` > `+`
    - Choose `LicenseList`  
-   ![installation2](./Screenshots/installation-2.png)
+   <img src="./Screenshots/installation-2.png" width="500px" />
 3. Add PrepareLicenseList plugin to build phases
    - Application Target > `Build Phases` > `Run Build Tool Plug-ins` > `+`
    - Choose `PrepareLicenseList`  
-   ![installation2](./Screenshots/installation-3.png)
+   <img src="./Screenshots/installation-3.png" width="500px" />
 
 ## Usage
 
