@@ -36,7 +36,7 @@ jobs:
 
       - name: Archive test results
         if: success() || failure()
-        uses: kishikawakatsumi/xcresulttool@v1.4.0
+        uses: kishikawakatsumi/xcresulttool@v1
         with:
           path: |
             SourcePackagesParserTests.xcresult
