@@ -14,7 +14,7 @@ public struct Library: Hashable {
 }
 
 extension Library {
-    static public var licenses: [Library] {
+    static public var libraries: [Library] {
         var libraries: [Library] = []
         guard let fileURL = Bundle.main.url(forResource: "license-list", withExtension: "plist"),
               let data = try? Data(contentsOf: fileURL),
