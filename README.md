@@ -17,18 +17,11 @@ Generate a list of licenses for the Swift Package libraries that your app depend
   <img src="./Screenshots/demo-mit.png" width="240px" />
 </div>
 
-## Supported License Types
-
-- Apache license 2.0
-- MIT License
-- BSD 3-clause Clear license
-- zLib License
-
 ## Requirements
 
 - Written in Swift 5
 - Compatible with iOS 13.0+
-- Developement with Xcode 14.0.1+
+- Developement with Xcode 14.2+
 
 ## Installation
 

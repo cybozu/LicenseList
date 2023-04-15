@@ -33,12 +33,10 @@ final class SourcePackagesParser {
                 .replacingOccurrences(of: ".git", with: "")
             let directoryURL = URL(fileURLWithPath: checkoutsPath)
                 .appendingPathComponent(repositoryName)
-            guard let license = extractLicense(directoryURL) else {
+            guard let licenseBody = extractLicenseBody(directoryURL) else {
                 return nil
             }
-            return Library(name: dependency.packageRef.name,
-                           licenseType: license.0,
-                           licenseBody: license.1)
+            return Library(name: dependency.packageRef.name, licenseBody: licenseBody)
         }
         .sorted { $0.name.lowercased() < $1.name.lowercased() }
 
@@ -53,33 +51,32 @@ final class SourcePackagesParser {
         try exportLicenseList(libraries, to: saveURL)
     }
 
-    private func extractLicense(_ directoryURL: URL) -> (LicenseType, String)? {
+    private func extractLicenseBody(_ directoryURL: URL) -> String? {
         let fm = FileManager.default
         let contents = (try? fm.contentsOfDirectory(atPath: directoryURL.path)) ?? []
         let _licenseURL = contents.map { content in
             return directoryURL.appendingPathComponent(content)
         }.filter { contentURL in
-            if contentURL.deletingPathExtension().lastPathComponent.lowercased() == "license" {
+            let fileName = contentURL.deletingPathExtension().lastPathComponent.lowercased()
+            if ["license", "licence"].contains(fileName) {
                 var isDiractory: ObjCBool = false
                 fm.fileExists(atPath: contentURL.path, isDirectory: &isDiractory)
                 return isDiractory.boolValue == false
             }
             return false
         }.first
-
-        if let licenseURL = _licenseURL,
-           let text = try? String(contentsOf: licenseURL) {
-            return (LicenseType(licenseText: text), text)
+        guard let licenseURL = _licenseURL,
+              let text = try? String(contentsOf: licenseURL) else {
+            return nil
         }
-
-        return nil
+        return text
     }
 
     private func printLibraries(_ libraries: [Library]) {
         let length = libraries.map { $0.name.count }.max() ?? 0
         libraries.forEach { library in
             let name = library.name.padding(toLength: length, withPad: " ", startingAt: 0)
-            print(name, library.licenseType.rawValue)
+            print(name)
         }
     }
 
@@ -87,7 +84,6 @@ final class SourcePackagesParser {
         let array: [[String: Any]] = libraries.map { library in
             return [
                 "name": library.name,
-                "licenseType": library.licenseType.rawValue,
                 "licenseBody": library.licenseBody
             ]
         }

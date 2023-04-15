@@ -9,7 +9,6 @@ import Foundation
 
 public struct Library: Hashable {
     public let name: String
-    public let licenseType: String
     public let licenseBody: String
 }
 
