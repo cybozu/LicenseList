@@ -22,13 +22,10 @@ public struct LicenseListView: View {
         }
         let _libraries = (dict["libraries"] as? [[String: Any]])?.compactMap({ info -> Library? in
             guard let name = info["name"] as? String,
-                  let type = info["licenseType"] as? String,
                   let body = info["licenseBody"] as? String else {
                 return nil
             }
-            return Library(name: name,
-                           licenseType: type,
-                           licenseBody: body)
+            return Library(name: name, licenseBody: body)
         })
         guard let libraries = _libraries else {
             libraries = []
@@ -59,8 +56,9 @@ public struct LicenseListView: View {
     var navigationController: UINavigationController? {
         guard let scene = UIApplication.shared.connectedScenes.first,
               let sceneDelegate = scene as? UIWindowScene,
-              var controller = sceneDelegate.windows.first?.rootViewController
-        else { return nil }
+              var controller = sceneDelegate.windows.first?.rootViewController else {
+            return nil
+        }
         while true {
             if let navigationController = controller as? UINavigationController,
                let visibleViewController = navigationController.visibleViewController {
