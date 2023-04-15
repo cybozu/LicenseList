@@ -20,18 +20,13 @@ public struct LicenseListView: View {
             libraries = []
             return
         }
-        let _libraries = (dict["libraries"] as? [[String: Any]])?.compactMap({ info -> Library? in
+        libraries = (dict["libraries"] as? [[String: Any]])?.compactMap({ info -> Library? in
             guard let name = info["name"] as? String,
                   let body = info["licenseBody"] as? String else {
                 return nil
             }
             return Library(name: name, licenseBody: body)
-        })
-        guard let libraries = _libraries else {
-            libraries = []
-            return
-        }
-        self.libraries = libraries
+        }) ?? []
     }
 
     public var body: some View {
