@@ -29,7 +29,7 @@ struct PrepareLicenseList: BuildToolPlugin {
         return tmpPath
     }
 
-    // This command does not work as expected in Xcode 14.0.1.
+    // This command does not work as expected in Xcode 14.2.
     func createBuildCommands(context: PluginContext, target: Target) async throws -> [Command] {
         let executablePath = try context.tool(named: "spp").path
         let sourcePackagesPath = try sourcePackages(context.pluginWorkDirectory)
