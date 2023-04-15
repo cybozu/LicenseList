@@ -2,11 +2,6 @@ import XCTest
 
 #if os(macOS)
 final class SourcePackagesParserTests: XCTestCase {
-    struct Library: Equatable {
-        var name: String
-        var type: String
-    }
-
     /// Returns path to the built products directory.
     var productsDirectory: URL {
         for bundle in Bundle.allBundles where bundle.bundlePath.hasSuffix(".xctest") {
@@ -93,11 +88,11 @@ final class SourcePackagesParserTests: XCTestCase {
 
         XCTAssertEqual(process.terminationStatus, 0)
         let expect = """
-        Package-A Unknown License
-        Package-B Apache license 2.0
-        Package-C MIT License
-        Package-D BSD 3-clause Clear license
-        Package-E zLib License
+        Package-A
+        Package-B
+        Package-C
+        Package-D
+        Package-E
 
         """
         XCTAssertEqual(actual, expect)
@@ -107,19 +102,13 @@ final class SourcePackagesParserTests: XCTestCase {
         let plist = try XCTUnwrap(PropertyListSerialization.propertyList(from: plistData, format: nil))
         let dict = try XCTUnwrap(plist as? [String: Any])
         let dictLibraries = try XCTUnwrap(dict["libraries"] as? [[String: Any]])
-        let libraries = dictLibraries.compactMap({ info -> Library? in
-            if let name = info["name"] as? String,
-               let type = info["licenseType"] as? String {
-                return Library(name: name, type: type)
-            }
-            return nil
-        }).sorted { $0.name < $1.name }
+        let libraries = dictLibraries.compactMap({ $0["name"] as? String }).sorted { $0 < $1 }
         XCTAssertEqual(libraries.count, 5)
-        XCTAssertEqual(libraries[0], Library(name: "Package-A", type: "Unknown License"))
-        XCTAssertEqual(libraries[1], Library(name: "Package-B", type: "Apache license 2.0"))
-        XCTAssertEqual(libraries[2], Library(name: "Package-C", type: "MIT License"))
-        XCTAssertEqual(libraries[3], Library(name: "Package-D", type: "BSD 3-clause Clear license"))
-        XCTAssertEqual(libraries[4], Library(name: "Package-E", type: "zLib License"))
+        XCTAssertEqual(libraries[0], "Package-A")
+        XCTAssertEqual(libraries[1], "Package-B")
+        XCTAssertEqual(libraries[2], "Package-C")
+        XCTAssertEqual(libraries[3], "Package-D")
+        XCTAssertEqual(libraries[4], "Package-E")
     }
 }
 #endif
