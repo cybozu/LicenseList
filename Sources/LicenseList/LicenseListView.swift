@@ -31,7 +31,7 @@ public struct LicenseListView: View {
 
     public var body: some View {
         List {
-            ForEach(libraries, id: \.name) { library in
+            ForEach(libraries) { library in
                 if useUINavigationController {
                     HStack {
                         libraryButton(library)
