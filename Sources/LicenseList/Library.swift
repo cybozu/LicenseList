@@ -7,9 +7,15 @@
 
 import Foundation
 
-public struct Library: Hashable {
+public struct Library: Identifiable, Hashable {
+    public let id: UUID = .init()
     public let name: String
     public let licenseBody: String
+
+    public init(name: String, licenseBody: String) {
+        self.name = name
+        self.licenseBody = licenseBody
+    }
 }
 
 extension Library {
