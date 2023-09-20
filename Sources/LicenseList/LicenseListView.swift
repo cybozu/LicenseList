@@ -11,11 +11,15 @@ import SwiftUI
 public struct LicenseListView: View {
     let libraries: [Library]
     let useUINavigationController: Bool
-    let id: UUID?
+    let navigationHandler: ((Library) -> Void)?
 
-    public init(fileURL: URL, useUINavigationController: Bool = false, id: UUID? = nil) {
+    public init(
+        fileURL: URL,
+        useUINavigationController: Bool = false,
+        navigationHandler: ((Library) -> Void)? = nil
+    ) {
         self.useUINavigationController = useUINavigationController
-        self.id = id
+        self.navigationHandler = navigationHandler
         guard let data = try? Data(contentsOf: fileURL),
               let plist = try? PropertyListSerialization.propertyList(from: data, format: nil),
               let dict = plist as? [String: Any] else {
@@ -36,7 +40,12 @@ public struct LicenseListView: View {
             ForEach(libraries) { library in
                 if useUINavigationController {
                     HStack {
-                        libraryButton(library)
+                        Button {
+                            navigationHandler?(library)
+                        } label: {
+                            Text(library.name)
+                        }
+                        .foregroundColor(.primary)
                         Spacer()
                         Image(systemName: "chevron.right")
                             .font(.subheadline.bold())
@@ -48,52 +57,6 @@ public struct LicenseListView: View {
             }
         }
         .listStyleInsetGroupedIfPossible()
-    }
-
-    var navigationController: UINavigationController? {
-        guard let id else { return nil }
-        let windowScenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
-        let viewControllers = windowScenes
-            .flatMap { $0.windows }
-            .flatMap { $0.rootViewController?.children ?? [] }
-            .compactMap { $0 as? LicenseListViewController }
-        guard let viewController = viewControllers.first(where: { $0.id == id }) else {
-            return nil
-        }
-        var controller: UIViewController = viewController
-        while true {
-            if let navigationController = controller as? UINavigationController,
-               let visibleViewController = navigationController.visibleViewController {
-                controller = visibleViewController
-                continue
-            }
-            if let tabBarController = controller as? UITabBarController,
-               let selectedViewController = tabBarController.selectedViewController {
-                controller = selectedViewController
-                continue
-            }
-            if let presentedViewController = controller.presentedViewController {
-                controller = presentedViewController
-                continue
-            }
-            break
-        }
-        return controller.navigationController
-    }
-
-    func libraryButton(_ library: Library) -> some View {
-        return Button(library.name) {
-            let hostingController = UIHostingController(rootView: Group {
-                if #available(iOS 15, *) {
-                    LicenseView(library: library)
-                } else {
-                    LegacyLicenseView(library: library)
-                }
-            })
-            hostingController.title = library.name
-            navigationController?.pushViewController(hostingController, animated: true)
-        }
-        .foregroundColor(.primary)
     }
 
     @ViewBuilder
@@ -113,6 +76,6 @@ public struct LicenseListView: View {
 public extension LicenseListView {
     init(bundle: Bundle = .main, useUINavigationController: Bool = false) {
         let url = bundle.url(forResource: "license-list", withExtension: "plist") ?? URL(fileURLWithPath: "/")
-        self.init(fileURL: url, useUINavigationController: useUINavigationController)
+        self.init(fileURL: url, useUINavigationController: useUINavigationController, navigationHandler: { _ in })
     }
 }

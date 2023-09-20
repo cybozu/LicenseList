@@ -10,11 +10,9 @@ import SwiftUI
 
 public class LicenseListViewController: UIViewController {
     let fileURL: URL
-    let id: UUID
 
     public init(fileURL: URL) {
         self.fileURL = fileURL
-        self.id = UUID()
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -31,8 +29,9 @@ public class LicenseListViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-
-        let licenseListView = LicenseListView(fileURL: fileURL, useUINavigationController: true, id: id)
+        let licenseListView = LicenseListView(fileURL: fileURL, useUINavigationController: true) { [weak self] library in
+            self?.navigateTo(library: library)
+        }
         let vc = UIHostingController(rootView: licenseListView)
         self.addChild(vc)
         self.view.addSubview(vc.view)
@@ -41,5 +40,17 @@ public class LicenseListViewController: UIViewController {
         vc.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         vc.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         vc.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+    }
+
+    private func navigateTo(library: Library) {
+        let hostingController = UIHostingController(rootView: Group {
+            if #available(iOS 15, *) {
+                LicenseView(library: library)
+            } else {
+                LegacyLicenseView(library: library)
+            }
+        })
+        hostingController.title = library.name
+        self.navigationController?.pushViewController(hostingController, animated: true)
     }
 }
