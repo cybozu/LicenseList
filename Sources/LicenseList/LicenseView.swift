@@ -18,13 +18,19 @@ public struct LicenseView: View {
     }
 
     public var body: some View {
-        ScrollView {
-            Text(attributedLicenseBody)
-                .font(.caption)
-                .padding()
-                .onAppear {
-                    attributedLicenseBody = attribute(library.licenseBody)
-                }
+        GeometryReader { geometry in
+            ScrollView {
+                Text(attributedLicenseBody)
+                    .font(.caption)
+                    .padding()
+                    .frame(width: geometry.size.width)
+                    .padding(.leading, geometry.safeAreaInsets.leading)
+                    .padding(.trailing, geometry.safeAreaInsets.trailing)
+                    .onAppear {
+                        attributedLicenseBody = attribute(library.licenseBody)
+                    }
+            }
+            .ignoresSafeArea(edges: .horizontal)
         }
         .navigationBarTitle(library.name)
     }
