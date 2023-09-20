@@ -10,9 +10,11 @@ import SwiftUI
 
 public class LicenseListViewController: UIViewController {
     let fileURL: URL
+    let id: UUID
 
     public init(fileURL: URL) {
         self.fileURL = fileURL
+        self.id = UUID()
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -30,7 +32,7 @@ public class LicenseListViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        let licenseListView = LicenseListView(fileURL: fileURL, useUINavigationController: true)
+        let licenseListView = LicenseListView(fileURL: fileURL, useUINavigationController: true, id: id)
         let vc = UIHostingController(rootView: licenseListView)
         self.addChild(vc)
         self.view.addSubview(vc.view)

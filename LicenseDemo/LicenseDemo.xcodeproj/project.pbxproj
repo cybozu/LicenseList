@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18AC730228EBEE2800E64B96 /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 18AC730128EBEE2800E64B96 /* LicenseList */; };
+		18780F9B2ABABB16007B286A /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 18780F9A2ABABB16007B286A /* LicenseList */; };
+		18780F9D2ABABB1C007B286A /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 18780F9C2ABABB1C007B286A /* LicenseList */; };
 		18E61A722872A66800C5A710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A712872A66800C5A710 /* AppDelegate.swift */; };
 		18E61A742872A66800C5A710 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A732872A66800C5A710 /* SceneDelegate.swift */; };
 		18E61A762872A66800C5A710 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A752872A66800C5A710 /* ViewController.swift */; };
@@ -18,10 +19,10 @@
 		18E61A962872AC5100C5A710 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E61A952872AC5100C5A710 /* ContentView.swift */; };
 		18E61A982872AC5300C5A710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18E61A972872AC5300C5A710 /* Assets.xcassets */; };
 		18E61A9B2872AC5300C5A710 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18E61A9A2872AC5300C5A710 /* Preview Assets.xcassets */; };
-		18E61AA42872B13500C5A710 /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 18E61AA32872B13500C5A710 /* LicenseList */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18780F992ABABB07007B286A /* LicenseList */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LicenseList; path = ..; sourceTree = "<group>"; };
 		18E61A6F2872A66800C5A710 /* LicenseDemoForUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LicenseDemoForUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E61A712872A66800C5A710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18E61A732872A66800C5A710 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,7 +31,6 @@
 		18E61A7A2872A66900C5A710 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18E61A7D2872A66900C5A710 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18E61A7F2872A66900C5A710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18E61A892872AB6100C5A710 /* LicenseList */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LicenseList; path = ..; sourceTree = "<group>"; };
 		18E61A912872AC5100C5A710 /* Demo SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E61A932872AC5100C5A710 /* LicenseDemoForSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseDemoForSwiftUIApp.swift; sourceTree = "<group>"; };
 		18E61A952872AC5100C5A710 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18AC730228EBEE2800E64B96 /* LicenseList in Frameworks */,
+				18780F9B2ABABB16007B286A /* LicenseList in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18E61AA42872B13500C5A710 /* LicenseList in Frameworks */,
+				18780F9D2ABABB1C007B286A /* LicenseList in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +61,7 @@
 		181DFF4C2849FA1800B97329 = {
 			isa = PBXGroup;
 			children = (
-				181F97F7286C0F45003D756F /* Packages */,
+				18780F982ABABB07007B286A /* Packages */,
 				18E61A702872A66800C5A710 /* LicenseDemoForUIKit */,
 				18E61A922872AC5100C5A710 /* LicenseDemoForSwiftUI */,
 				181DFF562849FA1800B97329 /* Products */,
@@ -78,10 +78,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		181F97F7286C0F45003D756F /* Packages */ = {
+		18780F982ABABB07007B286A /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				18E61A892872AB6100C5A710 /* LicenseList */,
+				18780F992ABABB07007B286A /* LicenseList */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -144,7 +144,7 @@
 			);
 			name = LicenseDemoForUIKit;
 			packageProductDependencies = (
-				18AC730128EBEE2800E64B96 /* LicenseList */,
+				18780F9A2ABABB16007B286A /* LicenseList */,
 			);
 			productName = LicenseDemoForUIKit;
 			productReference = 18E61A6F2872A66800C5A710 /* LicenseDemoForUIKit.app */;
@@ -165,7 +165,7 @@
 			);
 			name = LicenseDemoForSwiftUI;
 			packageProductDependencies = (
-				18E61AA32872B13500C5A710 /* LicenseList */,
+				18780F9C2ABABB1C007B286A /* LicenseList */,
 			);
 			productName = LicenseDemoForSwiftUI;
 			productReference = 18E61A912872AC5100C5A710 /* Demo SwiftUI.app */;
@@ -600,7 +600,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		18AC730128EBEE2800E64B96 /* LicenseList */ = {
+		18780F9A2ABABB16007B286A /* LicenseList */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LicenseList;
+		};
+		18780F9C2ABABB1C007B286A /* LicenseList */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LicenseList;
 		};
@@ -611,10 +615,6 @@
 		18B9620328E6EB9C00A313B0 /* PrepareLicenseList */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "plugin:PrepareLicenseList";
-		};
-		18E61AA32872B13500C5A710 /* LicenseList */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LicenseList;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

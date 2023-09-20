@@ -11,9 +11,11 @@ import SwiftUI
 public struct LicenseListView: View {
     let libraries: [Library]
     let useUINavigationController: Bool
+    let id: UUID?
 
-    public init(fileURL: URL, useUINavigationController: Bool = false) {
+    public init(fileURL: URL, useUINavigationController: Bool = false, id: UUID? = nil) {
         self.useUINavigationController = useUINavigationController
+        self.id = id
         guard let data = try? Data(contentsOf: fileURL),
               let plist = try? PropertyListSerialization.propertyList(from: data, format: nil),
               let dict = plist as? [String: Any] else {
@@ -49,11 +51,16 @@ public struct LicenseListView: View {
     }
 
     var navigationController: UINavigationController? {
-        guard let scene = UIApplication.shared.connectedScenes.first,
-              let sceneDelegate = scene as? UIWindowScene,
-              var controller = sceneDelegate.windows.first?.rootViewController else {
+        guard let id else { return nil }
+        let windowScenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+        let viewControllers = windowScenes
+            .flatMap { $0.windows }
+            .flatMap { $0.rootViewController?.children ?? [] }
+            .compactMap { $0 as? LicenseListViewController }
+        guard let viewController = viewControllers.first(where: { $0.id == id }) else {
             return nil
         }
+        var controller: UIViewController = viewController
         while true {
             if let navigationController = controller as? UINavigationController,
                let visibleViewController = navigationController.visibleViewController {
