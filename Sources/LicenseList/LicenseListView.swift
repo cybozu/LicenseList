@@ -76,28 +76,29 @@ public struct LicenseListView: View {
 
     func libraryButton(_ library: Library) -> some View {
         return Button(library.name) {
-            let view: AnyView
-            if #available(iOS 15, *) {
-                view = AnyView(LicenseView(library: library))
-            } else {
-                view = AnyView(LegacyLicenseView(library: library))
-            }
-            let hostingController = UIHostingController(rootView: view)
+            let hostingController = UIHostingController(rootView: Group {
+                if #available(iOS 15, *) {
+                    LicenseView(library: library)
+                } else {
+                    LegacyLicenseView(library: library)
+                }
+            })
             hostingController.title = library.name
             navigationController?.pushViewController(hostingController, animated: true)
         }
         .foregroundColor(.primary)
     }
 
+    @ViewBuilder
     func libraryNavigationLink(_ library: Library) -> some View {
         if #available(iOS 15, *) {
-            return AnyView(NavigationLink(destination: LicenseView(library: library)) {
+            NavigationLink(destination: LicenseView(library: library)) {
                 Text(library.name)
-            })
+            }
         } else {
-            return AnyView(NavigationLink(destination: LegacyLicenseView(library: library)) {
+            NavigationLink(destination: LegacyLicenseView(library: library)) {
                 Text(library.name)
-            })
+            }
         }
     }
 }
