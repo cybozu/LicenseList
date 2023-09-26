@@ -21,8 +21,8 @@ public struct LicenseView: View {
         ScrollView {
             Text(attributedLicenseBody)
                 .font(.caption)
-                .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
                 .onAppear {
                     attributedLicenseBody = attribute(library.licenseBody)
                 }
