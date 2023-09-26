@@ -50,7 +50,6 @@ public struct LegacyLicenseView: View {
     }
 
     private func resolve(_ inputText: String) -> [LegacyLicenseSentence] {
-        let pattern: String = "https?://[A-Za-z0-9\\.\\-\\[\\]!@#$%&=+/?:_]+"
-        return inputText.split(pattern)
+        return inputText.split(URL.regexPattern)
     }
 }
