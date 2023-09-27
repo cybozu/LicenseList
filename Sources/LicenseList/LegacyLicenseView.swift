@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct LegacyLicenseView: View {
-    @State private var sentences = [LegacyLicenseSentence]()
+    @State private var lines = [[LegacyLicenseSentence]]()
 
     private let library: Library
 
@@ -18,13 +18,30 @@ public struct LegacyLicenseView: View {
 
     public var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
-                ForEach(sentences, id: \.body) { sentence in
-                    if sentence.isHyperLink {
-                        hyperLinkText(sentence.body)
-                    } else {
+            VStack(alignment: .leading, spacing: 0) {
+                ForEach(lines.indices, id: \.self) { index in
+                    if lines[index].count == 1,
+                       let sentence = lines[index].first {
                         Text(sentence.body)
                             .font(.caption)
+                    } else {
+                        lines[index].reduce(Text("")) { result, sentence in
+                            if sentence.isHyperLink {
+                                return result + Text(sentence.body)
+                                    .font(.caption)
+                                    .foregroundColor(Color.blue)
+                            } else {
+                                return result + Text(sentence.body)
+                                    .font(.caption)
+                            }
+                        }
+                        .onTapGesture {
+                            if let linkText = lines[index].first(where: { $0.isHyperLink })?.body,
+                               let url = URL(string: linkText),
+                               UIApplication.shared.canOpenURL(url) {
+                                UIApplication.shared.open(url)
+                            }
+                        }
                     }
                 }
             }
@@ -32,25 +49,14 @@ public struct LegacyLicenseView: View {
             .padding()
         }
         .onAppear {
-            sentences = resolve(library.licenseBody)
+            lines = resolve(library.licenseBody)
         }
         .navigationBarTitleInlineIfPossible(library.name)
     }
 
-    private func hyperLinkText(_ linkText: String) -> some View {
-        Text(linkText)
-            .font(.caption)
-            .foregroundColor(Color.blue)
-            .onTapGesture {
-                if let url = URL(string: linkText),
-                   UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url)
-                }
-            }
-    }
-
-    private func resolve(_ inputText: String) -> [LegacyLicenseSentence] {
-        let pattern: String = "https?://[A-Za-z0-9\\.\\-\\[\\]!@#$%&=+/?:_]+"
-        return inputText.split(pattern)
+    private func resolve(_ inputText: String) -> [[LegacyLicenseSentence]] {
+        return inputText
+            .components(separatedBy: .newlines)
+            .map { $0.split(URL.regexPattern) }
     }
 }

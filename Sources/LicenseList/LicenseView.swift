@@ -37,10 +37,9 @@ public struct LicenseView: View {
 
     private func attribute(_ inputText: String) -> AttributedString {
         var attributedText = AttributedString(inputText)
-        let pattern: String = "https?://[A-Za-z0-9-._~:/?#\\[\\]@!$&'()*+,;%=]+"
-        let urls: [URL?] = inputText.match(pattern)
+        let urls: [URL?] = inputText.match(URL.regexPattern)
             .map { URL(string: String(inputText[$0])) }
-        let ranges = attributedText.match(pattern)
+        let ranges = attributedText.match(URL.regexPattern)
         for case (let range, let url?) in zip(ranges, urls) {
             attributedText[range].link = url
         }
