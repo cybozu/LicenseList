@@ -10,18 +10,14 @@ import PackagePlugin
 
 @main
 struct PrepareLicenseList: BuildToolPlugin {
-    var sourcePackagesNotFoundError: Error {
-        return NSError(
-            domain: "com.cybozu.PrepareLicenseList",
-            code: 1,
-            userInfo: ["message": "SourcePackages not found"]
-        )
+    struct SourcePackagesNotFoundError: Error & CustomStringConvertible {
+        let description: String = "SourcePackages not found"
     }
 
     func sourcePackages(_ pluginWorkDirectory: Path) throws -> Path {
         var tmpPath = pluginWorkDirectory
         guard pluginWorkDirectory.string.contains("SourcePackages") else {
-            throw sourcePackagesNotFoundError
+            throw SourcePackagesNotFoundError()
         }
         while tmpPath.lastComponent != "SourcePackages" {
             tmpPath = tmpPath.removingLastComponent()
@@ -44,7 +40,7 @@ struct PrepareLicenseList: BuildToolPlugin {
                     sourcePackagesPath.string
                 ],
                 outputFiles: [
-                    outputPath.appending(["license-list.plist"]),
+                    outputPath.appending(["license-list.plist"])
                 ]
             )
         ]
