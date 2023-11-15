@@ -28,10 +28,11 @@ public struct LicenseListView: View {
         }
         libraries = (dict["libraries"] as? [[String: Any]])?.compactMap({ info -> Library? in
             guard let name = info["name"] as? String,
+                  let url = info["url"] as? String,
                   let body = info["licenseBody"] as? String else {
                 return nil
             }
-            return Library(name: name, licenseBody: body)
+            return Library(name: name, url: url, licenseBody: body)
         }) ?? []
     }
 
