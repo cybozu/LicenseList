@@ -9,6 +9,8 @@ import UIKit
 import SwiftUI
 
 public struct LicenseListView: View {
+    @Environment(\.licenseListViewStyle) private var licenseListViewStyle: LicenseListViewStyle
+
     let libraries: [Library]
     let useUINavigationController: Bool
     let navigationHandler: ((Library) -> Void)?
@@ -63,11 +65,17 @@ public struct LicenseListView: View {
     @ViewBuilder
     func libraryNavigationLink(_ library: Library) -> some View {
         if #available(iOS 15, *) {
-            NavigationLink(destination: LicenseView(library: library)) {
+            NavigationLink {
+                LicenseView(library: library)
+                    .licenseListViewStyle(licenseListViewStyle)
+            } label: {
                 Text(library.name)
             }
         } else {
-            NavigationLink(destination: LegacyLicenseView(library: library)) {
+            NavigationLink {
+                LegacyLicenseView(library: library)
+                    .licenseListViewStyle(licenseListViewStyle)
+            } label: {
                 Text(library.name)
             }
         }
