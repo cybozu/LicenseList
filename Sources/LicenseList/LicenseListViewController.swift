@@ -11,6 +11,8 @@ import SwiftUI
 public class LicenseListViewController: UIViewController {
     let fileURL: URL
 
+    public var licenseListViewStyle: LicenseListViewStyle = .plain
+
     public init(fileURL: URL) {
         self.fileURL = fileURL
         super.init(nibName: nil, bundle: nil)
@@ -46,8 +48,10 @@ public class LicenseListViewController: UIViewController {
         let hostingController = UIHostingController(rootView: Group {
             if #available(iOS 15, *) {
                 LicenseView(library: library)
+                    .licenseListViewStyle(licenseListViewStyle)
             } else {
                 LegacyLicenseView(library: library)
+                    .licenseListViewStyle(licenseListViewStyle)
             }
         })
         hostingController.title = library.name
