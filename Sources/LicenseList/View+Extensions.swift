@@ -28,7 +28,7 @@ extension View {
         }
     }
     
-    func navigationBarRepositoryAnchorLinkIfPossible(action: @escaping () -> Void) -> some View {
+    func navigationBarRepositoryAnchorLink(action: @escaping () -> Void) -> some View {
         Group {
             if #available(iOS 14, *) {
                 self.toolbar {
