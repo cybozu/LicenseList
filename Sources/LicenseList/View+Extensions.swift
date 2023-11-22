@@ -8,44 +8,14 @@
 import SwiftUI
 
 extension View {
-    func listStyleInsetGroupedIfPossible() -> some View {
-        Group {
-            if #available(iOS 14, *) {
-                self.listStyle(.insetGrouped)
-            } else {
-                self.listStyle(.grouped)
-            }
-        }
-    }
-    
-    func navigationBarTitleInlineIfPossible<S>(_ title: S) -> some View where S : StringProtocol {
-        Group {
-            if #available(iOS 14, *) {
-                self.navigationBarTitle(title, displayMode: .inline)
-            } else {
-                self.navigationBarTitle(title)
-            }
-        }
-    }
-    
     func navigationBarRepositoryAnchorLink(action: @escaping () -> Void) -> some View {
-        Group {
-            if #available(iOS 14, *) {
-                self.toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            action()
-                        } label: {
-                            Image(systemName: "link")
-                        }
-                    }
-                }
-            } else {
-                self.navigationBarItems(trailing: Button {
+        self.toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
                     action()
                 } label: {
                     Image(systemName: "link")
-                })
+                }
             }
         }
     }

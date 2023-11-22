@@ -59,7 +59,7 @@ public struct LicenseListView: View {
                 }
             }
         }
-        .listStyleInsetGroupedIfPossible()
+        .listStyle(.insetGrouped)
     }
 
     @ViewBuilder

@@ -53,7 +53,7 @@ public struct LegacyLicenseView: View {
         .onAppear {
             lines = resolve(library.licenseBody)
         }
-        .navigationBarTitleInlineIfPossible(library.name)
+        .navigationBarTitle(library.name, displayMode: .inline)
         ._licenseListViewStyle(licenseListViewStyle) {
             if let url = library.url {
                 UIApplication.shared.open(url)
