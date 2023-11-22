@@ -56,7 +56,7 @@ extension View {
             case .plain:
                 self
             case .withRepositoryAnchorLink:
-                self.navigationBarRepositoryAnchorLinkIfPossible(action: action)
+                self.navigationBarRepositoryAnchorLink(action: action)
             }
         }
     }
