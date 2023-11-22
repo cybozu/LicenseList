@@ -10,6 +10,8 @@
 </string>
 			<key>name</key>
 			<string>Package-A</string>
+			<key>url</key>
+			<string>https://github.com/sample/Package-A.git</string>
 		</dict>
 		<dict>
 			<key>licenseBody</key>
@@ -227,6 +229,8 @@
 </string>
 			<key>name</key>
 			<string>Package-B</string>
+			<key>url</key>
+			<string>https://github.com/sample/Package-B.git</string>
 		</dict>
 		<dict>
 			<key>licenseBody</key>
@@ -255,6 +259,8 @@ SOFTWARE.
 </string>
 			<key>name</key>
 			<string>Package-C</string>
+			<key>url</key>
+			<string>https://github.com/sample/Package-C.git</string>
 		</dict>
 		<dict>
 			<key>licenseBody</key>
@@ -288,6 +294,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </string>
 			<key>name</key>
 			<string>Package-D</string>
+			<key>url</key>
+			<string>https://github.com/sample/Package-D.git</string>
 		</dict>
 		<dict>
 			<key>licenseBody</key>
@@ -314,6 +322,8 @@ redistribute it freely, subject to the following restrictions:
 </string>
 			<key>name</key>
 			<string>Package-E</string>
+			<key>url</key>
+			<string>https://github.com/sample/Package-E.git</string>
 		</dict>
 	</array>
 </dict>
