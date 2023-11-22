@@ -36,7 +36,11 @@ final class SourcePackagesParser {
             guard let licenseBody = extractLicenseBody(directoryURL) else {
                 return nil
             }
-            return Library(name: dependency.packageRef.name, licenseBody: licenseBody)
+            return Library(
+                name: dependency.packageRef.name,
+                url: dependency.packageRef.location,
+                licenseBody: licenseBody
+            )
         }
         .sorted { $0.name.lowercased() < $1.name.lowercased() }
 
@@ -84,6 +88,7 @@ final class SourcePackagesParser {
         let array: [[String: Any]] = libraries.map { library in
             return [
                 "name": library.name,
+                "url": library.url,
                 "licenseBody": library.licenseBody
             ]
         }

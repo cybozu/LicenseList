@@ -27,4 +27,41 @@ extension View {
             }
         }
     }
+    
+    func navigationBarRepositoryAnchorLink(action: @escaping () -> Void) -> some View {
+        Group {
+            if #available(iOS 14, *) {
+                self.toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            action()
+                        } label: {
+                            Image(systemName: "link")
+                        }
+                    }
+                }
+            } else {
+                self.navigationBarItems(trailing: Button {
+                    action()
+                } label: {
+                    Image(systemName: "link")
+                })
+            }
+        }
+    }
+    
+    func _licenseListViewStyle(_ style: LicenseListViewStyle, action: @escaping () -> Void) -> some View {
+        Group {
+            switch style {
+            case .plain:
+                self
+            case .withRepositoryAnchorLink:
+                self.navigationBarRepositoryAnchorLinkIfPossible(action: action)
+            }
+        }
+    }
+    
+    public func licenseListViewStyle(_ style: LicenseListViewStyle) -> some View {
+        self.environment(\.licenseListViewStyle, style)
+    }
 }

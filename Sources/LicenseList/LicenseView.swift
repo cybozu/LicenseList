@@ -11,6 +11,9 @@ import SwiftUI
 public struct LicenseView: View {
     @State private var attributedLicenseBody = AttributedString(stringLiteral: "")
 
+    @Environment(\.openURL) private var openURL: OpenURLAction
+    @Environment(\.licenseListViewStyle) private var licenseListViewStyle: LicenseListViewStyle
+
     private let library: Library
 
     public init(library: Library) {
@@ -28,6 +31,11 @@ public struct LicenseView: View {
                 }
         }
         .navigationBarTitle(library.name)
+        ._licenseListViewStyle(licenseListViewStyle) {
+            if let url = library.url {
+                openURL(url)
+            }
+        }
     }
 
     private func attribute(_ inputText: String) -> AttributedString {

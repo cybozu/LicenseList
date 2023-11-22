@@ -10,6 +10,8 @@ import SwiftUI
 public struct LegacyLicenseView: View {
     @State private var lines = [[LegacyLicenseSentence]]()
 
+    @Environment(\.licenseListViewStyle) private var licenseListViewStyle: LicenseListViewStyle
+
     private let library: Library
 
     public init(library: Library) {
@@ -52,6 +54,11 @@ public struct LegacyLicenseView: View {
             lines = resolve(library.licenseBody)
         }
         .navigationBarTitleInlineIfPossible(library.name)
+        ._licenseListViewStyle(licenseListViewStyle) {
+            if let url = library.url {
+                UIApplication.shared.open(url)
+            }
+        }
     }
 
     private func resolve(_ inputText: String) -> [[LegacyLicenseSentence]] {
