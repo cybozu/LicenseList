@@ -25,23 +25,27 @@ struct PrepareLicenseList: BuildToolPlugin {
         return tmpPath
     }
 
-    // This command does not work as expected in Xcode 14.2.
-    func createBuildCommands(context: PluginContext, target: Target) async throws -> [Command] {
-        let executablePath = try context.tool(named: "spp").path
-        let sourcePackagesPath = try sourcePackages(context.pluginWorkDirectory)
-        let outputPath = context.pluginWorkDirectory.appending(["Resources"])
+    func makeBuildCommand(executablePath: Path, sourcePackagesPath: Path, outputPath: Path) -> Command {
+        return .buildCommand(
+            displayName: "Prepare LicenseList",
+            executable: executablePath,
+            arguments: [
+                outputPath.string,
+                sourcePackagesPath.string
+            ],
+            outputFiles: [
+                outputPath.appending(["license-list.plist"])
+            ]
+        )
+    }
 
+    // This command works with the plugin specified in `Package.swift`.
+    func createBuildCommands(context: PluginContext, target: Target) async throws -> [Command] {
         return [
-            .buildCommand(
-                displayName: "Prepare LicenseList",
-                executable: executablePath,
-                arguments: [
-                    outputPath.string,
-                    sourcePackagesPath.string
-                ],
-                outputFiles: [
-                    outputPath.appending(["license-list.plist"])
-                ]
+            makeBuildCommand(
+                executablePath: try context.tool(named: "spp").path,
+                sourcePackagesPath: try sourcePackages(context.pluginWorkDirectory),
+                outputPath: context.pluginWorkDirectory.appending(["Resources"])
             )
         ]
     }
@@ -51,28 +55,15 @@ struct PrepareLicenseList: BuildToolPlugin {
 
 import XcodeProjectPlugin
 
-// This command works as expected.
 extension PrepareLicenseList: XcodeBuildToolPlugin {
-    func createBuildCommands(
-        context: XcodeProjectPlugin.XcodePluginContext,
-        target: XcodeProjectPlugin.XcodeTarget
-    ) throws -> [PackagePlugin.Command] {
-        let executablePath = try context.tool(named: "spp").path
-        let sourcePackagesPath = try sourcePackages(context.pluginWorkDirectory)
-        let outputPath = context.pluginWorkDirectory.appending(["Resources"])
-
+    // This command works with `Run Build Tool Plug-ins` in Xcode `Build Phase`.
+    func createBuildCommands(context: XcodePluginContext, target: XcodeTarget) throws -> [Command] {
         return [
-            .buildCommand(
-                displayName: "Prepare LicenseList",
-                executable: executablePath,
-                arguments: [
-                    outputPath.string,
-                    sourcePackagesPath.string
-                ],
-                outputFiles: [
-                    outputPath.appending(["license-list.plist"])
-                ]
-            ),
+            makeBuildCommand(
+                executablePath: try context.tool(named: "spp").path,
+                sourcePackagesPath: try sourcePackages(context.pluginWorkDirectory),
+                outputPath: context.pluginWorkDirectory.appending(["Resources"])
+            )
         ]
     }
 }
