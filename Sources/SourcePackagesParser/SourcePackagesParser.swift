@@ -82,7 +82,9 @@ final class SourcePackagesParser {
     private func exportLicenseList(_ libraries: [Library], to saveURL: URL) throws {
         var text = "static let libraries: [[String: String]] = []"
 
-        if !libraries.isEmpty {
+        if libraries.isEmpty {
+            print("Warning: No libraries.")
+        } else {
             printLibraries(libraries)
 
             let arrayText = libraries

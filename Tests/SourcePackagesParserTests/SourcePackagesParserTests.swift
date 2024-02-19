@@ -64,7 +64,7 @@ final class SourcePackagesParserTests: XCTestCase {
         let actual = String(data: data, encoding: .utf8)
 
         XCTAssertEqual(process.terminationStatus, 0)
-        let expect = "Error: No libraries.\n"
+        let expect = "Warning: No libraries.\n"
         XCTAssertEqual(actual, expect)
     }
 
@@ -97,18 +97,25 @@ final class SourcePackagesParserTests: XCTestCase {
         """
         XCTAssertEqual(actual, expect)
 
-        let licenseListURL = sourcePackagesURL.appendingPathComponent("license-list.plist")
-        let plistData = try XCTUnwrap(Data(contentsOf: licenseListURL))
-        let plist = try XCTUnwrap(PropertyListSerialization.propertyList(from: plistData, format: nil))
-        let dict = try XCTUnwrap(plist as? [String: Any])
-        let dictLibraries = try XCTUnwrap(dict["libraries"] as? [[String: Any]])
-        let libraries = dictLibraries.compactMap({ $0["name"] as? String }).sorted { $0 < $1 }
-        XCTAssertEqual(libraries.count, 5)
-        XCTAssertEqual(libraries[0], "Package-A")
-        XCTAssertEqual(libraries[1], "Package-B")
-        XCTAssertEqual(libraries[2], "Package-C")
-        XCTAssertEqual(libraries[3], "Package-D")
-        XCTAssertEqual(libraries[4], "Package-E")
+        let licenseListURL = sourcePackagesURL.appendingPathComponent("LicenseList.swift")
+        let text = try XCTUnwrap(String(contentsOf: licenseListURL))
+        let names = text.components(separatedBy: .newlines)
+            .filter { $0.contains(#""name":"#) }
+            .compactMap { $0.split(separator: ": ").last }
+
+        XCTAssertEqual(names.count, 5)
+        ["A", "B", "C", "D", "E"].enumerated().forEach { (index, key) in
+            XCTAssertTrue(names[index].hasSuffix("\"Package-\(key)\","))
+        }
+
+        let urls = text.components(separatedBy: .newlines)
+            .filter { $0.contains(#""url":"#) }
+            .compactMap { $0.split(separator: ": ").last }
+
+        XCTAssertEqual(urls.count, 5)
+        ["A", "B", "C", "D", "E"].enumerated().forEach { (index, key) in
+            XCTAssertTrue(urls[index].hasSuffix("\"https://github.com/dummy/Package-\(key).git\","))
+        }
     }
 }
 #endif

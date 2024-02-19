@@ -16,14 +16,10 @@ func exitWithSPPError(_ sppError: SPPError) -> Never {
     switch sppError {
     case .couldNotReadFile(let fileName):
         print("Error: Could not read \(fileName).")
-        exit(1)
-    case .noLibraries:
-        print("Error: No libraries.")
-        exit(0)
     case .couldNotExportLicenseList:
         print("Error: Could not export license-list.plist.")
-        exit(1)
     }
+    exit(1)
 }
 
 func main() {
