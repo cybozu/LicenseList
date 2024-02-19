@@ -27,35 +27,23 @@ let package = Package(
             capability: .buildTool(),
             dependencies: [.target(name: "spp")]
         ),
-//        .testTarget(
-//            name: "SourcePackagesParserTests",
-//            dependencies: [
-//                .target(
-//                    name: "spp",
-//                    condition: .when(platforms: [.macOS])
-//                )
-//            ],
-//            resources: [
-//                .copy("Resources/CouldNotRead"),
-//                .copy("Resources/NoLibraries"),
-//                .copy("Resources/SourcePackages")
-//            ]
-//        ),
+        .testTarget(
+            name: "SourcePackagesParserTests",
+            dependencies: [
+                .target(
+                    name: "spp",
+                    condition: .when(platforms: [.macOS])
+                )
+            ],
+            resources: [
+                .copy("Resources/CouldNotRead"),
+                .copy("Resources/NoLibraries"),
+                .copy("Resources/SourcePackages")
+            ]
+        ),
         .target(
             name: "LicenseList",
             plugins: ["PrepareLicenseList"]
-        ),
-//        .testTarget(
-//            name: "LicenseListTests",
-//            dependencies: [
-//                .target(
-//                    name: "LicenseList",
-//                    condition: .when(platforms: [.iOS])
-//                )
-//            ],
-//            resources: [
-//                .copy("license-list.plist")
-//            ]
-//        )
+        )
     ]
 )
