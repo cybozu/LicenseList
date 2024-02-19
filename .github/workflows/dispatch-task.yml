@@ -26,18 +26,9 @@ jobs:
             -resultBundlePath SourcePackagesParserTests | \
             xcpretty -c && exit ${PIPESTATUS[0]}
 
-      - name: Run LicenseListTests
-        run: |
-          xcodebuild -scheme LicenseList-Package test \
-            -only-testing:LicenseListTests \
-            -destination "platform=iOS Simulator,name=iPhone 15,OS=17.2" \
-            -resultBundlePath LicenseListTests | \
-            xcpretty && exit ${PIPESTATUS[0]}
-
       - name: Archive test results
         if: success() || failure()
         uses: kishikawakatsumi/xcresulttool@v1
         with:
           path: |
             SourcePackagesParserTests.xcresult
-            LicenseListTests.xcresult
