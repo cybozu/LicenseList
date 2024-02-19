@@ -22,19 +22,13 @@ public struct Library: Identifiable, Hashable {
 
 extension Library {
     static public var libraries: [Library] {
-        guard let fileURL = Bundle.main.url(forResource: "license-list", withExtension: "plist"),
-              let data = try? Data(contentsOf: fileURL),
-              let plist = try? PropertyListSerialization.propertyList(from: data, format: nil),
-              let dict = plist as? [String: Any] else {
-            return []
-        }
-        return (dict["libraries"] as? [[String: Any]])?.compactMap({ info -> Library? in
-            guard let name = info["name"] as? String,
-                  let url = info["url"] as? String,
-                  let body = info["licenseBody"] as? String else {
+        return SPP.libraries.compactMap { info -> Library? in
+            guard let name = info["name"],
+                  let url = info["url"],
+                  let body = info["licenseBody"] else {
                 return nil
             }
             return Library(name: name, url: url, licenseBody: body)
-        }) ?? []
+        }
     }
 }

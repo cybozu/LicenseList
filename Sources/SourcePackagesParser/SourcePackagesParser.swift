@@ -44,14 +44,9 @@ final class SourcePackagesParser {
         }
         .sorted { $0.name.lowercased() < $1.name.lowercased() }
 
-        if libraries.isEmpty {
-            throw SPPError.noLibraries
-        }
-        printLibraries(libraries)
-
-        // Export license-list.plist
+        // Export LicenseList.swift
         let saveURL = URL(fileURLWithPath: outputPath)
-            .appendingPathComponent("license-list.plist")
+            .appendingPathComponent("LicenseList.swift")
         try exportLicenseList(libraries, to: saveURL)
     }
 
@@ -85,22 +80,34 @@ final class SourcePackagesParser {
     }
 
     private func exportLicenseList(_ libraries: [Library], to saveURL: URL) throws {
-        let array: [[String: Any]] = libraries.map { library in
-            return [
-                "name": library.name,
-                "url": library.url,
-                "licenseBody": library.licenseBody
-            ]
+        var text = "static let libraries: [[String: String]] = []"
+
+        if !libraries.isEmpty {
+            printLibraries(libraries)
+
+            let arrayText = libraries
+                .map { library in
+                    return """
+                    [
+                        "name": "\(library.name)",
+                        "url": "\(library.url)",
+                        "licenseBody": \(library.licenseBody.debugDescription)
+                    ]
+                    """
+                }
+                .joined(separator: ",\n")
+                .nest()
+            text = "static let libraries: [[String: String]] = [\n\(arrayText)\n]"
         }
+
+        text = "enum SPP {\n\(text.nest())\n}\n"
+
         if FileManager.default.fileExists(atPath: saveURL.path) {
             try FileManager.default.removeItem(at: saveURL)
         }
-        let dict: [String: Any] = ["libraries": array]
+
         do {
-            let data = try PropertyListSerialization.data(fromPropertyList: dict,
-                                                          format: .xml,
-                                                          options: .zero)
-            try data.write(to: saveURL)
+            try text.data(using: .utf8)?.write(to: saveURL)
         } catch {
             throw SPPError.couldNotExportLicenseList
         }

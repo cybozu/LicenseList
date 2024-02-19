@@ -34,7 +34,7 @@ struct PrepareLicenseList: BuildToolPlugin {
                 sourcePackagesPath.string
             ],
             outputFiles: [
-                outputPath.appending(["license-list.plist"])
+                outputPath.appending(["LicenseList.swift"])
             ]
         )
     }
@@ -45,7 +45,7 @@ struct PrepareLicenseList: BuildToolPlugin {
             makeBuildCommand(
                 executablePath: try context.tool(named: "spp").path,
                 sourcePackagesPath: try sourcePackages(context.pluginWorkDirectory),
-                outputPath: context.pluginWorkDirectory.appending(["Resources"])
+                outputPath: context.pluginWorkDirectory
             )
         ]
     }
@@ -62,7 +62,7 @@ extension PrepareLicenseList: XcodeBuildToolPlugin {
             makeBuildCommand(
                 executablePath: try context.tool(named: "spp").path,
                 sourcePackagesPath: try sourcePackages(context.pluginWorkDirectory),
-                outputPath: context.pluginWorkDirectory.appending(["Resources"])
+                outputPath: context.pluginWorkDirectory
             )
         ]
     }
