@@ -6,14 +6,14 @@ on:
 jobs:
   run-unit-test:
     name: Run Unit Test
-    runs-on: macos-13
+    runs-on: macos-14
     timeout-minutes: 30
     env:
-      DEVELOPER_DIR: "/Applications/Xcode_15.0.1.app/Contents/Developer"
+      DEVELOPER_DIR: "/Applications/Xcode_15.2.app/Contents/Developer"
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Show Xcode Version
         run: xcodebuild -version
@@ -26,18 +26,9 @@ jobs:
             -resultBundlePath SourcePackagesParserTests | \
             xcpretty -c && exit ${PIPESTATUS[0]}
 
-      - name: Run LicenseListTests
-        run: |
-          xcodebuild -scheme LicenseList-Package test \
-            -only-testing:LicenseListTests \
-            -destination "platform=iOS Simulator,name=iPhone 15,OS=17.0.1" \
-            -resultBundlePath LicenseListTests | \
-            xcpretty && exit ${PIPESTATUS[0]}
-
       - name: Archive test results
         if: success() || failure()
         uses: kishikawakatsumi/xcresulttool@v1
         with:
           path: |
             SourcePackagesParserTests.xcresult
-            LicenseListTests.xcresult

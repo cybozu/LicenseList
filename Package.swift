@@ -12,10 +12,6 @@ let package = Package(
             name: "spp",
             targets: ["spp"]
         ),
-        .plugin(
-            name: "PrepareLicenseList",
-            targets: ["PrepareLicenseList"]
-        ),
         .library(
             name: "LicenseList",
             targets: ["LicenseList"]
@@ -45,19 +41,9 @@ let package = Package(
                 .copy("Resources/SourcePackages")
             ]
         ),
-
-        .target(name: "LicenseList"),
-        .testTarget(
-            name: "LicenseListTests",
-            dependencies: [
-                .target(
-                    name: "LicenseList",
-                    condition: .when(platforms: [.iOS])
-                )
-            ],
-            resources: [
-                .copy("license-list.plist")
-            ]
+        .target(
+            name: "LicenseList",
+            plugins: ["PrepareLicenseList"]
         )
     ]
 )

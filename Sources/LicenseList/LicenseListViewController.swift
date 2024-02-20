@@ -9,20 +9,10 @@ import UIKit
 import SwiftUI
 
 public class LicenseListViewController: UIViewController {
-    let fileURL: URL
-
     public var licenseListViewStyle: LicenseListViewStyle = .plain
 
-    public init(fileURL: URL) {
-        self.fileURL = fileURL
+    public init() {
         super.init(nibName: nil, bundle: nil)
-    }
-
-    public convenience init?(bundle: Bundle = .main) {
-        guard let url = bundle.url(forResource: "license-list", withExtension: "plist") else {
-            return nil
-        }
-        self.init(fileURL: url)
     }
 
     required init?(coder: NSCoder) {
@@ -31,7 +21,7 @@ public class LicenseListViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        let licenseListView = LicenseListView(fileURL: fileURL, useUINavigationController: true) { [weak self] library in
+        let licenseListView = LicenseListView(useUINavigationController: true) { [weak self] library in
             self?.navigateTo(library: library)
         }
         let vc = UIHostingController(rootView: licenseListView)

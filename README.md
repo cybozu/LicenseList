@@ -36,10 +36,6 @@ LicenseList is available through [Swift Package Manager](https://github.com/appl
    - Application Target > `General` > `Frameworks, Libraries, and Embedded Content` > `+`
    - Choose `LicenseList`  
    <img src="./Screenshots/installation-2.png" width="500px" />
-3. Add PrepareLicenseList plugin to build phases
-   - Application Target > `Build Phases` > `Run Build Tool Plug-ins` > `+`
-   - Choose `PrepareLicenseList`  
-   <img src="./Screenshots/installation-3.png" width="500px" />
 
 ## Usage
 
@@ -93,7 +89,7 @@ $ swift run spp [output directory path] [SourcePackages directory path]
 ```
 
 - [output directory path]  
-  Path to the directory where the license-list.plist file will be placed.
+  Path to the directory where the LicenseList.swift file will be placed.
 
 - [SourcePackages directory path]  
   Example: `~/Library/Developer/Xcode/DerivedData/project-name-xxxxxxxx/SourcePackages`

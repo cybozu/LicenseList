@@ -7,6 +7,5 @@
 
 enum SPPError: Error {
     case couldNotReadFile(String)
-    case noLibraries
     case couldNotExportLicenseList
 }
