@@ -80,14 +80,14 @@ final class SourcePackagesParser {
     }
 
     private func exportLicenseList(_ libraries: [Library], to saveURL: URL) throws {
-        var text = "static let libraries: [[String: String]] = []"
+        var text = ""
 
         if libraries.isEmpty {
             print("Warning: No libraries.")
         } else {
             printLibraries(libraries)
 
-            let arrayText = libraries
+            text = libraries
                 .map { library in
                     return """
                     [
@@ -99,9 +99,9 @@ final class SourcePackagesParser {
                 }
                 .joined(separator: ",\n")
                 .nest()
-            text = "static let libraries: [[String: String]] = [\n\(arrayText)\n]"
+            text = "\n\(text)\n"
         }
-
+        text = "static let libraries: [[String: String]] = [\(text)]"
         text = "enum SPP {\n\(text.nest())\n}\n"
 
         if FileManager.default.fileExists(atPath: saveURL.path) {
