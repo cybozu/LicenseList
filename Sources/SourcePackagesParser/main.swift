@@ -17,7 +17,7 @@ func exitWithSPPError(_ sppError: SPPError) -> Never {
     case .couldNotReadFile(let fileName):
         print("Error: Could not read \(fileName).")
     case .couldNotExportLicenseList:
-        print("Error: Could not export license-list.plist.")
+        print("Error: Could not export LicenseList.swift.")
     }
     exit(1)
 }
