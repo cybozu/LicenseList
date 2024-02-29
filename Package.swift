@@ -8,10 +8,6 @@ let package = Package(
         .iOS(.v14)
     ],
     products: [
-        .executable(
-            name: "spp",
-            targets: ["spp"]
-        ),
         .library(
             name: "LicenseList",
             targets: ["LicenseList"]
@@ -30,10 +26,7 @@ let package = Package(
         .testTarget(
             name: "SourcePackagesParserTests",
             dependencies: [
-                .target(
-                    name: "spp",
-                    condition: .when(platforms: [.macOS])
-                )
+                .target(name: "spp", condition: .when(platforms: [.macOS]))
             ],
             resources: [
                 .copy("Resources/CouldNotRead"),

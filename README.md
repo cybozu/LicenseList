@@ -21,7 +21,7 @@ Generate a list of licenses for the Swift Package libraries that your app depend
 
 - Written in Swift 5.9
 - Compatible with iOS 14.0+
-- Development with Xcode 15.0+
+- Development with Xcode 15.2+
 
 ## Installation
 
@@ -77,19 +77,3 @@ struct ContentView: View {
 This repository includes demonstration app for UIKit & SwiftUI.
 
 Open [LicenseDemo/LicenseDemo.xcodeproj](/LicenseDemo/LicenseDemo.xcodeproj) and Run it.
-
-## SourcePackagesParser (spp)
-
-SourcePackagesParser is a command line tool that parses the license information of the Swift Package libraries on which the project depends based on workspace-state.json inside the DerivedData directory.
-
-### Usage
-
-```
-$ swift run spp [output directory path] [SourcePackages directory path]
-```
-
-- [output directory path]  
-  Path to the directory where the LicenseList.swift file will be placed.
-
-- [SourcePackages directory path]  
-  Example: `~/Library/Developer/Xcode/DerivedData/project-name-xxxxxxxx/SourcePackages`
