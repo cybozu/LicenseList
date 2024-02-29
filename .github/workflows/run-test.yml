@@ -1,7 +1,10 @@
-name: Dispatch Workflow
+name: Run Test
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - "*.*.*"
 
 jobs:
   run-unit-test:
@@ -22,7 +25,7 @@ jobs:
         run: |
           xcodebuild -scheme spp test \
             -only-testing:SourcePackagesParserTests \
-            -destination "platform=macOS,arch=x86_64" \
+            -destination "platform=macOS,arch=arm64" \
             -resultBundlePath SourcePackagesParserTests | \
             xcpretty -c && exit ${PIPESTATUS[0]}
 
