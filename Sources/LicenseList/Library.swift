@@ -21,7 +21,7 @@ public struct Library: Identifiable, Hashable {
 }
 
 extension Library {
-    static public var libraries: [Library] {
+    public static var libraries: [Library] {
         return SPP.libraries.compactMap { info -> Library? in
             guard let name = info["name"],
                   let url = info["url"],
