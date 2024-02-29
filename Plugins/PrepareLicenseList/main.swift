@@ -50,22 +50,3 @@ struct PrepareLicenseList: BuildToolPlugin {
         ]
     }
 }
-
-#if canImport(XcodeProjectPlugin)
-
-import XcodeProjectPlugin
-
-extension PrepareLicenseList: XcodeBuildToolPlugin {
-    // This command works with `Run Build Tool Plug-ins` in Xcode `Build Phase`.
-    func createBuildCommands(context: XcodePluginContext, target: XcodeTarget) throws -> [Command] {
-        return [
-            makeBuildCommand(
-                executablePath: try context.tool(named: "spp").path,
-                sourcePackagesPath: try sourcePackages(context.pluginWorkDirectory),
-                outputPath: context.pluginWorkDirectory
-            )
-        ]
-    }
-}
-
-#endif
