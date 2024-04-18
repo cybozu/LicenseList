@@ -23,6 +23,10 @@ Generate a list of licenses for the Swift Package libraries that your app depend
 - Compatible with iOS 14.0+
 - Development with Xcode 15.2+
 
+## Privacy Manifest
+
+This library does not collect or track user information, so it does not include a PrivacyInfo.xcprivacy file.
+
 ## Installation
 
 LicenseList is available through [Swift Package Manager](https://github.com/apple/swift-package-manager/).
