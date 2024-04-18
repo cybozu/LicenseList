@@ -36,7 +36,6 @@ let package = Package(
         ),
         .target(
             name: "LicenseList",
-            resources: [.copy("PrivacyInfo.xcprivacy")],
             plugins: ["PrepareLicenseList"]
         )
     ]
