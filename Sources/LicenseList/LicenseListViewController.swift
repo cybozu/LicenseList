@@ -21,7 +21,7 @@ public class LicenseListViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        let licenseListView = LicenseListView(useUINavigationController: true) { [weak self] library in
+        let licenseListView = LicenseListView() { [weak self] library in
             self?.navigateTo(library: library)
         }
         let vc = UIHostingController(rootView: licenseListView)

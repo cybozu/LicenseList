@@ -11,24 +11,19 @@ public struct LicenseListView: View {
     @Environment(\.licenseListViewStyle) private var licenseListViewStyle: LicenseListViewStyle
 
     let libraries = Library.libraries
-    let useUINavigationController: Bool
     let navigationHandler: ((Library) -> Void)?
 
-    public init(
-        useUINavigationController: Bool = false,
-        navigationHandler: ((Library) -> Void)? = nil
-    ) {
-        self.useUINavigationController = useUINavigationController
+    public init(navigationHandler: ((Library) -> Void)? = nil) {
         self.navigationHandler = navigationHandler
     }
 
     public var body: some View {
         List {
             ForEach(libraries) { library in
-                if useUINavigationController {
+                if let navigationHandler {
                     HStack {
                         Button {
-                            navigationHandler?(library)
+                            navigationHandler(library)
                         } label: {
                             Text(library.name)
                         }
@@ -63,11 +58,5 @@ public struct LicenseListView: View {
                 Text(library.name)
             }
         }
-    }
-}
-
-public extension LicenseListView {
-    init(useUINavigationController: Bool = false) {
-        self.init(useUINavigationController: useUINavigationController, navigationHandler: { _ in })
     }
 }
