@@ -19,9 +19,9 @@ Generate a list of licenses for the Swift Package libraries that your app depend
 
 ## Requirements
 
+- Development with Xcode 15.2+
 - Written in Swift 5.9
 - Compatible with iOS 14.0+
-- Development with Xcode 15.2+
 
 ## Privacy Manifest
 
@@ -31,15 +31,43 @@ This library does not collect or track user information, so it does not include 
 
 LicenseList is available through [Swift Package Manager](https://github.com/apple/swift-package-manager/).
 
-1. Integrate LicenseList in your project
-   - File > Add Packages...
-   - Search `https://github.com/cybozu/LicenseList.git`
-   - Choose `LicenseList` product and add it to your application target  
-   <img src="./Screenshots/installation-1.png" width="600px" />
-2. Link LicenseList in your application target
-   - Application Target > `General` > `Frameworks, Libraries, and Embedded Content` > `+`
-   - Choose `LicenseList`  
-   <img src="./Screenshots/installation-2.png" width="500px" />
+**Xcode**
+
+1. File > Add Package Dependencies…
+2. Search `https://github.com/cybozu/LicenseList.git`.  
+   <img src="Screenshots/add-package-dependencies.png" width="800px">
+3. Add package and link `LicenseList` to your application target.  
+   <img src="Screenshots/add-package.png" width="600px">
+
+**CLI**
+
+1. Create `Package.swift` that describes dependencies.
+   ```swift
+   // swift-tools-version: 5.9
+   import PackageDescription
+   
+   let package = Package(
+       name: "SomeProduct",
+       products: [
+           .library(name: "SomeProduct", targets: ["SomeProduct"])
+       ],
+       dependencies: [
+           .package(url: "https://github.com/cybozu/LicenseList.git", exact: "0.7.0")
+       ],
+       targets: [
+           .target(
+               name: "SomeProduct",
+               dependencies: [
+                   .product(name: "LicenseList", package: "LicenseList")
+               ]
+           )
+       ]
+   )
+   ```
+2. Run the following command in Terminal.
+   ```sh
+   $ swift package resolve
+   ```
 
 ## Usage
 
