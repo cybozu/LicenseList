@@ -22,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		183EA4FD2BFACECA0058CF68 /* LicenseDemoForSwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LicenseDemoForSwiftUI.entitlements; sourceTree = "<group>"; };
 		18780F992ABABB07007B286A /* LicenseList */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LicenseList; path = ..; sourceTree = "<group>"; };
 		18E61A6F2872A66800C5A710 /* LicenseDemoForUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LicenseDemoForUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E61A712872A66800C5A710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +111,7 @@
 		18E61A922872AC5100C5A710 /* LicenseDemoForSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				183EA4FD2BFACECA0058CF68 /* LicenseDemoForSwiftUI.entitlements */,
 				18E61A932872AC5100C5A710 /* LicenseDemoForSwiftUIApp.swift */,
 				18E61A952872AC5100C5A710 /* ContentView.swift */,
 				18E61A972872AC5300C5A710 /* Assets.xcassets */,
@@ -467,6 +469,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LicenseDemoForSwiftUI/LicenseDemoForSwiftUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LicenseDemoForSwiftUI/Preview Content\"";
@@ -486,6 +489,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cybozu.LicenseDemoForSwiftUI;
 				PRODUCT_NAME = "Demo SwiftUI";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -497,6 +502,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LicenseDemoForSwiftUI/LicenseDemoForSwiftUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LicenseDemoForSwiftUI/Preview Content\"";
@@ -516,6 +522,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cybozu.LicenseDemoForSwiftUI;
 				PRODUCT_NAME = "Demo SwiftUI";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
