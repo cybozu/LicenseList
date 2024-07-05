@@ -103,9 +103,8 @@ struct ContentView: View {
 }
 ```
 
-
 ## Demo
 
 This repository includes demonstration app for UIKit & SwiftUI.
 
-Open [LicenseDemo/LicenseDemo.xcodeproj](/LicenseDemo/LicenseDemo.xcodeproj) and Run it.
+Open [Examples/Examples.xcodeproj](/Examples/Examples.xcodeproj) and Run it.
