@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  LicenseDemoForUIKit
+//  ExamplesForUIKit
 //
-//  Created by ky0me22 on 2022/07/04.
+//  Created by ky0me22 on 2024/07/05.
 //
 
 import UIKit

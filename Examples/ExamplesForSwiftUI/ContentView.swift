@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
-//  LicenseDemoForSwiftUI
+//  ExamplesForSwiftUI
 //
-//  Created by ky0me22 on 2022/07/04.
+//  Created by ky0me22 on 2024/07/05.
 //
 
 import SwiftUI
@@ -20,8 +20,6 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView()
 }
