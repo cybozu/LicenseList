@@ -35,15 +35,9 @@ public class LicenseListViewController: UIViewController {
     }
 
     private func navigateTo(library: Library) {
-        let hostingController = UIHostingController(rootView: Group {
-            if #available(iOS 15, *) {
-                LicenseView(library: library)
-                    .licenseListViewStyle(licenseListViewStyle)
-            } else {
-                LegacyLicenseView(library: library)
-                    .licenseListViewStyle(licenseListViewStyle)
-            }
-        })
+        let hostingController = UIHostingController(
+            rootView: LicenseView(library: library).licenseListViewStyle(licenseListViewStyle)
+        )
         hostingController.title = library.name
         self.navigationController?.pushViewController(hostingController, animated: true)
     }
