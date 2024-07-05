@@ -19,7 +19,7 @@ Generate a list of licenses for the Swift Package libraries that your app depend
 
 ## Requirements
 
-- Development with Xcode 15.2+
+- Development with Xcode 15.4+
 - Written in Swift 5.9
 - Compatible with iOS 15.0+
 
@@ -42,10 +42,11 @@ LicenseList is available through [Swift Package Manager](https://github.com/appl
 **CLI**
 
 1. Create `Package.swift` that describes dependencies.
+
    ```swift
    // swift-tools-version: 5.9
    import PackageDescription
-   
+
    let package = Package(
        name: "SomeProduct",
        products: [
@@ -64,6 +65,7 @@ LicenseList is available through [Swift Package Manager](https://github.com/appl
        ]
    )
    ```
+
 2. Run the following command in Terminal.
    ```sh
    $ swift package resolve
