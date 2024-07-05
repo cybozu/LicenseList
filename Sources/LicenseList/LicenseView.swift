@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@available(iOS 15, *)
 public struct LicenseView: View {
     @State private var attributedLicenseBody = AttributedString(stringLiteral: "")
 

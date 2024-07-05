@@ -34,29 +34,15 @@ public struct LicenseListView: View {
                             .foregroundColor(Color(.systemGray3))
                     }
                 } else {
-                    libraryNavigationLink(library)
+                    NavigationLink {
+                        LicenseView(library: library)
+                            .licenseListViewStyle(licenseListViewStyle)
+                    } label: {
+                        Text(library.name)
+                    }
                 }
             }
         }
         .listStyle(.insetGrouped)
-    }
-
-    @ViewBuilder
-    func libraryNavigationLink(_ library: Library) -> some View {
-        if #available(iOS 15, *) {
-            NavigationLink {
-                LicenseView(library: library)
-                    .licenseListViewStyle(licenseListViewStyle)
-            } label: {
-                Text(library.name)
-            }
-        } else {
-            NavigationLink {
-                LegacyLicenseView(library: library)
-                    .licenseListViewStyle(licenseListViewStyle)
-            } label: {
-                Text(library.name)
-            }
-        }
     }
 }
