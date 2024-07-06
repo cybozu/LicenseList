@@ -1,4 +1,4 @@
-name: Run Test
+name: Test
 
 on:
   workflow_dispatch:
@@ -6,9 +6,13 @@ on:
     tags:
       - "*.*.*"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   run-unit-test:
-    name: Run Unit Test
+    name: Unit Test
     runs-on: macos-14
     timeout-minutes: 30
     env:
@@ -26,12 +30,12 @@ jobs:
           xcodebuild -scheme spp test \
             -only-testing:SourcePackagesParserTests \
             -destination "platform=macOS,arch=arm64" \
-            -resultBundlePath SourcePackagesParserTests | \
+            -resultBundlePath TestResults/result_bundle | \
             xcpretty -c && exit ${PIPESTATUS[0]}
 
       - name: Archive test results
         if: success() || failure()
         uses: kishikawakatsumi/xcresulttool@v1
         with:
-          path: |
-            SourcePackagesParserTests.xcresult
+          path: TestResults/result_bundle.xcresult
+          show-passed-tests: false
