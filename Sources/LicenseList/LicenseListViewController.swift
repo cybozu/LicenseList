@@ -1,9 +1,17 @@
 import UIKit
 import SwiftUI
 
+/// A view controller that specializes in managing a license list view.
+///
+/// A view controller implements the following behavior:
+/// - Displays a list of libraries that your project depends on via Swift Package Manager.
+/// - The list is sorted alphabetically by library name.
+/// - Selecting each library will open a details page where you can view the license body.
 public class LicenseListViewController: UIViewController {
+    /// The style that specifies behavior of license views.
     public var licenseViewStyle: LicenseViewStyle = .plain
 
+    /// Creates a license list view controller.
     public init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -12,6 +20,9 @@ public class LicenseListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    /// Called after the controller's view is loaded into memory.
+    ///
+    /// The view controller embeds ``LicenseListView`` as a child view using UIHostingController.
     public override func viewDidLoad() {
         super.viewDidLoad()
         let licenseListView = LicenseListView() { [weak self] library in

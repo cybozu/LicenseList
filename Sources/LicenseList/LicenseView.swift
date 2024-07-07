@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// A view that displays license body.
 public struct LicenseView: View {
     @State private var attributedLicenseBody = AttributedString(stringLiteral: "")
 
@@ -8,10 +9,14 @@ public struct LicenseView: View {
 
     private let library: Library
 
+    /// Creates new license list view with the specified library.
+    /// - Parameters:
+    ///   - library: The library to use in this view.
     public init(library: Library) {
         self.library = library
     }
 
+    /// The content and behavior of the license view.
     public var body: some View {
         ScrollView {
             Text(attributedLicenseBody)

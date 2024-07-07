@@ -12,7 +12,7 @@ extension View {
             }
         }
     }
-    
+
     func _licenseViewStyle(_ style: LicenseViewStyle, action: @escaping () -> Void) -> some View {
         Group {
             switch style {
@@ -23,7 +23,8 @@ extension View {
             }
         }
     }
-    
+
+    /// Sets the style for license views.
     public func licenseViewStyle(_ style: LicenseViewStyle) -> some View {
         self.environment(\.licenseViewStyle, style)
     }
