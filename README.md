@@ -11,11 +11,13 @@ Generate a list of licenses for the Swift Package libraries that your app depend
 
 **Example**
 
-<div>
-  <img src="./Screenshots/demo-top.png" width="240px" />
-  <img src="./Screenshots/demo-apache.png" width="240px" />
-  <img src="./Screenshots/demo-mit.png" width="240px" />
-</div>
+<table>
+  <tr>
+    <td><img src="./Screenshots/demo-top.png" /></td>
+    <td><img src="./Screenshots/demo-apache.png" /></td>
+    <td><img src="./Screenshots/demo-mit.png" /></td>
+  </tr>
+</table>
 
 ## Requirements
 
@@ -104,6 +106,11 @@ struct ContentView: View {
     }
 }
 ```
+
+## Documentation
+
+LicenseList documentation is deployed with Swift-DocC.  
+https://cybozu.github.io/LicenseList/documentation/licenselist/
 
 ## Demo
 
