@@ -85,7 +85,7 @@ let vc = LicenseListViewController()
 vc.title = "LICENSE"
 
 // If you want to anchor link of the repository
-vc.licenseListViewStyle = .withRepositoryAnchorLink
+vc.licenseViewStyle = .withRepositoryAnchorLink
 
 navigationController?.pushViewController(vc, animated: true)
 ```
@@ -100,7 +100,7 @@ struct ContentView: View {
         NavigationView {
             LicenseListView()
                 // If you want to anchor link of the repository
-                .licenseListViewStyle(.withRepositoryAnchorLink)
+                .licenseViewStyle(.withRepositoryAnchorLink)
                 .navigationTitle("LICENSE")
         }
     }

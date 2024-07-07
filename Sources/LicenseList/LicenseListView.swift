@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct LicenseListView: View {
-    @Environment(\.licenseListViewStyle) private var licenseListViewStyle: LicenseListViewStyle
+    @Environment(\.licenseViewStyle) private var licenseViewStyle: LicenseViewStyle
 
     let libraries = Library.libraries
     let navigationHandler: ((Library) -> Void)?
@@ -29,7 +29,7 @@ public struct LicenseListView: View {
                 } else {
                     NavigationLink {
                         LicenseView(library: library)
-                            .licenseListViewStyle(licenseListViewStyle)
+                            .licenseViewStyle(licenseViewStyle)
                     } label: {
                         Text(library.name)
                     }

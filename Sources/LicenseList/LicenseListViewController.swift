@@ -2,7 +2,7 @@ import UIKit
 import SwiftUI
 
 public class LicenseListViewController: UIViewController {
-    public var licenseListViewStyle: LicenseListViewStyle = .plain
+    public var licenseViewStyle: LicenseViewStyle = .plain
 
     public init() {
         super.init(nibName: nil, bundle: nil)
@@ -29,7 +29,7 @@ public class LicenseListViewController: UIViewController {
 
     private func navigateTo(library: Library) {
         let hostingController = UIHostingController(
-            rootView: LicenseView(library: library).licenseListViewStyle(licenseListViewStyle)
+            rootView: LicenseView(library: library).licenseViewStyle(licenseViewStyle)
         )
         hostingController.title = library.name
         self.navigationController?.pushViewController(hostingController, animated: true)

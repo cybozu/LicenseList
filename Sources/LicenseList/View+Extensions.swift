@@ -13,7 +13,7 @@ extension View {
         }
     }
     
-    func _licenseListViewStyle(_ style: LicenseListViewStyle, action: @escaping () -> Void) -> some View {
+    func _licenseViewStyle(_ style: LicenseViewStyle, action: @escaping () -> Void) -> some View {
         Group {
             switch style {
             case .plain:
@@ -24,7 +24,7 @@ extension View {
         }
     }
     
-    public func licenseListViewStyle(_ style: LicenseListViewStyle) -> some View {
-        self.environment(\.licenseListViewStyle, style)
+    public func licenseViewStyle(_ style: LicenseViewStyle) -> some View {
+        self.environment(\.licenseViewStyle, style)
     }
 }
