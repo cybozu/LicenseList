@@ -1,10 +1,3 @@
-//
-//  LicenseListViewStyle.swift
-//
-//
-//  Created by 宮本大新 on 2023/11/16.
-//
-
 import SwiftUI
 
 public enum LicenseListViewStyle {

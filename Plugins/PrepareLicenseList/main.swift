@@ -1,10 +1,3 @@
-//
-//  main.swift
-//
-//
-//  Created by ky0me22 on 2022/09/29.
-//
-
 import Foundation
 import PackagePlugin
 

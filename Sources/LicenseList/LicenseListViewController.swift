@@ -1,10 +1,3 @@
-//
-//  LicenseListViewController.swift
-//  
-//
-//  Created by ky0me22 on 2022/06/06.
-//
-
 import UIKit
 import SwiftUI
 
