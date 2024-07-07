@@ -4,6 +4,7 @@
 # Swift Package Manager
 .swiftpm/
 .build/
+Package.resolved
 
 # Xcode
 xcuserdata/

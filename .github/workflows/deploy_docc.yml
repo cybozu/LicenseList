@@ -25,13 +25,17 @@ jobs:
 
       - name: Build DocC
         run: |
-          swift package --allow-writing-to-directory ./docs \
-            generate-documentation \
-            --target LicenseList \
-            --disable-indexing \
-            --transform-for-static-hosting \
-            --hosting-base-path LicenseList \
-            --output-path ./docs
+          xcodebuild docbuild \
+            -project Examples/Examples.xcodeproj \
+            -scheme LicenseList \
+            -destination "generic/platform=iOS" \
+            -derivedDataPath /tmp/docbuild \
+            -skipPackagePluginValidation
+
+          $(xcrun --find docc) process-archive \
+             transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-*/LicenseList.doccarchive \
+             --output-path ./docs \
+             --hosting-base-path "LicenseList"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
