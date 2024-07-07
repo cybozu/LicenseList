@@ -13,9 +13,6 @@ let package = Package(
             targets: ["LicenseList"]
         )
     ],
-    dependencies: [
-        .package(url: "https://github.com/apple/swift-docc-plugin.git", exact: "1.3.0")
-    ],
     targets: [
         .executableTarget(
             name: "spp",
