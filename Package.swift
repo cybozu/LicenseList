@@ -36,6 +36,11 @@ let package = Package(
         ),
         .target(
             name: "LicenseList",
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
+                .enableUpcomingFeature("ExistentialAny"),
+                .enableUpcomingFeature("GlobalConcurrency"),
+            ],
             plugins: ["PrepareLicenseList"]
         )
     ]
