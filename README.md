@@ -55,7 +55,7 @@ LicenseList is available through [Swift Package Manager](https://github.com/appl
            .library(name: "SomeProduct", targets: ["SomeProduct"])
        ],
        dependencies: [
-           .package(url: "https://github.com/cybozu/LicenseList.git", exact: "0.7.0")
+           .package(url: "https://github.com/cybozu/LicenseList.git", exact: "1.0.0")
        ],
        targets: [
            .target(
