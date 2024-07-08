@@ -1,7 +1,10 @@
 import SwiftUI
 
+/// A style for license views.
 public enum LicenseViewStyle {
+    /// The style used to display just the license body.
     case plain
+    /// The style used to display the license body and repository anchor link.
     case withRepositoryAnchorLink
 }
 
