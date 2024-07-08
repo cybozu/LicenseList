@@ -24,7 +24,7 @@ extension View {
         }
     }
 
-    /// Sets the style for license views.
+    /// Sets the style for license views within this view.
     public func licenseViewStyle(_ style: LicenseViewStyle) -> some View {
         self.environment(\.licenseViewStyle, style)
     }
