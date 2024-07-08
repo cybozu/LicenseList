@@ -4,7 +4,7 @@ public struct LicenseView: View {
     @State private var attributedLicenseBody = AttributedString(stringLiteral: "")
 
     @Environment(\.openURL) private var openURL: OpenURLAction
-    @Environment(\.licenseListViewStyle) private var licenseListViewStyle: LicenseListViewStyle
+    @Environment(\.licenseViewStyle) private var licenseViewStyle: LicenseViewStyle
 
     private let library: Library
 
@@ -23,7 +23,7 @@ public struct LicenseView: View {
                 }
         }
         .navigationBarTitle(library.name)
-        ._licenseListViewStyle(licenseListViewStyle) {
+        ._licenseViewStyle(licenseViewStyle) {
             if let url = library.url {
                 openURL(url)
             }
