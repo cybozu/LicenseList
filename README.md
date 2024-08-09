@@ -1,4 +1,7 @@
-# LicenseList
+<picture>
+  <source srcset="./Media/logo-dark.png" height="60" media="(prefers-color-scheme: dark)" alt="LicenseList by Cybozu">
+  <img src="./Media/logo.png" height="60" alt="LicenseList by Cybozu">
+</picture>
 
 Generate a list of licenses for the Swift Package libraries that your app depends on.
 
@@ -13,9 +16,9 @@ Generate a list of licenses for the Swift Package libraries that your app depend
 
 <table>
   <tr>
-    <td><img src="./Screenshots/demo-top.png" /></td>
-    <td><img src="./Screenshots/demo-apache.png" /></td>
-    <td><img src="./Screenshots/demo-mit.png" /></td>
+    <td><img src="./Media/demo-top.png" /></td>
+    <td><img src="./Media/demo-apache.png" /></td>
+    <td><img src="./Media/demo-mit.png" /></td>
   </tr>
 </table>
 
@@ -41,9 +44,9 @@ LicenseList is available through [Swift Package Manager](https://github.com/appl
 
 1. File > Add Package Dependencies…
 2. Search `https://github.com/cybozu/LicenseList.git`.  
-   <img src="Screenshots/add-package-dependencies.png" width="800px">
+   <img src="./Media/add-package-dependencies.png" width="800px">
 3. Add package and link `LicenseList` to your application target.  
-   <img src="Screenshots/add-package.png" width="600px">
+   <img src="./Media/add-package.png" width="600px">
 
 **CLI**
 
