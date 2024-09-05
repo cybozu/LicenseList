@@ -9,7 +9,7 @@ public struct LicenseView: View {
 
     private let library: Library
 
-    /// Creates new license list view with the specified library.
+    /// Creates new license view with the specified library.
     /// - Parameters:
     ///   - library: The library to use in this view.
     public init(library: Library) {
