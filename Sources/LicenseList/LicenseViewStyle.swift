@@ -31,7 +31,9 @@ public struct PlainLicenseViewStyle: LicenseViewStyle {
             Text(configuration.attributedLicenseBody)
                 .font(.caption)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .scrollableTextIfNeeded(numberOfLines: configuration.numberOfLines, font: .caption)
+                #if os(tvOS)
+                .scrollableText(numberOfLines: configuration.numberOfLines, font: .caption)
+                #endif
                 .padding()
         }
         .clipShape(Rectangle())
@@ -72,6 +74,7 @@ public extension LicenseViewStyle where Self == DefaultLicenseViewStyle {
 }
 
 // Style & Modifier For tvOS
+#if os(tvOS)
 private struct DummyFocusButtonStyle: ButtonStyle {
     let text: String
     let font: Font
@@ -84,7 +87,7 @@ private struct DummyFocusButtonStyle: ButtonStyle {
     }
 }
 
-private struct ScrollableTextIfNeededViewModifier: ViewModifier {
+private struct ScrollableTextViewModifier: ViewModifier {
     private let numberOfButtons: Int
     private let text: String
     private let font: Font
@@ -96,7 +99,6 @@ private struct ScrollableTextIfNeededViewModifier: ViewModifier {
     }
 
     func body(content: Content) -> some View {
-        #if os(tvOS)
         ZStack(alignment: .topLeading) {
             content
             VStack {
@@ -106,14 +108,12 @@ private struct ScrollableTextIfNeededViewModifier: ViewModifier {
                 }
             }
         }
-        #else
-        content
-        #endif
     }
 }
 
 private extension View {
-    func scrollableTextIfNeeded(numberOfLines: Int, font: Font) -> some View {
-        self.modifier(ScrollableTextIfNeededViewModifier(numberOfLines: numberOfLines, font: font))
+    func scrollableText(numberOfLines: Int, font: Font) -> some View {
+        self.modifier(ScrollableTextViewModifier(numberOfLines: numberOfLines, font: font))
     }
 }
+#endif
