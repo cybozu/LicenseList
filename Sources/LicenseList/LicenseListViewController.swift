@@ -8,8 +8,11 @@ import SwiftUI
 /// - The list is sorted alphabetically by library name.
 /// - Selecting each library will open a details page where you can view the license body.
 public class LicenseListViewController: UIViewController {
+    /// The style that specifies behavior of license list view.
+    public var licenseListViewStyle: any LicenseListViewStyle = .automatic
+
     /// The style that specifies behavior of license views.
-    public var licenseViewStyle: LicenseViewStyle = .plain
+    public var licenseViewStyle: any LicenseViewStyle = .automatic
 
     /// Creates a license list view controller.
     public init() {
@@ -40,7 +43,11 @@ public class LicenseListViewController: UIViewController {
 
     private func navigateTo(library: Library) {
         let hostingController = UIHostingController(
-            rootView: LicenseView(library: library).licenseViewStyle(licenseViewStyle)
+            rootView: AnyView(
+                LicenseView(library: library)
+                    .licenseListViewStyle(licenseListViewStyle)
+                    .licenseViewStyle(licenseViewStyle)
+            )
         )
         hostingController.title = library.name
         self.navigationController?.pushViewController(hostingController, animated: true)

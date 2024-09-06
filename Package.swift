@@ -5,7 +5,8 @@ import PackageDescription
 let package = Package(
     name: "LicenseList",
     platforms: [
-        .iOS(.v15)
+        .iOS(.v15),
+        .tvOS(.v17),
     ],
     products: [
         .library(

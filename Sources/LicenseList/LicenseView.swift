@@ -4,12 +4,12 @@ import SwiftUI
 public struct LicenseView: View {
     @State private var attributedLicenseBody = AttributedString(stringLiteral: "")
 
+    @Environment(\.licenseViewStyle) private var _licenseViewStyle
     @Environment(\.openURL) private var openURL: OpenURLAction
-    @Environment(\.licenseViewStyle) private var licenseViewStyle: LicenseViewStyle
 
     private let library: Library
 
-    /// Creates new license list view with the specified library.
+    /// Creates new license view with the specified library.
     /// - Parameters:
     ///   - library: The library to use in this view.
     public init(library: Library) {
@@ -18,20 +18,13 @@ public struct LicenseView: View {
 
     /// The content and behavior of the license view.
     public var body: some View {
-        ScrollView {
-            Text(attributedLicenseBody)
-                .font(.caption)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-                .onAppear {
-                    attributedLicenseBody = attribute(library.licenseBody)
-                }
-        }
-        .navigationBarTitle(library.name)
-        ._licenseViewStyle(licenseViewStyle) {
-            if let url = library.url {
-                openURL(url)
-            }
+        AnyView(_licenseViewStyle.makeBody(configuration: .init(
+            library: library,
+            attributedLicenseBody: attributedLicenseBody,
+            openURL: { openURL($0) }
+        )))
+        .onAppear {
+            attributedLicenseBody = attribute(library.licenseBody)
         }
     }
 
