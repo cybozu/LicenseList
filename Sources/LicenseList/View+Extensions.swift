@@ -34,6 +34,7 @@ extension View {
                 } label: {
                     Image(systemName: "link")
                 }
+                .accessibilityIdentifier("repository_anchor_link")
             }
         }
     }

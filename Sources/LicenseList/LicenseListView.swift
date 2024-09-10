@@ -23,5 +23,6 @@ public struct LicenseListView: View {
             navigationHandler: navigationHandler,
             licenseViewStyle: _licenseViewStyle
         )))
+        .accessibilityIdentifier("license_list_view")
     }
 }
