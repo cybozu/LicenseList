@@ -26,6 +26,7 @@ public struct LicenseView: View {
         .onAppear {
             attributedLicenseBody = attribute(library.licenseBody)
         }
+        .accessibilityIdentifier("license_view")
     }
 
     private func attribute(_ inputText: String) -> AttributedString {
