@@ -6,6 +6,7 @@ let package = Package(
     name: "LicenseList",
     platforms: [
         .iOS(.v15),
+        .macCatalyst(.v15),
         .tvOS(.v17),
     ],
     products: [
