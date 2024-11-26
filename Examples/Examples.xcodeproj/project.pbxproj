@@ -23,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		188460622C37EDE2005C370A /* LicenseList */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LicenseList; path = ..; sourceTree = "<group>"; };
+		188707F02CF5882D00E5A6CF /* ExamplesForSwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExamplesForSwiftUI.entitlements; sourceTree = "<group>"; };
 		18FCC4412C37E4550052500D /* ExamplesForSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExamplesForSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FCC4432C37E4550052500D /* ExamplesForSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesForSwiftUIApp.swift; sourceTree = "<group>"; };
 		18FCC4452C37E4550052500D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		18FCC4422C37E4550052500D /* ExamplesForSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				188707F02CF5882D00E5A6CF /* ExamplesForSwiftUI.entitlements */,
 				18FCC4432C37E4550052500D /* ExamplesForSwiftUIApp.swift */,
 				18FCC4452C37E4550052500D /* ContentView.swift */,
 				18FCC4472C37E4560052500D /* Assets.xcassets */,
@@ -394,10 +396,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ExamplesForSwiftUI/ExamplesForSwiftUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ExamplesForSwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VHY32ZU4KA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -413,12 +416,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cybozu.swiftui.examples;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,3";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Debug;
 		};
@@ -427,10 +430,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ExamplesForSwiftUI/ExamplesForSwiftUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ExamplesForSwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VHY32ZU4KA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -446,12 +450,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cybozu.swiftui.examples;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,3";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Release;
 		};

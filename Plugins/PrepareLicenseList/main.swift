@@ -34,10 +34,19 @@ struct PrepareLicenseList: BuildToolPlugin {
 
     // This command works with the plugin specified in `Package.swift`.
     func createBuildCommands(context: PluginContext, target: Target) async throws -> [Command] {
+        let sourcePackagesPath = try sourcePackages(context.pluginWorkDirectory)
+        // Workaround for Mac Catalyst
+        let debugMacCatalystPath = sourcePackagesPath.removingLastComponent()
+            .appending(["Build", "Products", "Debug-maccatalyst"])
+        let executablePath: Path = if FileManager.default.fileExists(atPath: debugMacCatalystPath.string) {
+            debugMacCatalystPath.appending(["spp"])
+        } else {
+            try context.tool(named: "spp").path
+        }
         return [
             makeBuildCommand(
-                executablePath: try context.tool(named: "spp").path,
-                sourcePackagesPath: try sourcePackages(context.pluginWorkDirectory),
+                executablePath: executablePath,
+                sourcePackagesPath: sourcePackagesPath,
                 outputPath: context.pluginWorkDirectory
             )
         ]
