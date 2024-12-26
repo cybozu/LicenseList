@@ -9,11 +9,6 @@ import UIKit
 import LicenseList
 
 class ViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
     @IBAction func pushLicense(_ sender: Any) {
         let vc = LicenseListViewController()
         vc.title = "LICENSE"

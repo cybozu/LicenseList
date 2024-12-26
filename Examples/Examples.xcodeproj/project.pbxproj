@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,6 @@
 		18FCC4442C37E4550052500D /* ExamplesForSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FCC4432C37E4550052500D /* ExamplesForSwiftUIApp.swift */; };
 		18FCC4462C37E4550052500D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FCC4452C37E4550052500D /* ContentView.swift */; };
 		18FCC4482C37E4560052500D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FCC4472C37E4560052500D /* Assets.xcassets */; };
-		18FCC44B2C37E4560052500D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FCC44A2C37E4560052500D /* Preview Assets.xcassets */; };
 		18FCC4562C37E4730052500D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FCC4552C37E4730052500D /* AppDelegate.swift */; };
 		18FCC4582C37E4730052500D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FCC4572C37E4730052500D /* SceneDelegate.swift */; };
 		18FCC45A2C37E4730052500D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FCC4592C37E4730052500D /* ViewController.swift */; };
@@ -27,7 +26,6 @@
 		18FCC4432C37E4550052500D /* ExamplesForSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesForSwiftUIApp.swift; sourceTree = "<group>"; };
 		18FCC4452C37E4550052500D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		18FCC4472C37E4560052500D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		18FCC44A2C37E4560052500D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		18FCC4532C37E4730052500D /* ExamplesForUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExamplesForUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FCC4552C37E4730052500D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18FCC4572C37E4730052500D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,32 +79,23 @@
 		18FCC4422C37E4550052500D /* ExamplesForSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				18FCC4472C37E4560052500D /* Assets.xcassets */,
 				18FCC4432C37E4550052500D /* ExamplesForSwiftUIApp.swift */,
 				18FCC4452C37E4550052500D /* ContentView.swift */,
-				18FCC4472C37E4560052500D /* Assets.xcassets */,
-				18FCC4492C37E4560052500D /* Preview Content */,
 			);
 			path = ExamplesForSwiftUI;
-			sourceTree = "<group>";
-		};
-		18FCC4492C37E4560052500D /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				18FCC44A2C37E4560052500D /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		18FCC4542C37E4730052500D /* ExamplesForUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				18FCC4632C37E4740052500D /* Info.plist */,
+				18FCC45E2C37E4740052500D /* Assets.xcassets */,
 				18FCC4552C37E4730052500D /* AppDelegate.swift */,
 				18FCC4572C37E4730052500D /* SceneDelegate.swift */,
 				18FCC4592C37E4730052500D /* ViewController.swift */,
 				18FCC45B2C37E4730052500D /* Main.storyboard */,
-				18FCC45E2C37E4740052500D /* Assets.xcassets */,
 				18FCC4602C37E4740052500D /* LaunchScreen.storyboard */,
-				18FCC4632C37E4740052500D /* Info.plist */,
 			);
 			path = ExamplesForUIKit;
 			sourceTree = "<group>";
@@ -180,7 +169,6 @@
 				};
 			};
 			buildConfigurationList = 18FCC4272C37E4270052500D /* Build configuration list for PBXProject "Examples" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -194,6 +182,7 @@
 				18FCC4722C37EA920052500D /* XCRemoteSwiftPackageReference "swift-collections" */,
 				18DC14D32C37F3120065EC7E /* XCRemoteSwiftPackageReference "GPUImage2" */,
 			);
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 18FCC42D2C37E4270052500D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -209,7 +198,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18FCC44B2C37E4560052500D /* Preview Assets.xcassets in Resources */,
 				18FCC4482C37E4560052500D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,7 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -378,7 +366,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -396,7 +384,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ExamplesForSwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -417,8 +404,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,3";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -429,7 +415,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ExamplesForSwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -450,8 +435,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,3";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
@@ -482,8 +466,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -514,8 +497,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
