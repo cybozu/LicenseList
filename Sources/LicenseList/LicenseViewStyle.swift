@@ -3,16 +3,16 @@ import SwiftUI
 /// The properties of a license view.
 public struct LicenseViewStyleConfiguration {
     /// The library information.
-    public let library: Library
+    public var library: Library
 
     /// The number of lines in the license body.
-    public let numberOfLines: Int
+    public var numberOfLines: Int
 
     /// The license body where in-text links work.
-    public let attributedLicenseBody: AttributedString
+    public var attributedLicenseBody: AttributedString
 
     /// An action that opens a URL.
-    public let openURL: (URL) -> Void
+    public var openURL: (URL) -> Void
 
     init(
         library: Library,
@@ -172,7 +172,7 @@ private struct ScrollableTextViewModifier: ViewModifier {
 
 private extension View {
     func scrollableText(numberOfLines: Int, font: Font) -> some View {
-        self.modifier(ScrollableTextViewModifier(numberOfLines: numberOfLines, font: font))
+        modifier(ScrollableTextViewModifier(numberOfLines: numberOfLines, font: font))
     }
 }
 #endif

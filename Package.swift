@@ -1,23 +1,29 @@
-// swift-tools-version: 5.10
+// swift-tools-version: 6.0
 
 import PackageDescription
+
+let swiftSettings: [SwiftSetting] = [
+    .enableUpcomingFeature("ExistentialAny"),
+]
 
 let package = Package(
     name: "LicenseList",
     platforms: [
-        .iOS(.v15),
+        .iOS(.v16),
         .tvOS(.v17),
+        .macOS(.v14),
     ],
     products: [
         .library(
             name: "LicenseList",
             targets: ["LicenseList"]
-        )
+        ),
     ],
     targets: [
         .executableTarget(
             name: "spp",
-            path: "Sources/SourcePackagesParser"
+            path: "Sources/SourcePackagesParser",
+            swiftSettings: swiftSettings
         ),
         .plugin(
             name: "PrepareLicenseList",
@@ -32,16 +38,13 @@ let package = Package(
             resources: [
                 .copy("Resources/CouldNotRead"),
                 .copy("Resources/NoLibraries"),
-                .copy("Resources/SourcePackages")
-            ]
+                .copy("Resources/SourcePackages"),
+            ],
+            swiftSettings: swiftSettings
         ),
         .target(
             name: "LicenseList",
-            swiftSettings: [
-                .enableExperimentalFeature("StrictConcurrency"),
-                .enableUpcomingFeature("ExistentialAny"),
-                .enableUpcomingFeature("GlobalConcurrency"),
-            ],
+            swiftSettings: swiftSettings,
             plugins: ["PrepareLicenseList"]
         )
     ]

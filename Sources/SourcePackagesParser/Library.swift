@@ -1,7 +1,7 @@
 import Foundation
 
 struct Library: Hashable {
-    let name: String
-    let url: String
-    let licenseBody: String
+    var name: String
+    var url: String
+    var licenseBody: String
 }

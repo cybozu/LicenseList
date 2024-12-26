@@ -3,14 +3,14 @@ import SwiftUI
 /// The properties of a license list view.
 public struct LicenseListViewStyleConfiguration {
     /// An Array of library information.
-    public let libraries: [Library]
+    public var libraries: [Library]
 
     /// The closure to navigate for the given ``Library``.
     /// This is used when controlling navigation using a UINavigationController.
-    public let navigationHandler: ((Library) -> Void)?
+    public var navigationHandler: ((Library) -> Void)?
 
     /// The style that conforms to LicenseViewStyle.
-    public let licenseViewStyle: any LicenseViewStyle
+    public var licenseViewStyle: any LicenseViewStyle
 
     init(
         libraries: [Library],

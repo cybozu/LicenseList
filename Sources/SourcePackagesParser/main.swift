@@ -7,7 +7,7 @@ func exitWithUsage() -> Never {
 
 func exitWithSPPError(_ sppError: SPPError) -> Never {
     switch sppError {
-    case .couldNotReadFile(let fileName):
+    case let .couldNotReadFile(fileName):
         print("Error: Could not read \(fileName).")
     case .couldNotExportLicenseList:
         print("Error: Could not export LicenseList.swift.")

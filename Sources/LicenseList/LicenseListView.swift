@@ -5,8 +5,8 @@ public struct LicenseListView: View {
     @Environment(\.licenseListViewStyle) private var _licenseListViewStyle
     @Environment(\.licenseViewStyle) private var _licenseViewStyle
 
-    let libraries = Library.libraries
-    let navigationHandler: ((Library) -> Void)?
+    var libraries = Library.libraries
+    var navigationHandler: ((Library) -> Void)?
 
     /// Creates new license list view.
     /// - Parameters:

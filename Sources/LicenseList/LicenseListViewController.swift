@@ -32,24 +32,22 @@ public class LicenseListViewController: UIViewController {
             self?.navigateTo(library: library)
         }
         let vc = UIHostingController(rootView: licenseListView)
-        self.addChild(vc)
-        self.view.addSubview(vc.view)
+        addChild(vc)
+        view.addSubview(vc.view)
         vc.view.translatesAutoresizingMaskIntoConstraints = false
-        vc.view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        vc.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        vc.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        vc.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        vc.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        vc.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        vc.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        vc.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
     private func navigateTo(library: Library) {
-        let hostingController = UIHostingController(
-            rootView: AnyView(
-                LicenseView(library: library)
-                    .licenseListViewStyle(licenseListViewStyle)
-                    .licenseViewStyle(licenseViewStyle)
-            )
-        )
+        let hostingController = UIHostingController(rootView: AnyView(
+            LicenseView(library: library)
+                .licenseListViewStyle(licenseListViewStyle)
+                .licenseViewStyle(licenseViewStyle)
+        ))
         hostingController.title = library.name
-        self.navigationController?.pushViewController(hostingController, animated: true)
+        navigationController?.pushViewController(hostingController, animated: true)
     }
 }

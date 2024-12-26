@@ -1,31 +1,29 @@
 import Foundation
 
 final class SourcePackagesParser {
-    let outputPath: String
-    let sourcePackagesPath: String
+    let outputURL: URL
+    let sourcePackagesURL: URL
 
     init(_ outputPath: String, _ sourcePackagesPath: String) {
-        self.outputPath = outputPath
-        self.sourcePackagesPath = sourcePackagesPath
+        outputURL = URL(filePath: outputPath)
+        sourcePackagesURL = URL(filePath: sourcePackagesPath)
     }
 
     func run() throws {
         // Load workspace-state.json
-        let workspaceStateURL = URL(fileURLWithPath: sourcePackagesPath)
-            .appendingPathComponent("workspace-state.json")
+        let workspaceStateURL = sourcePackagesURL.appending(path: "workspace-state.json")
         guard let data = try? Data(contentsOf: workspaceStateURL),
               let workspaceState = try? JSONDecoder().decode(WorkspaceState.self, from: data) else {
             throw SPPError.couldNotReadFile(workspaceStateURL.lastPathComponent)
         }
 
         // Extract Libraries
-        let checkoutsPath = "\(sourcePackagesPath)/checkouts"
+        let checkoutsURL = sourcePackagesURL.appending(path: "checkouts")
         let libraries: [Library] = workspaceState.object.dependencies.compactMap { dependency in
             let repositoryName = dependency.packageRef.location
                 .components(separatedBy: "/").last!
                 .replacingOccurrences(of: ".git", with: "")
-            let directoryURL = URL(fileURLWithPath: checkoutsPath)
-                .appendingPathComponent(repositoryName)
+            let directoryURL = checkoutsURL.appending(path: repositoryName)
             guard let licenseBody = extractLicenseBody(directoryURL) else {
                 return nil
             }
@@ -38,41 +36,38 @@ final class SourcePackagesParser {
         .sorted { $0.name.lowercased() < $1.name.lowercased() }
 
         // Export LicenseList.swift
-        let saveURL = URL(fileURLWithPath: outputPath)
-            .appendingPathComponent("LicenseList.swift")
-        try exportLicenseList(libraries, to: saveURL)
+        try exportLicenseList(libraries)
     }
 
     private func extractLicenseBody(_ directoryURL: URL) -> String? {
         let fm = FileManager.default
-        let contents = (try? fm.contentsOfDirectory(atPath: directoryURL.path)) ?? []
-        let _licenseURL = contents.map { content in
-            return directoryURL.appendingPathComponent(content)
-        }.filter { contentURL in
-            let fileName = contentURL.deletingPathExtension().lastPathComponent.lowercased()
-            if ["license", "licence"].contains(fileName) {
-                var isDiractory: ObjCBool = false
-                fm.fileExists(atPath: contentURL.path, isDirectory: &isDiractory)
-                return isDiractory.boolValue == false
+        let contents = (try? fm.contentsOfDirectory(atPath: directoryURL.path())) ?? []
+        let licenseURL = contents
+            .map { directoryURL.appending(path: $0) }
+            .filter { contentURL in
+                let fileName = contentURL.deletingPathExtension().lastPathComponent.lowercased()
+                guard ["license", "licence"].contains(fileName) else {
+                    return false
+                }
+                var isDirectory: ObjCBool = false
+                fm.fileExists(atPath: contentURL.path(), isDirectory: &isDirectory)
+                return isDirectory.boolValue == false
             }
-            return false
-        }.first
-        guard let licenseURL = _licenseURL,
-              let text = try? String(contentsOf: licenseURL) else {
+            .first
+        guard let licenseURL, let text = try? String(contentsOf: licenseURL) else {
             return nil
         }
         return text
     }
 
     private func printLibraries(_ libraries: [Library]) {
-        let length = libraries.map { $0.name.count }.max() ?? 0
+        let length = libraries.map(\.name.count).max() ?? .zero
         libraries.forEach { library in
-            let name = library.name.padding(toLength: length, withPad: " ", startingAt: 0)
-            print(name)
+            print(library.name.padding(toLength: length, withPad: " ", startingAt: .zero))
         }
     }
 
-    private func exportLicenseList(_ libraries: [Library], to saveURL: URL) throws {
+    private func exportLicenseList(_ libraries: [Library]) throws {
         var text = ""
 
         if libraries.isEmpty {
@@ -82,7 +77,7 @@ final class SourcePackagesParser {
 
             text = libraries
                 .map { library in
-                    return """
+                    """
                     [
                         "name": "\(library.name)",
                         "url": "\(library.url)",
@@ -97,12 +92,12 @@ final class SourcePackagesParser {
         text = "static let libraries: [[String: String]] = [\(text)]"
         text = "enum SPP {\n\(text.nest())\n}\n"
 
-        if FileManager.default.fileExists(atPath: saveURL.path) {
-            try FileManager.default.removeItem(at: saveURL)
+        if FileManager.default.fileExists(atPath: outputURL.path()) {
+            try FileManager.default.removeItem(at: outputURL)
         }
 
         do {
-            try text.data(using: .utf8)?.write(to: saveURL)
+            try text.data(using: .utf8)?.write(to: outputURL)
         } catch {
             throw SPPError.couldNotExportLicenseList
         }

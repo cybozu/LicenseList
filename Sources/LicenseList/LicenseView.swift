@@ -7,7 +7,7 @@ public struct LicenseView: View {
     @Environment(\.licenseViewStyle) private var _licenseViewStyle
     @Environment(\.openURL) private var openURL: OpenURLAction
 
-    private let library: Library
+    private var library: Library
 
     /// Creates new license view with the specified library.
     /// - Parameters:

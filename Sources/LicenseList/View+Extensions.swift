@@ -10,7 +10,7 @@ extension View {
     ///     .licenseListViewStyle(.plain)
     /// ```
     public func licenseListViewStyle(_ style: some LicenseListViewStyle) -> some View {
-        self.environment(\.licenseListViewStyle, style)
+        environment(\.licenseListViewStyle, style)
     }
 
     /// Sets the style for license views within this view.
@@ -23,11 +23,11 @@ extension View {
     /// }
     /// .licenseViewStyle(.plain)
     public func licenseViewStyle(_ style: some LicenseViewStyle) -> some View {
-        self.environment(\.licenseViewStyle, style)
+        environment(\.licenseViewStyle, style)
     }
 
     func navigationBarRepositoryAnchorLink(action: @escaping () -> Void) -> some View {
-        self.toolbar {
+        toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     action()

@@ -11,11 +11,11 @@ final class SourcePackagesParserTests: XCTestCase {
     }
 
     func directoryURL(_ key: String) -> URL? {
-        return Bundle.module.resourceURL?.appendingPathComponent(key)
+        Bundle.module.resourceURL?.appending(path: key).absoluteURL
     }
 
     func test_invalid_args() throws {
-        let sppBinary = productsDirectory.appendingPathComponent("spp")
+        let sppBinary = productsDirectory.appending(path: "spp")
         let process = Process()
         process.executableURL = sppBinary
         let pipe = Pipe()
@@ -33,10 +33,13 @@ final class SourcePackagesParserTests: XCTestCase {
     func test_CouldNotRead_workspace_state_json() throws {
         let couldNotReadURL = try XCTUnwrap(directoryURL("CouldNotRead"))
 
-        let sppBinary = productsDirectory.appendingPathComponent("spp")
+        let sppBinary = productsDirectory.appending(path: "spp")
         let process = Process()
         process.executableURL = sppBinary
-        process.arguments = [couldNotReadURL.path, couldNotReadURL.path]
+        process.arguments = [
+            couldNotReadURL.appending(path: "LicenseList.swift").path(),
+            couldNotReadURL.path()
+        ]
         let pipe = Pipe()
         process.standardOutput = pipe
         try process.run()
@@ -52,10 +55,15 @@ final class SourcePackagesParserTests: XCTestCase {
     func test_NoLibraries() throws {
         let noLibrariesURL = try XCTUnwrap(directoryURL("NoLibraries"))
 
-        let sppBinary = productsDirectory.appendingPathComponent("spp")
+        print("🦩", noLibrariesURL.path())
+
+        let sppBinary = productsDirectory.appending(path: "spp")
         let process = Process()
         process.executableURL = sppBinary
-        process.arguments = [noLibrariesURL.path, noLibrariesURL.path]
+        process.arguments = [
+            noLibrariesURL.appending(path: "LicenseList.swift").path(),
+            noLibrariesURL.path()
+        ]
         let pipe = Pipe()
         process.standardOutput = pipe
         try process.run()
@@ -74,11 +82,15 @@ final class SourcePackagesParserTests: XCTestCase {
 
     func test_SourcePackagesParser_run() throws {
         let sourcePackagesURL = try XCTUnwrap(directoryURL("SourcePackages"))
+        let licenseListURL = sourcePackagesURL.appending(path: "LicenseList.swift")
 
-        let sppBinary = productsDirectory.appendingPathComponent("spp")
+        let sppBinary = productsDirectory.appending(path: "spp")
         let process = Process()
         process.executableURL = sppBinary
-        process.arguments = [sourcePackagesURL.path, sourcePackagesURL.path]
+        process.arguments = [
+            licenseListURL.path(),
+            sourcePackagesURL.path()
+        ]
         let pipe = Pipe()
         process.standardOutput = pipe
         try process.run()
@@ -87,24 +99,18 @@ final class SourcePackagesParserTests: XCTestCase {
         let actual = String(data: data, encoding: .utf8)
 
         XCTAssertEqual(process.terminationStatus, 0)
-        let expect = """
-        Package-A
-        Package-B
-        Package-C
-        Package-D
-        Package-E
 
-        """
+        let ids = ["A", "B", "C", "D", "E"]
+        let expect = ids.map { "Package-\($0)" }.joined(separator: "\n") + "\n"
         XCTAssertEqual(actual, expect)
 
-        let licenseListURL = sourcePackagesURL.appendingPathComponent("LicenseList.swift")
         let text = try XCTUnwrap(String(contentsOf: licenseListURL))
         let names = text.components(separatedBy: .newlines)
             .filter { $0.contains(#""name":"#) }
             .compactMap { $0.split(separator: ": ").last }
 
         XCTAssertEqual(names.count, 5)
-        ["A", "B", "C", "D", "E"].enumerated().forEach { (index, key) in
+        ids.enumerated().forEach { (index, key) in
             XCTAssertTrue(names[index].hasSuffix("\"Package-\(key)\","))
         }
 
@@ -113,7 +119,7 @@ final class SourcePackagesParserTests: XCTestCase {
             .compactMap { $0.split(separator: ": ").last }
 
         XCTAssertEqual(urls.count, 5)
-        ["A", "B", "C", "D", "E"].enumerated().forEach { (index, key) in
+        ids.enumerated().forEach { (index, key) in
             XCTAssertTrue(urls[index].hasSuffix("\"https://github.com/dummy/Package-\(key).git\","))
         }
     }
