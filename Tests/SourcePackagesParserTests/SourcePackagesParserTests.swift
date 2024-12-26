@@ -55,8 +55,6 @@ final class SourcePackagesParserTests: XCTestCase {
     func test_NoLibraries() throws {
         let noLibrariesURL = try XCTUnwrap(directoryURL("NoLibraries"))
 
-        print("🦩", noLibrariesURL.path())
-
         let sppBinary = productsDirectory.appending(path: "spp")
         let process = Process()
         process.executableURL = sppBinary

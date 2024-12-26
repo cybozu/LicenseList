@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18DC14D52C37F4190065EC7E /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 18DC14D42C37F4190065EC7E /* LicenseList */; };
-		18DC14D72C37F41E0065EC7E /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 18DC14D62C37F41E0065EC7E /* LicenseList */; };
+		18EB06282D1E801F00A0B894 /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 18EB06272D1E801F00A0B894 /* LicenseList */; };
+		18EB062A2D1E802400A0B894 /* LicenseList in Frameworks */ = {isa = PBXBuildFile; productRef = 18EB06292D1E802400A0B894 /* LicenseList */; };
 		18FCC4442C37E4550052500D /* ExamplesForSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FCC4432C37E4550052500D /* ExamplesForSwiftUIApp.swift */; };
 		18FCC4462C37E4550052500D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FCC4452C37E4550052500D /* ContentView.swift */; };
 		18FCC4482C37E4560052500D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FCC4472C37E4560052500D /* Assets.xcassets */; };
@@ -21,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1874ABD92D1DAC8B00DCE2D6 /* spp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = spp.xctestplan; sourceTree = "<group>"; };
 		188460622C37EDE2005C370A /* LicenseList */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LicenseList; path = ..; sourceTree = "<group>"; };
 		18FCC4412C37E4550052500D /* ExamplesForSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExamplesForSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FCC4432C37E4550052500D /* ExamplesForSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesForSwiftUIApp.swift; sourceTree = "<group>"; };
@@ -41,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18DC14D52C37F4190065EC7E /* LicenseList in Frameworks */,
+				18EB06282D1E801F00A0B894 /* LicenseList in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18DC14D72C37F41E0065EC7E /* LicenseList in Frameworks */,
+				18EB062A2D1E802400A0B894 /* LicenseList in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +60,7 @@
 		18FCC4232C37E4270052500D = {
 			isa = PBXGroup;
 			children = (
+				1874ABD92D1DAC8B00DCE2D6 /* spp.xctestplan */,
 				188460622C37EDE2005C370A /* LicenseList */,
 				18FCC4422C37E4550052500D /* ExamplesForSwiftUI */,
 				18FCC4542C37E4730052500D /* ExamplesForUIKit */,
@@ -124,7 +126,7 @@
 			);
 			name = ExamplesForSwiftUI;
 			packageProductDependencies = (
-				18DC14D42C37F4190065EC7E /* LicenseList */,
+				18EB06272D1E801F00A0B894 /* LicenseList */,
 			);
 			productName = ExamplesForSwiftUI;
 			productReference = 18FCC4412C37E4550052500D /* ExamplesForSwiftUI.app */;
@@ -144,7 +146,7 @@
 			);
 			name = ExamplesForUIKit;
 			packageProductDependencies = (
-				18DC14D62C37F41E0065EC7E /* LicenseList */,
+				18EB06292D1E802400A0B894 /* LicenseList */,
 			);
 			productName = ExamplesForUIKit;
 			productReference = 18FCC4532C37E4730052500D /* ExamplesForUIKit.app */;
@@ -569,11 +571,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		18DC14D42C37F4190065EC7E /* LicenseList */ = {
+		18EB06272D1E801F00A0B894 /* LicenseList */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LicenseList;
 		};
-		18DC14D62C37F41E0065EC7E /* LicenseList */ = {
+		18EB06292D1E802400A0B894 /* LicenseList */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LicenseList;
 		};
