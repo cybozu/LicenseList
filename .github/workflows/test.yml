@@ -16,16 +16,14 @@ jobs:
     runs-on: macos-14
     timeout-minutes: 30
     env:
-      DEVELOPER_DIR: "/Applications/Xcode_16.0.app/Contents/Developer"
+      DEVELOPER_DIR: "/Applications/Xcode_16.app/Contents/Developer"
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Show Xcode Version
-        run: |
-          xcodebuild -version
-          xcodebuild -list -project Examples/Examples.xcodeproj
+        run: xcodebuild -version
 
       - name: Run SourcePackagesParserTests
         run: |
