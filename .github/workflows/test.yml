@@ -34,3 +34,13 @@ jobs:
             -destination "platform=macOS,arch=arm64" \
             -resultBundlePath TestResults/result_bundle | \
             xcpretty -c && exit ${PIPESTATUS[0]}
+
+      - name: Run ExamplesForSwiftUITests
+        run: |
+          xcodebuild test \
+            -project Examples/Examples.xcodeproj \
+            -scheme ExamplesForSwiftUITests \
+            -destination "platform=iOS Simulator,name=iPhone 16,OS=18.2" \
+            -resultBundlePath TestResults/result_bundle \
+            -skipPackagePluginValidation | \
+            xcpretty -c && exit ${PIPESTATUS[0]}
