@@ -40,7 +40,7 @@ jobs:
           xcodebuild test \
             -project Examples/Examples.xcodeproj \
             -scheme ExamplesForSwiftUITests \
-            -destination "platform=iOS Simulator,name=iPhone 16,OS=18.2" \
+            -destination "platform=iOS Simulator,name=iPhone 16,OS=18.0" \
             -resultBundlePath TestResults/result_bundle2 \
             -skipPackagePluginValidation | \
             xcpretty -c && exit ${PIPESTATUS[0]}
