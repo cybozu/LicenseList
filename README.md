@@ -24,7 +24,7 @@ Generate a list of licenses for the Swift Package libraries that your app depend
 
 ## Requirements
 
-- Development with Xcode 16.0+
+- Development with Xcode 16.2+
 - Written in Swift 6.0
 - Compatible with iOS 16.0+, tvOS 17.0+
 
