@@ -56,7 +56,7 @@ struct SourcePackagesParserTests {
     }
     
     @Test("If the workspace-state.json is empty, the command exits with warning message.")
-    func pass_empty_workspace_state() async throws {
+    func pass_empty_workspace_state() throws {
         let noLibrariesURL = try #require(directoryURL("Empty"))
 
         let sppBinary = productsDirectory.appending(path: "spp")
