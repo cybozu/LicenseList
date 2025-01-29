@@ -36,8 +36,8 @@ let package = Package(
                 .target(name: "spp", condition: .when(platforms: [.macOS]))
             ],
             resources: [
-                .copy("Resources/CouldNotRead"),
-                .copy("Resources/NoLibraries"),
+                .copy("Resources/Broken"),
+                .copy("Resources/Empty"),
                 .copy("Resources/SourcePackages"),
             ],
             swiftSettings: swiftSettings
