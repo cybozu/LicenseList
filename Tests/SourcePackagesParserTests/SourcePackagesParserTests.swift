@@ -33,7 +33,7 @@ struct SourcePackagesParserTests {
     }
     
     @Test("If the workspace-state.json is broken, the command exits with error message.")
-    func pass_broken_workspace_state() async throws {
+    func pass_broken_workspace_state() throws {
         let couldNotReadURL = try #require(directoryURL("CouldNotRead"))
 
         let sppBinary = productsDirectory.appending(path: "spp")
