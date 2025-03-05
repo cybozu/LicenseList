@@ -8,13 +8,15 @@ struct PrepareLicenseList: BuildToolPlugin {
     }
 
     func sourcePackages(_ pluginWorkDirectory: URL) throws -> URL {
-        var tmpURL = pluginWorkDirectory
-        guard pluginWorkDirectory.absoluteURL.path().contains("SourcePackages") else {
+        guard pluginWorkDirectory.absoluteURL.path().contains("/DerivedData/") else {
             throw SourcePackagesNotFoundError()
         }
-        while tmpURL.lastPathComponent != "SourcePackages" {
-            tmpURL = tmpURL.deletingLastPathComponent()
+
+        var tmpURL = pluginWorkDirectory
+        while tmpURL.deletingLastPathComponent().lastPathComponent != "DerivedData" {
+            tmpURL.deleteLastPathComponent()
         }
+        tmpURL.append(path: "SourcePackages")
         return tmpURL
     }
 
