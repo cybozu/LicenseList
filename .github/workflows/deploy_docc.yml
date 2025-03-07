@@ -29,11 +29,11 @@ jobs:
             -project Examples/Examples.xcodeproj \
             -scheme LicenseList \
             -destination "generic/platform=iOS" \
-            -derivedDataPath /tmp/docbuild \
+            -derivedDataPath DerivedData \
             -skipPackagePluginValidation
 
           $(xcrun --find docc) process-archive \
-             transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-*/LicenseList.doccarchive \
+             transform-for-static-hosting DerivedData/Build/Products/Debug-*/LicenseList.doccarchive \
              --output-path ./docs \
              --hosting-base-path "LicenseList"
 
