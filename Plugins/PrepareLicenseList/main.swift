@@ -3,18 +3,20 @@ import PackagePlugin
 
 @main
 struct PrepareLicenseList: BuildToolPlugin {
-    struct SourcePackagesNotFoundError: Error & CustomStringConvertible {
-        let description: String = "SourcePackages not found"
+    struct DerivedDataNotFoundError: Error & CustomStringConvertible {
+        let description: String = "DerivedData not found"
     }
 
     func sourcePackages(_ pluginWorkDirectory: URL) throws -> URL {
+        guard pluginWorkDirectory.pathComponents.contains("DerivedData") else {
+            throw DerivedDataNotFoundError()
+        }
+
         var tmpURL = pluginWorkDirectory
-        guard pluginWorkDirectory.absoluteURL.path().contains("SourcePackages") else {
-            throw SourcePackagesNotFoundError()
+        while tmpURL.deletingLastPathComponent().lastPathComponent != "DerivedData" {
+            tmpURL.deleteLastPathComponent()
         }
-        while tmpURL.lastPathComponent != "SourcePackages" {
-            tmpURL = tmpURL.deletingLastPathComponent()
-        }
+        tmpURL.append(path: "SourcePackages")
         return tmpURL
     }
 
