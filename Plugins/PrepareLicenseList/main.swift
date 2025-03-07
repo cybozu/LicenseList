@@ -8,7 +8,7 @@ struct PrepareLicenseList: BuildToolPlugin {
     }
 
     func sourcePackages(_ pluginWorkDirectory: URL) throws -> URL {
-        guard pluginWorkDirectory.absoluteURL.path().contains("/DerivedData/") else {
+        guard pluginWorkDirectory.pathComponents.contains("DerivedData") else {
             throw DerivedDataNotFoundError()
         }
 
