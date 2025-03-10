@@ -27,7 +27,6 @@ struct PrepareLicenseList: BuildToolPlugin {
 
         while try !checkConditions(of: tmpURL) {
             tmpURL.deleteLastPathComponent()
-            print(tmpURL.absoluteString)
         }
         tmpURL.append(path: "SourcePackages")
         return tmpURL
