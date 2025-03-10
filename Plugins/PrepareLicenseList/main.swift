@@ -13,10 +13,9 @@ struct PrepareLicenseList: BuildToolPlugin {
         }
         do {
             let isDirectory = try url.resourceValues(forKeys: [.isDirectoryKey]).isDirectory!
-            let containsSourcePackages = try FileManager.default
-                .contentsOfDirectory(atPath: url.absoluteURL.path())
-                .contains("SourcePackages")
-            return isDirectory && containsSourcePackages
+            let existsSourcePackagesInDirectory = FileManager.default
+                .fileExists(atPath: url.appending(path: "SourcePackages").path())
+            return isDirectory && existsSourcePackagesInDirectory
         } catch {
             throw SourcePackagesNotFoundError()
         }
