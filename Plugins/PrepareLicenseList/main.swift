@@ -7,7 +7,7 @@ struct PrepareLicenseList: BuildToolPlugin {
         let description: String = "SourcePackages not found"
     }
 
-    func checkConditions(of url: URL) throws -> Bool {
+    func existsSourcePackages(in url: URL) throws -> Bool {
         guard url.isFileURL,
               url.pathComponents.count > 1,
               let isDirectory = try? url.resourceValues(forKeys: [.isDirectoryKey]).isDirectory else {
@@ -21,7 +21,7 @@ struct PrepareLicenseList: BuildToolPlugin {
     func sourcePackages(_ pluginWorkDirectory: URL) throws -> URL {
         var tmpURL = pluginWorkDirectory.absoluteURL
 
-        while try !checkConditions(of: tmpURL) {
+        while try !existsSourcePackages(in: tmpURL) {
             tmpURL.deleteLastPathComponent()
         }
         tmpURL.append(path: "SourcePackages")
