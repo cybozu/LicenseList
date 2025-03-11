@@ -8,17 +8,14 @@ struct PrepareLicenseList: BuildToolPlugin {
     }
 
     func checkConditions(of url: URL) throws -> Bool {
-        guard url.isFileURL, url.pathComponents.count > 1 else {
+        guard url.isFileURL,
+              url.pathComponents.count > 1,
+              let isDirectory = try? url.resourceValues(forKeys: [.isDirectoryKey]).isDirectory else {
             throw SourcePackagesNotFoundError()
         }
-        do {
-            let isDirectory = try url.resourceValues(forKeys: [.isDirectoryKey]).isDirectory!
-            let existsSourcePackagesInDirectory = FileManager.default
-                .fileExists(atPath: url.appending(path: "SourcePackages").path())
-            return isDirectory && existsSourcePackagesInDirectory
-        } catch {
-            throw SourcePackagesNotFoundError()
-        }
+        let existsSourcePackagesInDirectory = FileManager.default
+            .fileExists(atPath: url.appending(path: "SourcePackages").path())
+        return isDirectory && existsSourcePackagesInDirectory
     }
 
     func sourcePackages(_ pluginWorkDirectory: URL) throws -> URL {
