@@ -54,21 +54,25 @@ public struct PlainLicenseListViewStyle: LicenseListViewStyle {
         List {
             ForEach(configuration.libraries) { library in
                 if let navigationHandler = configuration.navigationHandler {
-                    HStack {
-                        Button {
-                            navigationHandler(library)
-                        } label: {
+                    Button {
+                        navigationHandler(library)
+                    } label: {
+                        HStack {
                             Text(library.name)
+                            
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .font(.subheadline.bold())
+                                .foregroundColor(chevronGray)
                         }
-#if os(macOS)
-                        .buttonStyle(.plain)
-#endif
-                        .foregroundColor(.primary)
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .font(.subheadline.bold())
-                            .foregroundColor(chevronGray)
+                        .contentShape(Rectangle())
+                        
                     }
+#if os(macOS)
+                    .buttonStyle(.plain)
+#endif
+                    
                 } else {
                     NavigationLink {
                         LicenseView(library: library)
@@ -79,9 +83,9 @@ public struct PlainLicenseListViewStyle: LicenseListViewStyle {
                 }
             }
         }
-        #if os(iOS)
+#if os(iOS)
         .listStyle(.insetGrouped)
-        #endif
+#endif
     }
 
     private var chevronGray: Color {
