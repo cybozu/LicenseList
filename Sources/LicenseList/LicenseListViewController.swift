@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 import SwiftUI
 
@@ -51,3 +52,4 @@ public class LicenseListViewController: UIViewController {
         navigationController?.pushViewController(hostingController, animated: true)
     }
 }
+#endif

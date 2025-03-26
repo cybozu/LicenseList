@@ -60,6 +60,9 @@ public struct PlainLicenseListViewStyle: LicenseListViewStyle {
                         } label: {
                             Text(library.name)
                         }
+#if os(macOS)
+                        .buttonStyle(.plain)
+#endif
                         .foregroundColor(.primary)
                         Spacer()
                         Image(systemName: "chevron.right")

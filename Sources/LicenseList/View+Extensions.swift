@@ -28,7 +28,7 @@ extension View {
 
     func navigationBarRepositoryAnchorLink(action: @escaping () -> Void) -> some View {
         toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItem(placement: .primaryAction) {
                 Button {
                     action()
                 } label: {
