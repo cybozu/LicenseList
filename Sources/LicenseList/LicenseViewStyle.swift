@@ -64,7 +64,7 @@ public struct PlainLicenseViewStyle: LicenseViewStyle {
                 .padding()
         }
         .clipShape(Rectangle())
-        .navigationBarTitle(configuration.library.name)
+        .navigationTitle(configuration.library.name)
     }
 }
 
