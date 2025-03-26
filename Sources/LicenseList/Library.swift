@@ -23,6 +23,12 @@ public struct Library: Identifiable, Hashable {
     }
 }
 
+extension Library:Equatable{
+    public nonisolated static func == (lhs: Self, rhs: Self) -> Bool{
+        lhs.id == rhs.id
+    }
+}
+
 extension Library {
     /// The libraries automatically collected by the internal plug-in.
     public static var libraries: [Library] {

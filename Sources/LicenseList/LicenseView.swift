@@ -26,6 +26,9 @@ public struct LicenseView: View {
         .onAppear {
             attributedLicenseBody = attribute(library.licenseBody)
         }
+        .onChange(of:library){
+            attributedLicenseBody = attribute(library.licenseBody)
+        }
         .accessibilityIdentifier("license_view")
     }
 
