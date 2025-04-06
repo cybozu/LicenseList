@@ -1,6 +1,6 @@
 <picture>
   <source srcset="./Media/logo-dark.png" height="60" media="(prefers-color-scheme: dark)" alt="LicenseList by Cybozu">
-  <img src="./Media/logo.png" height="60" alt="LicenseList by Cybozu">
+  <img src="./Media/logo-light.png" height="60" alt="LicenseList by Cybozu">
 </picture>
 
 Generate a list of licenses for the Swift Package libraries that your app depends on.
