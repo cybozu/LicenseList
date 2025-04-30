@@ -67,6 +67,32 @@ final class SourcePackagesParser {
         }
     }
 
+    private func makeCases(_ libraries: [Library]) -> String {
+        let digits = Int(log10(Double(libraries.count))) + 1
+        return libraries.indices
+            .map { String(format: "case library%0\(digits)d", $0 + 1) }
+            .joined(separator: "\n")
+    }
+
+    private func makeComputedProperty(
+        _ libraries: [Library],
+        variableName: String,
+        keyPath: KeyPath<Library, String>
+    ) -> String {
+        let digits = Int(log10(Double(libraries.count))) + 1
+        let cases = libraries.enumerated()
+            .map {
+                String(
+                    format: "case .library%0\(digits)d: %@",
+                    $0.offset + 1,
+                    $0.element[keyPath: keyPath].debugDescription
+                )
+            }
+            .joined(separator: "\n")
+        let switchSelf = "switch self {\n\(cases)\n}".nest()
+        return "var \(variableName): String {\n\(switchSelf)\n}"
+    }
+
     private func exportLicenseList(_ libraries: [Library]) throws {
         var text = ""
 
@@ -74,23 +100,14 @@ final class SourcePackagesParser {
             print("Warning: No libraries.")
         } else {
             printLibraries(libraries)
-
-            text = libraries
-                .map { library in
-                    """
-                    [
-                        "name": "\(library.name)",
-                        "url": "\(library.url)",
-                        "licenseBody": \(library.licenseBody.debugDescription)
-                    ]
-                    """
-                }
-                .joined(separator: ",\n")
-                .nest()
-            text = "\n\(text)\n"
+            text = [
+                makeCases(libraries),
+                makeComputedProperty(libraries, variableName: "name", keyPath: \.name),
+                makeComputedProperty(libraries, variableName: "url", keyPath: \.url),
+                makeComputedProperty(libraries, variableName: "licenseBody", keyPath: \.licenseBody),
+            ].joined(separator: "\n\n")
         }
-        text = "static let libraries: [[String: String]] = [\(text)]"
-        text = "enum SPP {\n\(text.nest())\n}\n"
+        text = "enum SPPLibrary: CaseIterable {\n\(text.nest())\n}\n"
 
         if FileManager.default.fileExists(atPath: outputURL.path()) {
             try FileManager.default.removeItem(at: outputURL)
