@@ -5,9 +5,13 @@ extension String {
         replacingOccurrences(of: regexPattern, with: replacement, options: .regularExpression, range: range(of: self))
     }
 
-    func nest() -> String {
+    func indenting() -> String {
         components(separatedBy: .newlines)
             .map { $0.isEmpty ? "" : "    \($0)" }
             .joined(separator: "\n")
+    }
+
+    func nesting() -> String {
+        isEmpty ? "" : "\n\(self)\n"
     }
 }

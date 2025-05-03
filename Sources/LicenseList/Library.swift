@@ -16,11 +16,19 @@ public struct Library: Identifiable, Hashable {
     init(sppLibrary: SPPLibrary) {
         self.sppLibrary = sppLibrary
     }
+
+    /// - Parameters:
+    ///   - name: The library name.
+    ///   - url: The repository url.
+    ///   - licenseBody: The license body.
+    public init(name: String, url: String, licenseBody: String) {
+        sppLibrary = .manual(name, url, licenseBody)
+    }
 }
 
 extension Library {
     /// The libraries automatically collected by the internal plug-in.
     public static var libraries: [Library] {
-        SPPLibrary.allCases.map(Library.init)
+        SPPLibrary.allCases.map(Library.init(sppLibrary:))
     }
 }
