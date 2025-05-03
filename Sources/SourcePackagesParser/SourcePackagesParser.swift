@@ -80,7 +80,7 @@ final class SourcePackagesParser {
         let allCases = range
             .map { String(format: ".library%0\(digits)d,", $0 + 1)  }
             .joined(separator: "\n")
-        return "static let allCases: [Self] = [\(allCases.indenting().nesting())]"
+        return "static let allCases: [Self] = [\(allCases.indented().nested())]"
     }
 
     private func makeComputedProperty(_ libraries: [Library], keyPath: KeyPath<Library, String>) -> String {
@@ -95,8 +95,8 @@ final class SourcePackagesParser {
             .map { String(format: "case .library%0\(digits)d: %@", $0.offset + 1, $0.element) }
             .appending("case let .manual(\(manualValues)): value")
             .joined(separator: "\n")
-        let switchSelf = "switch self {\(cases.nesting())}"
-        return "var \(propertyName): String {\(switchSelf.indenting().nesting())}"
+        let switchSelf = "switch self {\(cases.nested())}"
+        return "var \(propertyName): String {\(switchSelf.indented().nested())}"
     }
 
     private func exportLicenseList(_ libraries: [Library]) throws {
@@ -114,7 +114,7 @@ final class SourcePackagesParser {
             makeComputedProperty(libraries, keyPath: \.licenseBody),
         ].joined(separator: "\n\n")
 
-        text = "enum SPPLibrary: Hashable, CaseIterable {\(text.indenting().nesting())}\n"
+        text = "enum SPPLibrary: Hashable, CaseIterable {\(text.indented().nested())}\n"
 
         if FileManager.default.fileExists(atPath: outputURL.path()) {
             try FileManager.default.removeItem(at: outputURL)
