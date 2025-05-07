@@ -68,7 +68,7 @@ final class SourcePackagesParser {
     }
 
     private func makeCases(_ range: Range<Int>) -> String {
-        let digits = range.count.numberOfDigits
+        let digits = range.numberOfDigits
         return range
             .map { String(format: "case library%0\(digits)d", $0 + 1) }
             .appending("case manual(String, String, String)")
@@ -76,7 +76,7 @@ final class SourcePackagesParser {
     }
 
     private func makeAllCases(_ range: Range<Int>) -> String {
-        let digits = range.count.numberOfDigits
+        let digits = range.numberOfDigits
         let allCases = range
             .map { String(format: ".library%0\(digits)d,", $0 + 1)  }
             .joined(separator: "\n")
@@ -84,7 +84,7 @@ final class SourcePackagesParser {
     }
 
     private func makeComputedProperty(_ libraries: [Library], keyPath: KeyPath<Library, String>) -> String {
-        let digits = libraries.count.numberOfDigits
+        let digits = libraries.numberOfDigits
         let propertyName = String(describing: keyPath).replacingOccurrences(of: #"\Library."#, with: "")
         let manualValues = ["name", "url", "licenseBody"]
             .map { $0 == propertyName ? "value" : "_" }
