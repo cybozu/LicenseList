@@ -1,5 +1,6 @@
 extension Collection {
     var numberOfDigits: Int {
-        String(count).count
+        precondition(count >= 0, "count must be non-negative.")
+        return String(count).count
     }
 }
