@@ -110,22 +110,29 @@ struct SourcePackagesParserTests {
         #expect(actual == expect)
 
         let text = try String(contentsOf: licenseListURL)
-        let names = text.components(separatedBy: .newlines)
-            .filter { $0.contains(#""name":"#) }
-            .compactMap { $0.split(separator: ": ").last }
 
+        let names = try #require(
+            text.split(separator: "\n\n")
+                .first { $0.contains("var name: String") }?
+                .components(separatedBy: .newlines)
+                .filter { $0.contains("case .library") }
+                .compactMap { $0.split(separator: ": ").last }
+        )
         #expect(names.count == 5)
         ids.enumerated().forEach { index, key in
-            #expect(names[index].hasSuffix("\"Package-\(key)\","))
+            #expect(names[index].hasSuffix("\"Package-\(key)\""))
         }
 
-        let urls = text.components(separatedBy: .newlines)
-            .filter { $0.contains(#""url":"#) }
-            .compactMap { $0.split(separator: ": ").last }
-
+        let urls = try #require(
+            text.split(separator: "\n\n")
+                .first { $0.contains("var url: String") }?
+                .components(separatedBy: .newlines)
+                .filter { $0.contains("case .library") }
+                .compactMap { $0.split(separator: ": ").last }
+        )
         #expect(urls.count == 5)
         ids.enumerated().forEach { index, key in
-            #expect(urls[index].hasSuffix("\"https://github.com/dummy/Package-\(key).git\","))
+            #expect(urls[index].hasSuffix("\"https://github.com/dummy/Package-\(key).git\""))
         }
     }
 }
