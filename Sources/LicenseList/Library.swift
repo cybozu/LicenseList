@@ -1,7 +1,7 @@
 import Foundation
 
 /// A structure that contains information about a library that the project depends on.
-public struct Library: Identifiable, Hashable {
+public struct Library: Identifiable, Hashable, Sendable {
     var sppLibrary: SPPLibrary
 
     /// The unique identifier.
@@ -28,7 +28,7 @@ public struct Library: Identifiable, Hashable {
 
 extension Library {
     /// The libraries automatically collected by the internal plug-in.
-    public static var libraries: [Library] {
+    public static let libraries: [Library] = {
         SPPLibrary.allCases.map(Library.init(sppLibrary:))
-    }
+    }()
 }
