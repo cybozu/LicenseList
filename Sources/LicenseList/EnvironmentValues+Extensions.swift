@@ -1,21 +1,6 @@
 import SwiftUI
 
-private struct LicenseListViewStyleKey: EnvironmentKey {
-    static let defaultValue: any LicenseListViewStyle = DefaultLicenseListViewStyle()
-}
-
-private struct LicenseViewStyleKey: EnvironmentKey {
-    static let defaultValue: any LicenseViewStyle = DefaultLicenseViewStyle()
-}
-
 extension EnvironmentValues {
-    var licenseListViewStyle: any LicenseListViewStyle {
-        get { self[LicenseListViewStyleKey.self] }
-        set { self[LicenseListViewStyleKey.self] = newValue }
-    }
-
-    var licenseViewStyle: any LicenseViewStyle {
-        get { self[LicenseViewStyleKey.self] }
-        set { self[LicenseViewStyleKey.self] = newValue }
-    }
+    @Entry var licenseListViewStyle: any LicenseListViewStyle = DefaultLicenseListViewStyle()
+    @Entry var licenseViewStyle: any LicenseViewStyle = DefaultLicenseViewStyle()
 }
