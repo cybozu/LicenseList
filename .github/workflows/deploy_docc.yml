@@ -26,11 +26,9 @@ jobs:
       - name: Build DocC
         run: |
           xcodebuild docbuild \
-            -project Examples/Examples.xcodeproj \
             -scheme LicenseList \
             -destination "generic/platform=iOS" \
-            -derivedDataPath DerivedData \
-            -skipPackagePluginValidation
+            -derivedDataPath DerivedData
 
           $(xcrun --find docc) process-archive \
              transform-for-static-hosting DerivedData/Build/Products/Debug-*/LicenseList.doccarchive \
