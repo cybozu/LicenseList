@@ -11,5 +11,8 @@ DerivedData/
 /.build
 /.swiftpm
 
+# Swift DocC
+docs/
+
 # Test
 TestResults/
