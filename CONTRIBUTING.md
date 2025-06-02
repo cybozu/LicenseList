@@ -1,10 +1,12 @@
-# Contribution Guide
+# Contributing Guide
+
 This document is a guideline for contributing to LicenseList.
 
 We Welcome Your Contribution!  
 We value and appreciate your contributions. This project thrives due to the support and collaboration of our community members.
 
 ## Language Policy
+
 When creating Issues or Pull Requests, please write in **English**. This ensures effective communication among contributors from diverse backgrounds.
 
 ## Start Contributing
@@ -25,4 +27,5 @@ When creating Issues or Pull Requests, please write in **English**. This ensures
    To get your changes merged into this repository, create a pull request with a appropriate title. There is no fixed format for pull request titles.
 
 ## Code Style Guide
+
 Follow [Swift API Design Guidelines](https://www.swift.org/documentation/api-design-guidelines/).

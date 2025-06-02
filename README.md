@@ -113,6 +113,10 @@ struct ContentView: View {
 }
 ```
 
+## Contributing to LicenseList
+
+Contributions to LicenseList are welcomed and encouraged! Please see the [Contributing Guide](/CONTRIBUTING.md).
+
 ## Demo
 
 This repository includes demonstration app for UIKit & SwiftUI.
