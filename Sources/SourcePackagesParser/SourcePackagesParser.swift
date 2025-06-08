@@ -67,30 +67,54 @@ final class SourcePackagesParser {
         }
     }
 
-    private func exportLicenseList(_ libraries: [Library]) throws {
-        var text = ""
+    private func makeCases(_ range: Range<Int>) -> String {
+        let digits = range.numberOfDigits
+        return range
+            .map { String(format: "case library%0\(digits)d", $0 + 1) }
+            .appending("case manual(String, String, String)")
+            .joined(separator: "\n")
+    }
 
+    private func makeAllCases(_ range: Range<Int>) -> String {
+        let digits = range.numberOfDigits
+        let allCases = range
+            .map { String(format: ".library%0\(digits)d,", $0 + 1)  }
+            .joined(separator: "\n")
+        return "static let allCases: [Self] = [\(allCases.indented().nested())]"
+    }
+
+    private func makeComputedProperty(_ libraries: [Library], keyPath: KeyPath<Library, String>) -> String {
+        let digits = libraries.numberOfDigits
+        let propertyName = String(describing: keyPath).replacingOccurrences(of: #"\Library."#, with: "")
+        let manualValues = ["name", "url", "licenseBody"]
+            .map { $0 == propertyName ? "value" : "_" }
+            .joined(separator: ", ")
+        let cases = libraries
+            .map { $0[keyPath: keyPath].debugDescription }
+            .enumerated()
+            .map { String(format: "case .library%0\(digits)d: %@", $0.offset + 1, $0.element) }
+            .appending("case let .manual(\(manualValues)): value")
+            .joined(separator: "\n")
+        let switchSelf = "switch self {\(cases.nested())}"
+        return "var \(propertyName): String {\(switchSelf.indented().nested())}"
+    }
+
+    private func exportLicenseList(_ libraries: [Library]) throws {
         if libraries.isEmpty {
             print("Warning: No libraries.")
         } else {
             printLibraries(libraries)
-
-            text = libraries
-                .map { library in
-                    """
-                    [
-                        "name": "\(library.name)",
-                        "url": "\(library.url)",
-                        "licenseBody": \(library.licenseBody.debugDescription)
-                    ]
-                    """
-                }
-                .joined(separator: ",\n")
-                .nest()
-            text = "\n\(text)\n"
         }
-        text = "static let libraries: [[String: String]] = [\(text)]"
-        text = "enum SPP {\n\(text.nest())\n}\n"
+
+        var text = [
+            makeCases(libraries.indices),
+            makeAllCases(libraries.indices),
+            makeComputedProperty(libraries, keyPath: \.name),
+            makeComputedProperty(libraries, keyPath: \.url),
+            makeComputedProperty(libraries, keyPath: \.licenseBody),
+        ].joined(separator: "\n\n")
+
+        text = "enum SPPLibrary: Hashable, CaseIterable {\(text.indented().nested())}\n"
 
         if FileManager.default.fileExists(atPath: outputURL.path()) {
             try FileManager.default.removeItem(at: outputURL)
