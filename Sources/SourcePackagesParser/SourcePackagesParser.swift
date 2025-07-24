@@ -35,8 +35,10 @@ final class SourcePackagesParser {
         }
         .sorted { $0.name.lowercased() < $1.name.lowercased() }
         let extraURL = sourcePackagesURL.appending(path: "local-licenses.json")
+        print("extraURL",extraURL)
         if let data = try? Data(contentsOf: extraURL),
            let extras = try? JSONDecoder().decode([ExtraLicense].self, from: data) {
+            print("extras",extras)
             libraries += extras.map {
                 Library(name: $0.name,
                         url: "(local)",
