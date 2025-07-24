@@ -19,7 +19,7 @@ final class SourcePackagesParser {
 
         // Extract Libraries
         let checkoutsURL = sourcePackagesURL.appending(path: "checkouts")
-        let libraries: [Library] = workspaceState.object.dependencies.compactMap { dependency in
+        var libraries: [Library] = workspaceState.object.dependencies.compactMap { dependency in
             let repositoryName = dependency.packageRef.location
                 .components(separatedBy: "/").last!
                 .replacingOccurrences(of: ".git", with: "")
@@ -34,6 +34,16 @@ final class SourcePackagesParser {
             )
         }
         .sorted { $0.name.lowercased() < $1.name.lowercased() }
+        let extraURL = sourcePackagesURL.appending(path: "local-licenses.json")
+        if let data = try? Data(contentsOf: extraURL),
+           let extras = try? JSONDecoder().decode([ExtraLicense].self, from: data) {
+            libraries += extras.map {
+                Library(name: $0.name,
+                        url: "(local)",
+                        licenseBody: $0.licenseBody)
+            }
+        }
+       
 
         // Export LicenseList.swift
         try exportLicenseList(libraries)

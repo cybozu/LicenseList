@@ -25,6 +25,10 @@ let package = Package(
             path: "Sources/SourcePackagesParser",
             swiftSettings: swiftSettings
         ),
+        .executableTarget(
+            name: "LLGenerateLocalLicenses",
+            path: "Tools/LLGenerateLocalLicenses"
+        ),
         .plugin(
             name: "PrepareLicenseList",
             capability: .buildTool(),
