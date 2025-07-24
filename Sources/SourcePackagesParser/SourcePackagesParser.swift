@@ -46,7 +46,7 @@ final class SourcePackagesParser {
             }
         }
        
-
+        print("all",libraries.map{$0.name})
         // Export LicenseList.swift
         try exportLicenseList(libraries)
     }
