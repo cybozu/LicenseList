@@ -33,22 +33,15 @@ final class SourcePackagesParser {
                 licenseBody: licenseBody
             )
         }
-        .sorted { $0.name.lowercased() < $1.name.lowercased() }
         let extraURL = sourcePackagesURL.appending(path: "local-licenses.json")
-        print("extraURL",extraURL)
         if let data = try? Data(contentsOf: extraURL),
            let extras = try? JSONDecoder().decode([ExtraLicense].self, from: data) {
-            print("extras",extras)
             libraries += extras.map {
-                Library(name: $0.name,
-                        url: "(local)",
-                        licenseBody: $0.licenseBody)
+                Library(name: $0.name,url: "(local)",licenseBody: $0.licenseBody)
             }
         }
-       
-        print("all",libraries.map{$0.name})
         // Export LicenseList.swift
-        try exportLicenseList(libraries)
+        try exportLicenseList(libraries.sorted { $0.name.lowercased() < $1.name.lowercased() })
     }
 
     private func extractLicenseBody(_ directoryURL: URL) -> String? {
