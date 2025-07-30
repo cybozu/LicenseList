@@ -37,7 +37,7 @@ final class SourcePackagesParser {
                 return nil
             }
             return Library(
-                name: dependency.packageRef.name,
+                name: repositoryName,
                 url: dependency.packageRef.location,
                 licenseBody: licenseBody
             )
