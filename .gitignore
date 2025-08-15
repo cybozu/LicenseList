@@ -14,6 +14,7 @@ SourcePackages/
 
 # Swift DocC
 docs/
+.docc-build/
 
 # Test
 TestResults/
