@@ -113,23 +113,12 @@ struct ContentView: View {
 }
 ```
 
-### How to use a specific `SourcePackages` path
+## How to use a specific `SourcePackages` path
 
-In a CI environment, you may sometimes specify a non-default path for the `SourcePackages` directory.  
-For example: `xcodebuild ... -clonedSourcePackagesDirPath ./SourcePackages`
-
+In a CI environment, you may sometimes specify a non-default path for the `SourcePackages` directory.
 In such cases, to prevent the `PrepareLicenseList` plugin from failing, you must run `xcodebuild` with the `PLL_SOURCE_PACKAGES_PATH` environment variable set to the **absolute path** of that directory.
 
-For example:
-
-```sh
-export PLL_SOURCE_PACKAGES_PATH="$PWD/SourcePackages"
-xcodebuild clean build \
-  -project Examples/Examples.xcodeproj \
-  -scheme ExamplesForSwiftUI \
-  -destination "platform=iOS Simulator,name=iPhone 16,OS=18.5" \
-  -clonedSourcePackagesDirPath ./SourcePackages
-```
+More detail: [How LicenseList Works](https://cybozu.github.io/LicenseList/documentation/licenselist/howlicenselistworks)
 
 ## Contributing to LicenseList
 
