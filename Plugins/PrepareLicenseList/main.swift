@@ -19,6 +19,10 @@ struct PrepareLicenseList: BuildToolPlugin {
     }
 
     func sourcePackages(_ pluginWorkDirectory: URL) throws -> URL {
+        if let sourcePackagesPath = ProcessInfo.processInfo.environment["PLL_SOURCE_PACKAGES_PATH"] {
+            return URL(filePath: sourcePackagesPath)
+        }
+
         var tmpURL = pluginWorkDirectory.absoluteURL
 
         while try !existsSourcePackages(in: tmpURL) {
