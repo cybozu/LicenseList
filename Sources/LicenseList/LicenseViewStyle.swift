@@ -48,7 +48,7 @@ public protocol LicenseViewStyle: Sendable {
 /// A license view style that only displays the license body.
 ///
 /// Links in the text will open in external apps.
-/// You can also use ``PlainLicenseViewStyle/plain`` to construct this style.
+/// You can also use ``LicenseViewStyle/plain`` to construct this style.
 public struct PlainLicenseViewStyle: LicenseViewStyle {
     /// Creates a plain license view style.
     public init() {}
@@ -81,7 +81,7 @@ public extension LicenseViewStyle where Self == PlainLicenseViewStyle {
 /// This style is based on the plain style.
 /// Links in the text will open in external apps.
 /// In addition, a button linking to the library's repository places in the right corner of the navigation bar.
-/// You can also use ``WithRepositoryAnchorLinkLicenseViewStyle/withRepositoryAnchorLink`` to construct this style.
+/// You can also use ``LicenseViewStyle/withRepositoryAnchorLink`` to construct this style.
 public struct WithRepositoryAnchorLinkLicenseViewStyle: LicenseViewStyle {
     /// Creates a license view style with repository anchor link.
     public init() {}

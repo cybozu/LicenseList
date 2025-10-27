@@ -45,7 +45,7 @@ public protocol LicenseListViewStyle: Sendable {
 /// A license list view style that displays the list of libraries.
 ///
 /// Selecting a library name in the list will navigate to the library details view.
-/// You can also use ``PlainLicenseListViewStyle/plain`` to construct this style.
+/// You can also use ``LicenseListViewStyle/plain`` to construct this style.
 public struct PlainLicenseListViewStyle: LicenseListViewStyle {
     /// Creates a plain license list view style.
     public init() {}
