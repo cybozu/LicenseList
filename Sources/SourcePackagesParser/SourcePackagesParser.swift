@@ -10,33 +10,39 @@ final class SourcePackagesParser {
     }
 
     func run() throws {
-        // Load workspace-state.json
+        let workspaceState = try loadWorkspaceState()
+        let libraries = extractLibraries(workspaceState)
+        try exportLicenseList(libraries)
+    }
+
+    private func loadWorkspaceState() throws -> WorkspaceState {
         let workspaceStateURL = sourcePackagesURL.appending(path: "workspace-state.json")
         guard let data = try? Data(contentsOf: workspaceStateURL),
               let workspaceState = try? JSONDecoder().decode(WorkspaceState.self, from: data) else {
             throw SPPError.couldNotReadFile(workspaceStateURL.lastPathComponent)
         }
+        return workspaceState
+    }
 
-        // Extract Libraries
+    private func extractLibraries(_ workspaceState: WorkspaceState) -> [Library] {
         let checkoutsURL = sourcePackagesURL.appending(path: "checkouts")
-        let libraries: [Library] = workspaceState.object.dependencies.compactMap { dependency in
-            let repositoryName = dependency.packageRef.location
-                .components(separatedBy: "/").last!
-                .replacingOccurrences(of: ".git", with: "")
-            let directoryURL = checkoutsURL.appending(path: repositoryName)
-            guard let licenseBody = extractLicenseBody(directoryURL) else {
-                return nil
+        let libraries: [Library] = workspaceState.object.dependencies
+            .compactMap { dependency in
+                let repositoryName = dependency.packageRef.location
+                    .components(separatedBy: "/").last!
+                    .replacingOccurrences(of: ".git", with: "")
+                let directoryURL = checkoutsURL.appending(path: repositoryName)
+                guard let licenseBody = extractLicenseBody(directoryURL) else {
+                    return nil
+                }
+                return Library(
+                    name: dependency.packageRef.name,
+                    url: dependency.packageRef.location,
+                    licenseBody: licenseBody
+                )
             }
-            return Library(
-                name: dependency.packageRef.name,
-                url: dependency.packageRef.location,
-                licenseBody: licenseBody
-            )
-        }
-        .sorted { $0.name.lowercased() < $1.name.lowercased() }
-
-        // Export LicenseList.swift
-        try exportLicenseList(libraries)
+            .sorted { $0.name.lowercased() < $1.name.lowercased() }
+        return libraries
     }
 
     private func extractLicenseBody(_ directoryURL: URL) -> String? {
