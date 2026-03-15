@@ -59,7 +59,7 @@ public struct PlainLicenseViewStyle: LicenseViewStyle {
                 .font(licenseBodyFont)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 #if os(tvOS)
-                .scrollableText(numberOfLines: configuration.numberOfLines, font: .caption)
+                .scrollableText(numberOfLines: configuration.numberOfLines, font: licenseBodyFont)
                 #endif
                 .padding()
         }
