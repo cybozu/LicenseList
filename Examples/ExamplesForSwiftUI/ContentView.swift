@@ -10,7 +10,7 @@ import LicenseList
 
 struct ContentView: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             NavigationLink("License") {
                 LicenseListView()
                     .navigationTitle("LICENSE")
