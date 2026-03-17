@@ -56,7 +56,7 @@ public struct PlainLicenseViewStyle: LicenseViewStyle {
     public func makeBody(configuration: PlainLicenseViewStyle.Configuration) -> some View {
         ScrollView {
             Text(configuration.attributedLicenseBody)
-                .font(licenseBodyFont)
+                .font(.licenseBody)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 #if os(tvOS)
                 .scrollableText(numberOfLines: configuration.numberOfLines, font: licenseBodyFont)
@@ -65,14 +65,6 @@ public struct PlainLicenseViewStyle: LicenseViewStyle {
         }
         .clipShape(.rect)
         .navigationTitle(configuration.library.name)
-    }
-
-    private var licenseBodyFont: Font {
-        #if os(iOS) || os(tvOS)
-        .caption
-        #else
-        .body
-        #endif
     }
 }
 
