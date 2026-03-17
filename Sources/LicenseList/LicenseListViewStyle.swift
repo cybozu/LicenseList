@@ -76,7 +76,7 @@ public struct PlainLicenseListViewStyle: LicenseListViewStyle {
                 }
             }
         }
-        .listStyle(listStyle)
+        .listStyle(.licenseList)
     }
 
     private var chevronGray: Color {
@@ -84,16 +84,6 @@ public struct PlainLicenseListViewStyle: LicenseListViewStyle {
         Color(.systemGray3)
         #else
         Color.gray
-        #endif
-    }
-
-    private var listStyle: some ListStyle {
-        #if os(iOS)
-        .insetGrouped
-        #elseif os(macOS)
-        .inset
-        #else
-        .automatic
         #endif
     }
 }
