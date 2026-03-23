@@ -60,11 +60,11 @@ public struct PlainLicenseListViewStyle: LicenseListViewStyle {
                         } label: {
                             Text(library.name)
                         }
-                        .foregroundColor(.primary)
+                        .foregroundStyle(Color.primary)
                         Spacer()
                         Image(systemName: "chevron.right")
                             .font(.subheadline.bold())
-                            .foregroundColor(chevronGray)
+                            .foregroundStyle(Color.chevron)
                     }
                 } else {
                     NavigationLink {
@@ -76,17 +76,7 @@ public struct PlainLicenseListViewStyle: LicenseListViewStyle {
                 }
             }
         }
-        #if os(iOS)
-        .listStyle(.insetGrouped)
-        #endif
-    }
-
-    private var chevronGray: Color {
-        #if os(iOS)
-        Color(.systemGray3)
-        #else
-        Color.gray
-        #endif
+        .listStyle(.licenseList)
     }
 }
 

@@ -1,0 +1,34 @@
+name: Multi-Platform Build
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build for ${{ matrix.platform }}
+    runs-on: macos-15
+    timeout-minutes: 30
+    env:
+      DEVELOPER_DIR: "/Applications/Xcode_16.4.app/Contents/Developer"
+
+    strategy:
+      matrix:
+        platform: [iOS, macOS, tvOS]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Show Xcode Version
+        run: xcodebuild -version
+
+      - name: Build for ${{ matrix.platform }}
+        run: |
+          xcodebuild build \
+            -scheme LicenseList \
+            -destination "generic/platform=${{ matrix.platform }}" | \
+            xcbeautify && exit ${PIPESTATUS[0]}
