@@ -10,8 +10,8 @@ let package = Package(
     name: "LicenseList",
     platforms: [
         .iOS(.v16),
+        .macOS(.v13),
         .tvOS(.v17),
-        .macOS(.v14),
     ],
     products: [
         .library(
