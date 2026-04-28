@@ -29,9 +29,7 @@ jobs:
         shell: bash
         run: |
           xcodebuild test \
-            -project Examples/Examples.xcodeproj \
-            -scheme SourcePackagesParserTests \
-            -only-testing:SourcePackagesParserTests \
+            -scheme spp \
             -destination "platform=macOS,arch=arm64" \
             -resultBundlePath TestResults/result_bundle | \
             xcbeautify
