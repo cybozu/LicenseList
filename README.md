@@ -23,8 +23,8 @@ Generate a list of licenses for the Swift Package libraries that your app depend
 
 ## Requirements
 
-- Development with Xcode 16.4+
-- Written in Swift 6.1
+- Development with Xcode 26.2+
+- Written in Swift 6.2
 - Compatible with iOS 16.0+, macOS 13.0+, tvOS 17.0+
 
 ## Documentation
@@ -52,7 +52,7 @@ LicenseList is available through [Swift Package Manager](https://github.com/appl
 1. Create `Package.swift` that describes dependencies.
 
    ```swift
-   // swift-tools-version: 6.1
+   // swift-tools-version: 6.2
    import PackageDescription
 
    let package = Package(
@@ -61,7 +61,7 @@ LicenseList is available through [Swift Package Manager](https://github.com/appl
            .library(name: "SomeProduct", targets: ["SomeProduct"])
        ],
        dependencies: [
-           .package(url: "https://github.com/cybozu/LicenseList.git", exact: "2.1.0")
+           .package(url: "https://github.com/cybozu/LicenseList.git", exact: "x.y.z")
        ],
        targets: [
            .target(
