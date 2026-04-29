@@ -27,8 +27,9 @@ jobs:
         run: xcodebuild -version
 
       - name: Build for ${{ matrix.platform }}
+        shell: bash
         run: |
           xcodebuild build \
             -scheme LicenseList \
             -destination "generic/platform=${{ matrix.platform }}" | \
-            xcbeautify && exit ${PIPESTATUS[0]}
+            xcbeautify

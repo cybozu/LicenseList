@@ -26,11 +26,11 @@ jobs:
         run: xcodebuild -version
 
       - name: Run SourcePackagesParserTests
+        shell: bash
         run: |
           xcodebuild test \
-            -project Examples/Examples.xcodeproj \
-            -scheme SourcePackagesParserTests \
+            -scheme LicenseList-Package \
             -only-testing:SourcePackagesParserTests \
             -destination "platform=macOS,arch=arm64" \
             -resultBundlePath TestResults/result_bundle | \
-            xcbeautify && exit ${PIPESTATUS[0]}
+            xcbeautify

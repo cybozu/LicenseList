@@ -21,7 +21,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1874ABD92D1DAC8B00DCE2D6 /* spp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = spp.xctestplan; sourceTree = "<group>"; };
 		188460622C37EDE2005C370A /* LicenseList */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LicenseList; path = ..; sourceTree = "<group>"; };
 		18FCC4412C37E4550052500D /* ExamplesForSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExamplesForSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FCC4432C37E4550052500D /* ExamplesForSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesForSwiftUIApp.swift; sourceTree = "<group>"; };
@@ -60,7 +59,6 @@
 		18FCC4232C37E4270052500D = {
 			isa = PBXGroup;
 			children = (
-				1874ABD92D1DAC8B00DCE2D6 /* spp.xctestplan */,
 				188460622C37EDE2005C370A /* LicenseList */,
 				18FCC4422C37E4550052500D /* ExamplesForSwiftUI */,
 				18FCC4542C37E4730052500D /* ExamplesForUIKit */,
